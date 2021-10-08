@@ -40,7 +40,7 @@
             <p class="text">{{ article.contenu|raw }}
             </p>
             {% if article.equipe.name != 'Info-Club' %}
-            <a href="{{ path('equipe',{id : article.equipe.name}) }}" class="btn btn-secondary">
+            <a href="{{ path('main_equipe',{id : article.equipe.name}) }}" class="btn btn-secondary">
                 Voir l'équipe
             </a>
             {% endif %}
@@ -50,9 +50,6 @@
                 {% for photo in article.photoFond %}
                 <img src="{{ asset('/uploads/'~photo.name) }}" alt="" />
                 {% endfor %}
-{#                <img src="{{article.img1.url}}" alt="" />#}
-{#                <img src="{{article.img2.url}}" alt="" />#}
-{#                <img src="{{article.img3.url}}" alt="" />#}
             </div>
         </section>
     </main>

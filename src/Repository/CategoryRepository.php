@@ -30,6 +30,17 @@ class CategoryRepository extends ServiceEntityRepository
     }
 
 
+    public function findTeamInCategory($value){
+        return $this->createQueryBuilder('c')
+            ->select('c','e')
+            ->leftJoin('c.equipes','e')
+            ->andWhere('c.name = :val')
+            ->setParameter('val', $value)
+            ->getQuery()->getResult();
+
+    }
+
+
     public function findAllCategoryWithArticles()
     {
         return $this->createQueryBuilder('c')

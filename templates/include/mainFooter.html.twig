@@ -1,12 +1,13 @@
 <footer>
     <div class="newsletter">
         <img src="{{ asset('uploads/logo/logo-fce.svg') }}" alt="Logo"/>
-        <form>
+        <div class="form">
             <label for="newsletter">
                 <h3>Inscrivez-vous à la newsletter</h3>
             </label>
 
             <div class="input-container">
+
                 {{ form_start(form) }}
                 <div class="input-newsletter">{{ form_row(form.email) }}
                     <button class="btn btn-primary" type="submit">Inscrivez-vous</button>
@@ -14,10 +15,10 @@
                 <div class="input-rgpd">
                     {{ form_row(form.is_rgpd) }}
                 </div>
-
                 {{ form_end(form) }}
+
             </div>
-        </form>
+        </div>
     </div>
     <div class="container footer">
         <hr/>
@@ -26,7 +27,7 @@
                 Le club
                 <ul>
                     <!--<li>Nos équipes</li>-->
-                    <li><a href="{{ path('equipe',{id : 'Sénior élite garçons' }) }}">Équipe Élite Garçons</a></li>
+                    <li><a href="{{ path('main_equipe',{id : 'Sénior élite garçons' }) }}">Équipe Élite Garçons</a></li>
                 </ul>
             </div>
             <div class="nav">
@@ -86,3 +87,4 @@
         <span class="copyright"> FCE MÉRIGNAC ARLAC </span>
     </div>
 </footer>
+

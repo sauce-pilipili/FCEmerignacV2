@@ -242,8 +242,6 @@ section.logos img{
     height: 250px;
 }
 
-
-
 section.blog {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -251,6 +249,8 @@ section.blog {
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
   gap: 1rem;
+    /*le width en dessous permet de modifier la largeur des article un large et un fin en proportion 70/30 a peu pres */
+    /*width: 130%;*/
   row-gap: 17rem;
 }
 

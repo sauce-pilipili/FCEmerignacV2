@@ -36,17 +36,17 @@ class MainController extends AbstractController
 
         //les articles des info-club
         $articleInfoDuClub = $articlesRepository->findByCategoryInfoClub('Info-Club');
-
-        $userN = new Users();
-        $form = $this->createForm(NewsLettersUsersType::class, $userN);
+        $user = new Users();
+        $form = $this->createForm(NewsLettersUsersType::class, $user);
         $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted()&& $form->isValid()) {
+
                 $token = hash('sha256', uniqid());
-                $userN->setCreatedDate(new \DateTime('now'));
-                $userN->setValidationToken($token);
-                $userN->setIsValid(0);
+                $user->setCreatedDate(new \DateTime('now'));
+                $user->setValidationToken($token);
+                $user->setIsValid(0);
                 $em = $this->getDoctrine()->getManager();
-                $em->persist($userN);
+                $em->persist($user);
                 $em->flush();
 
                 return $this->redirectToRoute('accueil');
@@ -81,8 +81,9 @@ class MainController extends AbstractController
         ]);
     }
 
+
     /**
-     * @Route("/equipe{id}", name="equipe")
+     * @Route("/equipe/{id}", name="main_equipe")
      */
     public function equipe($id,Request $request,EquipeRepository $equipeRepository, CategoryRepository $categoryRepository): Response
     {
@@ -92,7 +93,6 @@ class MainController extends AbstractController
         return new Jsonresponse([
             'equipe' => $equipe,
         ]);}
-
 
         $user = new Users();
         $form = $this->createForm(NewsLettersUsersType::class, $user);
@@ -106,6 +106,7 @@ class MainController extends AbstractController
             $em->flush();
         }
 
+
         $category = $categoryRepository->findAllCategory();
         if ($id == 'autres'){
             $equipe = $equipeRepository->findAllTeam();
@@ -118,7 +119,9 @@ class MainController extends AbstractController
 
         $cattocompare = $categoryRepository->findAllCategory();
         if ($this->compare($id, $cattocompare)){
-            $equipe = $equipeRepository->findAllTeam($id);
+
+            $equipe = $equipeRepository->findotherTeam($id);
+//            $equipe = $categoryRepository->findTeamInCategory($id);
 
             return $this->render('main/autresEquipe.html.twig', [
                 'equipe'=> $equipe,

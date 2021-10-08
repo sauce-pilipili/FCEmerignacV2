@@ -40,6 +40,20 @@ class EquipeRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+    public function findOtherTeam($value = null)
+    {
+
+        $qb = $this->createQueryBuilder('e')
+            ->select('c','e')
+            ->Join('e.category','c')
+            ->andWhere('c.name = :value')
+            ->setParameter('value', $value);
+//            ->orderBy('e.id', 'ASC');
+        return $qb->getQuery()->getResult();
+    }
+
+
+
 
     public function findEquipe($id): ?Equipe
     {
