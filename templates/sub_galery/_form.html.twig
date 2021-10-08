@@ -1,0 +1,6 @@
+{{ form_start(form) }}
+<div style="display: flex">
+    {{ form_row(form.name, {'attr': {'class': 'input-global'}}) }}
+    <button class="bouton-1" style="border: none; margin-left: 10%">{{ button_label|default('Save') }}</button>
+</div>
+{{ form_end(form) }}
