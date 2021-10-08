@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+{% block title %}Match{% endblock %}
+    {% block body %}
+        <div class="main">
+            {{ include('include/_navigation.html.twig') }}
+            <div class="content">
+                <div class="welcome-container">
+                    <div class="articles">
+                        <h1>Les matchs</h1>
+
+                    </div>
+
+                    <table class="table">
+                        <thead>
+                        <tr>
+
+                            <th>Niveau Equipe</th>
+                            <th>Date du match</th>
+                            <th>Adversaire</th>
+                            <th>actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for next_match in next_matches %}
+                            <tr>
+                                <td><a href="{{ path('match_a_venir_edit',{'id': next_match.id}) }}">{{ next_match.equipe }}</a> </td>
+                                <td>{{ next_match.matchDate ? next_match.matchDate|date('d-m-Y H:i') : '' }}</td>
+                                <td>{{ next_match.adversaire }}</td>
+                                <td>
+                                    {{ include('match_a_venir/_delete_form.html.twig') }}
+                                </td>
+                            </tr>
+                        {% else %}
+                            <tr>
+                                <td colspan="4">no records found</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    {% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/root.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/navigation_back_office.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/container_central.css') }}">
+{% endblock %}

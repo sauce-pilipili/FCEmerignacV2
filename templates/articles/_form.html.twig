@@ -1,0 +1,33 @@
+{{ form_start(form) }}
+    {{ form_widget(form) }}
+{% if article.photoEnAvant != null %}
+
+    {% if app.request.attributes.get('_route') == 'articles_edit' %}
+        <h2>Images en avant</h2>
+        <div>
+
+            <img src="{{ asset('/uploads/'~article.photoEnAvant.name) }}" alt="" width="150">
+
+{#            <a href="{{ path('articles_delete_image', {id: article.photoEnAvant.id}) }}" data-delete#}
+{#               data-token="{{ csrf_token('delete' ~ article.photoEnAvant.id ) }}">Supprimer</a>#}
+        </div>
+
+    {% endif %}
+{% endif %}
+{% if app.request.attributes.get('_route') == 'articles_edit' %}
+
+    {% if article.photoFond != null %}
+        <h2>Images de fond</h2>
+        {% for image in article.photoFond %}
+
+            <div>
+                <img src="{{ asset('/uploads/'~image.name) }}" alt="" width="150">
+
+                <a href="{{ path('articles_delete_image', {id: image.id}) }}" data-delete
+                   data-token="{{ csrf_token('delete' ~ image.id ) }}">Supprimer</a>
+            </div>
+        {% endfor %}
+    {% endif %}
+{% endif %}
+<button class="btn">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}

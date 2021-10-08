@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+{% block title %}Match{% endblock %}
+    {% block body %}
+        <div class="main">
+            {{ include('include/_navigation.html.twig') }}
+            <div class="content">
+                <div class="welcome-container">
+                    <h1>NextMatch</h1>
+
+                    <table class="table">
+                        <tbody>
+                        <tr>
+                            <th>Id</th>
+                            <td>{{ next_match.id }}</td>
+                        </tr>
+                        <tr>
+                            <th>NiveauEquipe</th>
+                            <td>{{ next_match.niveauEquipe }}</td>
+                        </tr>
+                        <tr>
+                            <th>MatchDate</th>
+                            <td>{{ next_match.matchDate ? next_match.matchDate|date('Y-m-d H:i:s') : '' }}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                    <a href="{{ path('match_a_venir_index') }}">back to list</a>
+
+                    <a href="{{ path('match_a_venir_edit', {'id': next_match.id}) }}">edit</a>
+
+                    {{ include('match_a_venir/_delete_form.html.twig') }}
+                </div>
+            </div>
+        </div>
+    {% endblock %}

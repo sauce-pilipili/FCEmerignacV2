@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+{% block title %}Galerie{% endblock %}
+    {% block body %}
+        <div class="main">
+            {{ include('include/_navigation.html.twig') }}
+            <div class="content">
+                <div class="welcome-container">
+                    <h1>Enregistrer un membre</h1>
+
+                    {{ form_start(registrationForm) }}
+                    {{ form_row(registrationForm.email) }}
+                    {{ form_row(registrationForm.plainPassword, {
+                        label: 'Password'
+                    }) }}
+                    {{ form_row(registrationForm.agreeTerms) }}
+                    {{ form_row(registrationForm.roles) }}
+
+                    <button type="submit" class="btn">Register</button>
+                    {{ form_end(registrationForm) }}
+                </div>
+            </div>
+        </div>
+
+    {% endblock %}
+

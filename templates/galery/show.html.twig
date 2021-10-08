@@ -1,0 +1,80 @@
+{% extends 'base.html.twig' %}
+{% block title %}Galerie{% endblock %}
+    {% block body %}
+        <div class="main">
+            {{ include('include/_navigation.html.twig') }}
+            <div class="content">
+                <div class="container table">
+                    <div class="ajout-galerie">
+                        <h1>{{ galery.name }}</h1>
+                        <div style="display: flex">
+                            <a class="bouton-1" href="{{ path('sub_galery_new', {id : galery.id}) }}">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14.07" height="14.07"
+                                     viewBox="0 0 14.07 14.07">
+                                    <path id="ajouter"
+                                          d="M11.035,4a.879.879,0,0,1,.879.879v5.276h5.276a.879.879,0,1,1,0,1.759H11.915v5.276a.879.879,0,1,1-1.759,0V11.915H4.879a.879.879,0,0,1,0-1.759h5.276V4.879A.879.879,0,0,1,11.035,4Z"
+                                          transform="translate(-4 -4)" fill="#0d0d0d"/>
+                                </svg>
+                                Ajouter une sous-galerie
+                            </a>
+                            <a class="bouton-2" href="{{ path('galery_index') }}">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14.07" height="14.07"
+                                     viewBox="0 0 14.07 14.07">
+                                    <path id="ajouter"
+                                          d="M11.035,4a.879.879,0,0,1,.879.879v5.276h5.276a.879.879,0,1,1,0,1.759H11.915v5.276a.879.879,0,1,1-1.759,0V11.915H4.879a.879.879,0,0,1,0-1.759h5.276V4.879A.879.879,0,0,1,11.035,4Z"
+                                          transform="translate(-4 -4)" fill="#0d0d0d"/>
+                                </svg>
+                                quitter
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="bloc-galerie">
+                        {% for g in galery.subGaleries %}
+
+
+                            <div class="galerie galerie-item">
+                                <a href="{{ path('sub_galery_show',{id : g.id}) }}">
+                                    <div class="galerie-desc">
+                                        <h2>{{ g.name }}</h2>
+                                        <p>{{ g.createdDate ? g.createdDate|date('d-m-Y') : '' }}</p>
+                                        <p>{{ g.albums | length }} albums</p>
+                                    </div>
+                                </a>
+                                <div class="galerie-action">
+                                    <form method="post" action="{{ path('sub_galery_delete', {'id': g.id }) }}"
+                                          onsubmit="return confirm('Are you sure you want to delete this item?');">
+                                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ g.id) }}">
+                                        <button class="btn" style="border: none">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                                 viewBox="0 0 20 20">
+                                                <path id="delete"
+                                                      d="M7,4A2,2,0,0,1,9,2h6a2,2,0,0,1,2,2V6h4a1,1,0,0,1,0,2H19.931l-.867,12.142A2,2,0,0,1,17.069,22H6.931a2,2,0,0,1-1.995-1.858L4.069,8H3A1,1,0,0,1,3,6H7ZM9,6h6V4H9ZM6.074,8l.857,12H17.069l.857-12ZM10,10a1,1,0,0,1,1,1v6a1,1,0,0,1-2,0V11A1,1,0,0,1,10,10Zm4,0a1,1,0,0,1,1,1v6a1,1,0,0,1-2,0V11A1,1,0,0,1,14,10Z"
+                                                      transform="translate(-2 -2)" fill="#0d0d0d"/>
+                                            </svg>
+                                        </button>
+                                    </form>
+                                    <a href="{{ path('sub_galery_edit', {'id': g.id}) }}">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                             viewBox="0 0 18 18">
+                                            <path id="edit-alt"
+                                                  d="M16.293,3.293a1,1,0,0,1,1.414,0l3,3a1,1,0,0,1,0,1.414l-9,9A1,1,0,0,1,11,17H8a1,1,0,0,1-1-1V13a1,1,0,0,1,.293-.707ZM9,13.414V15h1.586l8-8L17,5.414ZM3,7A2,2,0,0,1,5,5h5a1,1,0,0,1,0,2H5V19H17V14a1,1,0,0,1,2,0v5a2,2,0,0,1-2,2H5a2,2,0,0,1-2-2Z"
+                                                  transform="translate(-3 -3)"/>
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>
+                        {% endfor %}
+
+                    </div>
+                </div>
+                {# <td>{{ galery.id }}</td> #}
+                {# <td>{{ galery.name }}</td> #}
+                {# <td>{{ galery.createdDate ? galery.createdDate|date('Y-m-d H:i:s') : '' }}</td> #}
+                {# <a href="{{ path('galery_show', {'id': galery.id}) }}">show</a> #}
+                {# <a href="{{ path('galery_edit', {'id': galery.id}) }}">edit</a> #}
+            </div>
+        </div>
+
+    {% endblock %}
+

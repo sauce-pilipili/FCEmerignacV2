@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}User{% endblock %}
+
+{% block body %}
+    <div class="main">
+        {{ include('include/_navigation.html.twig') }}
+        <div class="content">
+            <div class="welcome-container">
+                <h1>Nouvel utilisateur</h1>
+                {{ include('user/_form.html.twig') }}
+
+                <a href="{{ path('user_index') }}">back to list</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

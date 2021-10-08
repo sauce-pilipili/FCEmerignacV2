@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+{% block title %}Adversaires{% endblock %}
+    {% block body %}
+        <div class="main">
+            {{ include('include/_navigation.html.twig') }}
+            <div class="content">
+                <div class="welcome-container">
+                    <h1>Create new Adversaires</h1>
+
+                    {{ include('adversaires/_form.html.twig') }}
+
+                    <a href="{{ path('adversaires_index') }}">back to list</a>
+                </div>
+            </div>
+        </div>
+
+    {% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/root.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/navigation_back_office.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/container_central.css') }}">
+{% endblock %}

@@ -1,0 +1,189 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}FCE Merignac Arlac{% endblock %}
+
+{% block body %}
+    {% include 'include/_mainNavigation.html.twig' %}
+
+    <main>
+        <section class="actus">
+            <a href="{{ path('article_slug',{'slug': articlePremier.slug}) }}" class="last-actu">
+                <h3>Dernières actualités</h3>
+{% if articlePremier.photoEnAvant != null%}
+                <img src="{{ asset('uploads/'~ articlePremier.photoEnAvant.name ) }}" alt=""/>
+{% endif %}
+                <div class="link title">
+                    <h3>{{ articlePremier.titre }}</h3>
+                    <span class="date">{{ articlePremier.createdDate|date('d / m / Y') }}</span>
+                </div>
+            </a>
+            {% if nextmatch != null %}
+            {% for match in nextmatch %}
+            <div class="event">
+                <h2>Prochain Match</h2>
+                <div class="meeting">
+                    {{ match.equipe.name }}
+                    <img src="{{ asset('/uploads/logo/logo-fce.svg') }}" alt=""/>
+                    VS
+                     {{ match.adversaire.nom }}
+                    <img src="{{ asset('/uploads/logo/'~match.adversaire.logo.name) }}" alt=""/>
+                </div>
+                <div class="date">
+                    <span class="day">{{ match.matchDate | date('d / m / Y') }} à {{ match.matchDate | date('H : i') }}</span>
+                </div>
+            </div>
+            {% endfor %}
+            {% else %}
+                <div class="event">
+                    <h2>Prochain Match</h2>
+                    <div class="meeting">
+                        <p>Aucun match a venir</p>
+                    </div>
+                    <div class="date">
+
+                    </div>
+                </div>
+
+
+            {% endif %}
+{#            <div class="event">#}
+{#                <h2>Prochain Match Filles</h2>#}
+{#                <div class="meeting">#}
+{#                    <img src="{{ asset('/uploads/logo/logo-fce.svg') }}" alt=""/>#}
+{#                    VS#}
+{#                     {{ nextmatch.adversaire.name }}#}
+{#                    <img src="{{ asset('/uploads/logo/'~nextmatchF.adversaire.logo.name) }}" alt=""/>#}
+{#                </div>#}
+{#                <div class="date">#}
+{#                    <span class="day">{{ nextmatchF.matchDate | date('d / m / Y') }} à {{ nextmatchF.matchDate | date('H : i') }}</span>#}
+{#                </div>#}
+{#            </div>#}
+        </section>
+        <section class="logos">
+            <div class="autoplay">
+                <img src="{{ asset('logoPartenaire/BACKSTAGES NOIR.svg') }}">
+                <img src="{{ asset('logoPartenaire/BLOCSTOP NOIR.svg') }}">
+                <img src="{{ asset('logoPartenaire/CLUB VIP NOIR.svg') }}">
+                <img src="{{ asset('logoPartenaire/DECATHLON NOIR.svg') }}">
+                <img src="{{ asset('logoPartenaire/ECF NOIR.svg') }}">
+                <img src="{{ asset('logoPartenaire/FAYAT NOIR.svg') }}">
+                <img src="{{ asset('logoPartenaire/FIAT NOIR.svg') }}">
+                <img src="{{ asset('logoPartenaire/FITNES PARK NOIR.svg') }}">
+                <img src="{{ asset('logoPartenaire/GROUPAMA NOIR.svg') }}">
+                <img src="{{ asset('logoPartenaire/IBIS HOTEL NOIR.svg') }}">
+                <img src="{{ asset('logoPartenaire/LEBIHAN NOIR.svg') }}">
+                <img src="{{ asset('logoPartenaire/LP PROMOTION NOIR.svg') }}">
+            </div>
+        </section>
+        <script src="{{ asset('js/mainscript.js') }}"></script>
+        <section class="blog">
+
+            {% for cat in category %}
+                <script>ArticleCategory('{{ cat.name }}', {{ cat.id }});</script>
+                <a id="lienArticle{{ cat.id }}" href="{{ path('article_slug',{'slug' : '$' }) }}">
+                    <div class="article-large" >
+                        <h2>{{ cat.name }}</h2>
+                        <div class="img-article-cadre">
+                            <img id="imagearticlecat{{ cat.id }}" src="" alt=""/>
+                        </div>
+                        <div class="link title">
+                            <h3 id="titre{{ cat.id }}"></h3>
+                            <span id="date{{ cat.id }}" class="date"></span>
+                        </div>
+                    </div>
+                </a>
+            {% endfor %}
+
+        </section>
+        <section class="club">
+            <div class="desc">
+                <h3>Info club</h3>
+                <p>
+                    Toutes les informations du club sont à retrouver ici. Vous retrouverez prochainement les horaires,
+                    calendriers, résultats, photos, reportages...
+                </p>
+                <p>Comme nous explique le président, notre slogan est bien d'actualité : nous allons envoyer tous
+                    ensemble Mérignac Arlac vers une nouvelle dimension !!!
+                </p>
+            </div>
+            <div class="carousel-container">
+                <div class="arrow" id="arrow-left">
+                    <svg
+                            viewBox="0 0 24 24"
+                            width="24"
+                            height="24"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            fill="none"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                    >
+                        <polyline points="15 18 9 12 15 6"></polyline>
+                    </svg>
+                </div>
+                <div class="carousel">
+
+                    {% for info in articleInfo %}
+                        <a href="{{ path('article_slug',{'slug': info.slug}) }}" class="">
+{% if info.photoEnAvant != null %}
+                                <img src="{{ asset('uploads/'~ info.photoEnAvant.name ) }}" alt=""/>
+{% endif %}
+
+                            <div class="link title">
+                                <h3>{{ info.titre }}</h3>
+                                <span class="date">{{ info.createdDate|date('d / m / Y') }}</span>
+                            </div>
+                        </a>
+                    {% endfor %}
+                </div>
+                <div class="arrow" id="arrow-right">
+                    <svg
+                            viewBox="0 0 24 24"
+                            width="24"
+                            height="24"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            fill="none"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                    >
+                        <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg>
+                </div>
+            </div>
+        </section>
+
+    </main>
+    {% include 'include/mainFooter.html.twig' %}
+    <script>
+        function carousel() {
+            const leftArrow = document.querySelector("#arrow-left")
+            const rightArrow = document.querySelector("#arrow-right")
+            const carousel = document.querySelector(".carousel")
+            const length = 500
+
+            leftArrow.onclick = () => {
+                carousel.scrollLeft -= length
+                console.log('coucou')
+            }
+            rightArrow.onclick = () => {
+                carousel.scrollLeft += length
+            }
+        }
+        carousel()
+    </script>
+{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/_article.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/login.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/main.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/_index.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/_legals.css') }}">
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+{% endblock %}
+
+{% block javascripts %}
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <script type="text/javascript" src="{{ asset('js/carousel.js') }}"></script>
+{% endblock %}

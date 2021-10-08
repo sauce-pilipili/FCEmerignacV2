@@ -1,0 +1,78 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+}
+
+button {
+    text-decoration: none;
+    color: #000;
+    font-weight: bold;
+    font-family: 'Montserrat', sans-serif;
+}
+
+h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 30px;
+}
+
+label {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 17px;
+    font-weight: bold;
+}
+
+input {
+    font-family: 'Montserrat', sans-serif;
+    height: 13px;
+    width: 500px;
+    padding: 15px;
+    font-size: 14px;
+    color: #9D9D9D;
+}
+
+.connexion-logo,
+.connexion-input {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+}
+
+.connexion-id,
+.connexion-mdp {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.connexion-mdp a {
+    font-size: 14px;
+}
+
+.bouton-connexion {
+    color: #4FB9A5;
+    text-transform: uppercase;
+    background-color: transparent;
+    border: none;
+}
+
+.bouton-connexion::after {
+    content: '';
+    background-color: #4FB9A5;
+    height: 2px;
+    width: 97px;
+    display: block;
+    margin-top: 0.5rem;
+    transition: 0.3s ease;
+}
+
+.bouton-connexion:hover::after {
+    background-color: transparent;
+}

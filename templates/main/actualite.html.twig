@@ -1,0 +1,71 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}FCE Merignac Arlac{% endblock %}
+{% block meta %}
+
+    <meta name="description" content="{{ article.metaDescription }}">
+{% endblock %}
+{% block body %}
+    {{ include('include/_mainNavigation.html.twig') }}
+    <main>
+
+        <section class="display">
+            <img src="{{ asset('/uploads/'~article.photoEnAvant.name) }}" alt="" />
+            <div class="link title">
+                <h2>{{ article.titre }}</h2>
+                <div class="interaction">
+                    {{ article.createdDate |date('d / m / Y')}}
+{#                  |  Partager l'article#}
+{#                    <svg#}
+{#                            viewBox="0 0 24 24"#}
+{#                            width="20"#}
+{#                            height="20"#}
+{#                            stroke="currentColor"#}
+{#                            stroke-width="2"#}
+{#                            fill="none"#}
+{#                            stroke-linecap="round"#}
+{#                            stroke-linejoin="round"#}
+{#                    >#}
+{#                        <circle cx="18" cy="5" r="3"></circle>#}
+{#                        <circle cx="6" cy="12" r="3"></circle>#}
+{#                        <circle cx="18" cy="19" r="3"></circle>#}
+{#                        <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>#}
+{#                        <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>#}
+{#                    </svg>#}
+                </div>
+                <p>{{ article.introduction }}</p>
+            </div>
+        </section>
+        <section class="content container">
+            <p class="text">{{ article.contenu|raw }}
+            </p>
+            {% if article.equipe.name != 'Info-Club' %}
+            <a href="{{ path('equipe',{id : article.equipe.name}) }}" class="btn btn-secondary">
+                Voir l'équipe
+            </a>
+            {% endif %}
+        </section>
+        <section class="photos">
+            <div class="img-container">
+                {% for photo in article.photoFond %}
+                <img src="{{ asset('/uploads/'~photo.name) }}" alt="" />
+                {% endfor %}
+{#                <img src="{{article.img1.url}}" alt="" />#}
+{#                <img src="{{article.img2.url}}" alt="" />#}
+{#                <img src="{{article.img3.url}}" alt="" />#}
+            </div>
+        </section>
+    </main>
+
+
+{{ include('include/mainFooter.html.twig') }}
+{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/_article.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/login.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/main.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/_index.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/_legals.css') }}">
+
+{% endblock %}

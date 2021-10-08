@@ -1,0 +1,25 @@
+.page-login{
+    display: flex;
+}
+
+.page-login-image{
+    background-image: url("../uploads/0e090b7ed15075ef7d2f1f975bf81ba9.jpg");
+    background-size: cover;
+    height: 100vh;
+    width: 50%;
+}
+.page-login-form{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+}
+.login-form{
+margin-right: 25%;
+    margin-left: 25%;
+}
+.form{
+    display: flex;
+    flex-direction: column;
+}

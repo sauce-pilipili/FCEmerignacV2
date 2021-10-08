@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Equipes{% endblock %}
+
+{% block body %}
+
+    {% include 'include/_mainNavigation.html.twig' %}
+    <main>
+        {#{{ dump(equipe) }}#}
+{#        <section class="actus equipes">#}
+{#            <img src="{{ asset('uploads/'~equipe.photoEquipe) }}" alt=""/>#}
+{#            </a>#}
+{#        </section>#}
+
+        <section class="container equipes-desc">
+            <h1>Toutes nos équipes</h1>
+{#            <p>Molestie nibh arcu elit diam suspendisse et mauris. Diam diam at commodo, posuere eu. Pellentesque dolor#}
+{#                nibh laoreet ipsum. Pellentesque elementum neque gravida penatibus molestie suspendisse posuere quisque.#}
+{#                Euismod risus sit amet vulputate in dolor, sagittis.</p>#}
+           <div>
+               <script src="{{ asset('js/searchCat.js') }}"></script>
+               {% for cat in category %}
+                   <a href="{{ path('equipe',{id : cat.name}) }}">{{ cat.name }}</a>
+               {% endfor %}
+           </div>
+
+        </section>
+
+        <section class="container">
+
+            <div class="photo-joueur">
+
+
+
+                                {% for equ in equipe %}
+
+                    <a href="{{ path('equipe',{id : equ.name}) }}">
+                        <img style="width:389px; height:386px;" src="{{ asset('uploads/'~equ.photoEquipe.name) }}" alt=""/>
+                        {#                    <img style="width:389px; height:386px;" src="{{ asset('img/DELRIEU.jpg') }}" alt=""/>#}
+                        <div class="title-game">
+                            <h3>{{ equ.name }}</h3>
+                            <span class="date"></span>
+                        </div>
+                    </a>
+                {% endfor %}
+
+            </div>
+        </section>
+
+
+
+    </main>
+    {{ include('include/mainFooter.html.twig') }}
+
+{% endblock %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/_article.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/login.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/main.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/_index.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/_legals.css') }}">
+
+{% endblock %}
+{% block javascripts %}
+    <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
+{% endblock %}

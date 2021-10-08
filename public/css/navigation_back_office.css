@@ -1,0 +1,116 @@
+@import url('https://fonts.googleapis.com/css?family=Quicksand&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+    color: var(--grey-font);
+    font-family: var(--main-font);
+}
+
+p {
+    font-family: var(--main-font);
+}
+
+body {
+    background-color: var(--main-bg);
+}
+
+h1, h2, h3, h4 {
+    font-family: var(--font-title);
+}
+
+/****************** STYLE DE LA PAGE ***********************/
+
+.main {
+    display: flex;
+    height: 100%;
+    min-height: 100vh;
+}
+/****************** STYLE DE LA BARRE DE NAVIGATION ***********************/
+
+.navigation {
+    background-color: white;
+    width: 20%;
+    padding: 40px 0 0 30px;
+}
+
+.navigation-knp {
+    background-color: white;
+    width: 20%;
+
+    top: 0;
+}
+
+.logoNav img {
+    width: 70px;
+}
+
+.navigation h3 {
+    font-family: "Montserrat", sans-serif;
+    font-size: 1.3rem;
+    margin-top: 25px;
+}
+
+.navigation-list p {
+    font-family: "Montserrat", sans-serif;
+    font-size: 1.2rem;
+}
+
+.navigation-list ul {
+    display: flex;
+    flex-direction: column;
+    margin-top: 44px;
+    gap: 1rem;
+    font-family: "Montserrat", sans-serif;
+    font-size: 1.2rem;
+}
+
+.navigation-list ul a:active {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 900;
+}
+
+.navigation-list li:hover:before {
+    content: "";
+    width: 11px;
+    height: 46px;
+    background-color: #72C3B4;
+    margin-left: -30px;
+    margin-right: 19px;
+}
+
+/******** Division SVG + Lien **********/
+
+.menus {
+    display: flex;
+    cursor: pointer;
+    height: 46px;
+    align-items: center;
+}
+
+.menus a:hover {
+    color: var(--green-bg);
+}
+
+.menus a {
+    margin-left: 18px;
+    transition: 0.3s ease;
+}
+
+/****************** STYLE DU CONTENU ( PARTIE DE DROITE ) ***********************/
+
+.content {
+    width: 80%;
+    background-color: var(--main-bg);
+}
+
+.container {
+    margin: 100px;
+}
+
+
+

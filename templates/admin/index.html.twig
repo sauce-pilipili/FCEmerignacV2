@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+    {% block title %}FCE merignac{% endblock %}
+    {% block body %}
+        <div class="main">
+
+            {{ include('include/_navigation.html.twig') }}
+            <div class="content">
+                <div class="welcome-container welcome">
+{#{% if is_granted('ROLE_ADMIN') %}#}
+    {{ include('include/_adminAcceuilView.html.twig') }}
+
+{#                    {% endif %}#}
+
+
+                </div>
+            </div>
+        </div>
+    {% endblock %}
+
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/root.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/navigation_back_office.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/container_central.css') }}">
+{% endblock %}

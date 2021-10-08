@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+{% block title %}{{ article.titre }}{% endblock %}
+{% block meta %}
+    <meta name="description" content="{{ article.metaDescription }}">
+{% endblock %}
+    {% block body %}
+        <div class="main">
+            {{ include('include/_navigation.html.twig') }}
+            <div class="content">
+                <div class="welcome-container">
+                    <section class="display">
+                        <img src="{{ asset('/uploads/'~article.photoEnAvant.name) }}" alt=""/>
+                        <div class="link title">
+                            <h2>{{ article.titre }}</h2>
+                            <div class="interaction">
+                                {{ article.createdDate |date('d / m / Y') }}
+                            </div>
+                            <p>{{ article.introduction }}</p>
+                        </div>
+                    </section>
+                    </section>
+                    <section class="content container">
+                        <p class="text">{{ article.contenu|raw }}
+                        </p>
+                        <a href="{{ path('equipe_garcons') }}" class="btn btn-secondary">
+                            Voir l'équipe
+                        </a>
+                    </section>
+                    <section class="photos">
+                        <div class="img-container">
+
+                        </div>
+
+                    </section>
+
+                </div>
+            </div>
+        </div>
+    {% endblock %}
