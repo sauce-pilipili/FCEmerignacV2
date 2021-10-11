@@ -36,15 +36,20 @@ class GaleryRepository extends ServiceEntityRepository
     }
     */
 
-    /*
-    public function findOneBySomeField($value): ?Galery
+
+    public function findAPhoto($value)
     {
         return $this->createQueryBuilder('g')
-            ->andWhere('g.exampleField = :val')
+            ->select('images.name')
+            ->join('g.subGaleries', 'sub')
+            ->join('sub.albums','albums')
+            ->join('albums.images','images')
+            ->andWhere('g.id = :val')
             ->setParameter('val', $value)
+            ->setMaxResults(1)
             ->getQuery()
             ->getOneOrNullResult()
         ;
     }
-    */
+
 }

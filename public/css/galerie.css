@@ -1,0 +1,25 @@
+.container-galerie{
+    margin-left: 10%;
+    margin-right: 10%;
+}
+#content{
+    margin-top: 5%;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    row-gap: 1rem;
+}
+.card{
+    position: relative;
+    width: 30%;
+    height: auto;
+}
+.card p{
+    position: absolute;
+    top: 50px;
+    font-size: 30px;
+}
+.card img{
+    max-width: 200px;
+    height: auto;
+}

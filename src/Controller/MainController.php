@@ -8,12 +8,15 @@ use App\Form\NewsLettersUsersType;
 use App\Repository\ArticlesRepository;
 use App\Repository\CategoryRepository;
 use App\Repository\EquipeRepository;
+use App\Repository\GaleryRepository;
 use App\Repository\MatchAVenirRepository;
+use App\Repository\SubGaleryRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use function Sodium\add;
 
 class MainController extends AbstractController
 {
@@ -39,17 +42,17 @@ class MainController extends AbstractController
         $user = new Users();
         $form = $this->createForm(NewsLettersUsersType::class, $user);
         $form->handleRequest($request);
-        if ($form->isSubmitted()&& $form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid()) {
 
-                $token = hash('sha256', uniqid());
-                $user->setCreatedDate(new \DateTime('now'));
-                $user->setValidationToken($token);
-                $user->setIsValid(0);
-                $em = $this->getDoctrine()->getManager();
-                $em->persist($user);
-                $em->flush();
+            $token = hash('sha256', uniqid());
+            $user->setCreatedDate(new \DateTime('now'));
+            $user->setValidationToken($token);
+            $user->setIsValid(0);
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($user);
+            $em->flush();
 
-                return $this->redirectToRoute('accueil');
+            return $this->redirectToRoute('accueil');
         }
 
         if ($request->isXmlHttpRequest()) {
@@ -85,14 +88,15 @@ class MainController extends AbstractController
     /**
      * @Route("/equipe/{id}", name="main_equipe")
      */
-    public function equipe($id,Request $request,EquipeRepository $equipeRepository, CategoryRepository $categoryRepository): Response
+    public function equipe($id, Request $request, EquipeRepository $equipeRepository, CategoryRepository $categoryRepository): Response
     {
         if ($request->isXmlHttpRequest()) {
             $categoryAjax = $request->get('category');
-        $equipe = $equipeRepository->findAllTeam($categoryAjax);
-        return new Jsonresponse([
-            'equipe' => $equipe,
-        ]);}
+            $equipe = $equipeRepository->findAllTeam($categoryAjax);
+            return new Jsonresponse([
+                'equipe' => $equipe,
+            ]);
+        }
 
         $user = new Users();
         $form = $this->createForm(NewsLettersUsersType::class, $user);
@@ -108,40 +112,40 @@ class MainController extends AbstractController
 
 
         $category = $categoryRepository->findAllCategory();
-        if ($id == 'autres'){
+        if ($id == 'autres') {
             $equipe = $equipeRepository->findAllTeam();
             return $this->render('main/autresEquipe.html.twig', [
-                'equipe'=> $equipe,
-                'category'=>$category,
+                'equipe' => $equipe,
+                'category' => $category,
                 'form' => $form->createView()
             ]);
         }
 
         $cattocompare = $categoryRepository->findAllCategory();
-        if ($this->compare($id, $cattocompare)){
+        if ($this->compare($id, $cattocompare)) {
 
             $equipe = $equipeRepository->findotherTeam($id);
 //            $equipe = $categoryRepository->findTeamInCategory($id);
 
             return $this->render('main/autresEquipe.html.twig', [
-                'equipe'=> $equipe,
-                'category'=>$category,
+                'equipe' => $equipe,
+                'category' => $category,
                 'form' => $form->createView()
             ]);
 
-        }
-        else{
+        } else {
             $equipe = $equipeRepository->findEquipe($id);
         }
         return $this->render('main/equipe.html.twig', [
-            'equipe'=> $equipe,
+            'equipe' => $equipe,
             'form' => $form->createView()
         ]);
     }
 
-    public function compare($id,  $cattocompare){
-        foreach ($cattocompare as $cat){
-            if($id == $cat){
+    public function compare($id, $cattocompare)
+    {
+        foreach ($cattocompare as $cat) {
+            if ($id == $cat) {
                 return true;
             }
         }
@@ -167,6 +171,40 @@ class MainController extends AbstractController
         }
         return $this->render('main/equipe.html.twig', [
             'form' => $form->createView()
+        ]);
+    }
+
+
+    /**
+     * @Route("/galerie", name="galerie")
+     */
+    public function Galery(Request $request, GaleryRepository $galeryRepository, SubGaleryRepository $subGaleryRepository): Response
+    {
+//        $imageHasard = $galeryRepository->findAPhoto(1);
+//        dd($imageHasard);
+        $galerie = $galeryRepository->findAll();
+        if ($request->isXmlHttpRequest()) {
+                $imageHasard = $galeryRepository->findAPhoto($request->get('image'));
+                $image = $imageHasard['name'];
+            return new Jsonresponse([
+                'image'=> $image,
+            ]);
+        }
+
+        $user = new Users();
+        $form = $this->createForm(NewsLettersUsersType::class, $user);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $token = hash('sha256', uniqid());
+            $user->setCreatedDate(new \DateTime('now'));
+            $user->setValidationToken($token);
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($user);
+            $em->flush();
+        }
+        return $this->render('main/galerie.html.twig', [
+            'form' => $form->createView(),
+            'galerie'=>$galerie,
         ]);
     }
 
@@ -218,7 +256,7 @@ class MainController extends AbstractController
     /**
      * @Route("actualité/{slug}", options={"expose"=true},name="article_slug")
      */
-    public function article(Request $request,$slug)
+    public function article(Request $request, $slug)
     {
         $user = new Users();
         $form = $this->createForm(NewsLettersUsersType::class, $user);

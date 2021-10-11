@@ -20,7 +20,6 @@ class SubGaleryRepository extends ServiceEntityRepository
     }
 
 
-
     public function findAllSubGalery()
     {
         return $this->createQueryBuilder('s')
@@ -42,6 +41,29 @@ class SubGaleryRepository extends ServiceEntityRepository
             ->getQuery()
             ->getOneOrNullResult();
     }
+
+    // /**
+    //  * @return SubGalery[] Returns an array of SubGalery objects
+    //  */
+
+    public function findSousGalerieParCategory($value)
+    {
+        return $this->createQueryBuilder('s')
+            ->select('s','g')
+            ->join('s.galery','g')
+            ->andWhere('g.name = :val')
+            ->setParameter('val', $value)
+            ->orderBy('s.id', 'DESC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+
+
+
+
+
     // /**
     //  * @return SubGalery[] Returns an array of SubGalery objects
     //  */

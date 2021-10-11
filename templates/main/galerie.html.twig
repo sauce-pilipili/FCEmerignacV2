@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}galerie{% endblock %}
+
+{% block body %}
+    {% include 'include/_mainNavigation.html.twig' %}
+    <script src="{{ asset('js/galerie.js') }}"></script>
+
+    <main>
+
+        <div class="container-galerie">
+            <section>
+                <h1>Galerie photos</h1>
+                <select id="categorySelect" class="input-global" onchange="galerieAjax(this.value, null)">
+                    <option value="" disabled selected>Les catégories d'équipe</option>
+                </select>
+            </section>
+            <div id="content">
+
+            {% for g in galerie %}
+                <script> galerieAjax({{ g.id }})</script>
+               <a href="{{ path('galerie') }}">
+                <div class="card">
+                    <p>{{ g.name }}</p>
+                    {{ g.id }}
+                    <img id="imageCategory{{ g.id }}" src="{{ asset('uploads/logo/logo-fce.svg') }}">
+                </div>
+               </a>
+
+                {% endfor %}
+            </div>
+        </div>
+<script> galerieAjax()</script>
+
+
+    </main>
+    {{ include('include/mainFooter.html.twig') }}
+
+
+{% endblock %}
+
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/_article.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/galerie.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/login.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/main.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/_index.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/_legals.css') }}">
+
+{% endblock %}
