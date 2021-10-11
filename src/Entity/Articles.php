@@ -53,12 +53,12 @@ class Articles
     private $contenu;
 
     /**
-     * @ORM\OneToOne(targetEntity=Photo::class, inversedBy="articlesPhotoEnAvant", cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity=Photo::class,inversedBy="articlesPhotoEnAvant", cascade={"persist", "remove"})
      */
     private $photoEnAvant;
 
     /**
-     * @ORM\OneToMany(targetEntity=Photo::class, mappedBy="articlePhotoFond",cascade={"persist"})
+     * @ORM\OneToMany(targetEntity=Photo::class, mappedBy="articlePhotoFond",cascade={"persist","remove"})
      */
     private $photoFond;
 

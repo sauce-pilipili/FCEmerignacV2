@@ -41,32 +41,35 @@ class ArticlesController extends AbstractController
 
             $article->setCreatedDate(new \DateTime('now'));
 //            gestion image de mise en avant
-            $image = $form->get('photoEnAvant')->getData();
-            $fichier = md5(uniqid()) . '.' . $image->guessExtension();
-            $image->move(
-                $this->getParameter('images_directory'),
-                $fichier
-            );
-            $img = new Photo();
-            $img->setName($fichier);
-            $article->setPhotoEnAvant($img);
-//            gestion des trois images du fond de page
-            $imagedeFond = $form->get('photoDeFond')->getData();
-            foreach ($imagedeFond as $image) {
-                // On génère un nouveau nom de fichier
+            if ($form->get('photoEnAvant')->getData() != null) {
+                $image = $form->get('photoEnAvant')->getData();
                 $fichier = md5(uniqid()) . '.' . $image->guessExtension();
-
-                // On copie le fichier dans le dossier uploads
                 $image->move(
                     $this->getParameter('images_directory'),
                     $fichier
                 );
-                // On crée l'image dans la base de données
                 $img = new Photo();
                 $img->setName($fichier);
-                $article->addPhotoFond($img);
+                $article->setPhotoEnAvant($img);
             }
 
+//            gestion des trois images du fond de page
+            if ($form->get('photoDeFond')->getData() != null) {
+                $imagedeFond = $form->get('photoDeFond')->getData();
+                foreach ($imagedeFond as $image) {
+                    // On génère un nouveau nom de fichier
+                    $fichier = md5(uniqid()) . '.' . $image->guessExtension();
+                    // On copie le fichier dans le dossier uploads
+                    $image->move(
+                        $this->getParameter('images_directory'),
+                        $fichier
+                    );
+                    // On crée l'image dans la base de données
+                    $img = new Photo();
+                    $img->setName($fichier);
+                    $article->addPhotoFond($img);
+                }
+            }
 
 
             $entityManager = $this->getDoctrine()->getManager();
@@ -99,12 +102,16 @@ class ArticlesController extends AbstractController
     {
         $form = $this->createForm(ArticlesType::class, $article);
         $form->handleRequest($request);
-        $nom = $article->getPhotoEnAvant()->getName();
+        $em = $this->getDoctrine()->getManager();
         if ($form->isSubmitted() && $form->isValid()) {
 
             //            gestion image de mise en avant
             if ($form->get('photoEnAvant')->getData() != null) {
-                unlink($this->getParameter('images_directory') . '/' . $nom);
+                if ($article->getPhotoEnAvant()->getName() != null) {
+                    $nom = $article->getPhotoEnAvant()->getName();
+                    unlink($this->getParameter('images_directory') . '/' . $nom);
+
+                }
                 $image = $form->get('photoEnAvant')->getData();
                 $fichier = md5(uniqid()) . '.' . $image->guessExtension();
                 $image->move(
@@ -135,12 +142,7 @@ class ArticlesController extends AbstractController
             }
 
 
-
-
-
-
-
-            $this->getDoctrine()->getManager()->flush();
+            $em->flush();
 
             return $this->redirectToRoute('articles_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -176,24 +178,28 @@ class ArticlesController extends AbstractController
     }
 
 
-
     /**
      * @Route("/{id}", name="articles_delete", methods={"POST"})
      */
     public function delete(Request $request, Articles $article): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$article->getId(), $request->request->get('_token'))) {
-            if ($article->getPhotoFond() != null) {
+        if ($this->isCsrfTokenValid('delete' . $article->getId(), $request->request->get('_token'))) {
 
+            if ($article->getPhotoEnAvant() != null) {
+                unlink($this->getParameter('images_directory') . '/' . $article->getPhotoEnAvant()->getName());
+            }
+            if ($article->getPhotoFond() != null) {
+                $entityManager = $this->getDoctrine()->getManager();
                 foreach ($article->getPhotoFond() as $img) {
                     unlink($this->getParameter('images_directory') . '/' . $img->getName());
                     $article->removePhotoFond($img);
+                    $entityManager->persist($article);
+                    $entityManager->persist($img);
+
                 }
             }
 
 
-
-            $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($article);
             $entityManager->flush();
         }

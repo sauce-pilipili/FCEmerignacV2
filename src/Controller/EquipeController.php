@@ -36,17 +36,18 @@ class EquipeController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            if ($form->get('images')->getData() != null) {
+                $logo = $form->get('images')->getData();
+                $fichier = md5(uniqid()) . '.' . $logo->guessExtension();
+                $logo->move(
+                    $this->getParameter('images_directory'),
+                    $fichier
+                );
 
-            $logo = $form->get('images')->getData();
-            $fichier = md5(uniqid()) . '.' . $logo->guessExtension();
-            $logo->move(
-                $this->getParameter('images_directory'),
-                $fichier
-            );
-
-            $imgLogo = new Photo();
-            $imgLogo->setName($fichier);
-            $equipe->setPhotoEquipe($imgLogo);
+                $imgLogo = new Photo();
+                $imgLogo->setName($fichier);
+                $equipe->setPhotoEquipe($imgLogo);
+            }
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($equipe);
             $entityManager->flush();
@@ -81,16 +82,19 @@ class EquipeController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
 
             if ($form->get('images')->getData() != null) {
-                unlink($this->getParameter('images_directory') . '/' . $equipe->getPhotoEquipe()->getName());
-                $logo = $form->get('images')->getData();
-                $fichier = md5(uniqid()) . '.' . $logo->guessExtension();
-                $logo->move(
-                    $this->getParameter('images_directory'),
-                    $fichier
-                );
-                $imgLogo = new photo();
-                $imgLogo->setName($fichier);
-                $equipe->setPhotoEquipe($imgLogo);
+                if ($equipe->getPhotoEquipe() != null) {
+                    unlink($this->getParameter('images_directory') . '/' . $equipe->getPhotoEquipe()->getName());
+                }
+                    $logo = $form->get('images')->getData();
+                    $fichier = md5(uniqid()) . '.' . $logo->guessExtension();
+                    $logo->move(
+                        $this->getParameter('images_directory'),
+                        $fichier
+                    );
+                    $imgLogo = new photo();
+                    $imgLogo->setName($fichier);
+                    $equipe->setPhotoEquipe($imgLogo);
+
             }
 
             $this->getDoctrine()->getManager()->flush();
@@ -109,8 +113,12 @@ class EquipeController extends AbstractController
      */
     public function delete(Request $request, Equipe $equipe): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$equipe->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $equipe->getId(), $request->request->get('_token'))) {
+            if ($equipe->getPhotoEquipe() != null) {
+                unlink($this->getParameter('images_directory') . '/' . $equipe->getPhotoEquipe()->getName());
+            }
             $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->remove($equipe->getPhotoEquipe());
             $entityManager->remove($equipe);
             $entityManager->flush();
         }

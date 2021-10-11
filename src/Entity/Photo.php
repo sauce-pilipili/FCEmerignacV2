@@ -23,12 +23,12 @@ class Photo
     private $name;
 
     /**
-     * @ORM\OneToOne(targetEntity=Equipe::class, mappedBy="photoEquipe", cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity=Equipe::class, mappedBy="photoEquipe")
      */
     private $equipe;
 
     /**
-     * @ORM\OneToOne(targetEntity=Articles::class, mappedBy="photoEnAvant", cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity=Articles::class, mappedBy="photoEnAvant",orphanRemoval=true, cascade={"persist", "remove"})
      */
     private $articlesPhotoEnAvant;
 
