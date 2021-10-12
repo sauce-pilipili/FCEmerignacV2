@@ -1,26 +1,34 @@
-.container-galerie{
+.container-galerie {
     margin-left: 10%;
     margin-right: 10%;
 }
-#content{
+
+#content {
     margin-top: 5%;
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
     row-gap: 1rem;
 }
-.card{
-    display: block;
 
+.card {
+    display: block;
     position: relative;
 }
-.card p{
+
+.card p {
     position: absolute;
-    top: 50px;
+    color: white;
+    top: 20px;
     font-size: 30px;
 }
-.card img{
-width: 525px;
+
+.card img {
+    /*filter: brightness(0.8);*/
+    width: 525px;
     height: 526px;
-    height: auto;
+
+}
+.catForm{
+    display: flex;
 }

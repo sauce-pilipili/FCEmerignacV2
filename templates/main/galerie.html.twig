@@ -8,24 +8,27 @@
     <main>
         <div class="container-galerie">
             <section>
-                <h1>Galerie photos</h1>
-                {{ form_start(catForm) }}
-                {{ form_row(catForm.name,{'attr': {'class': 'input-global'}}) }}
-                <button type="submit" class="btn-secondary">Chercher</button>
-                {{ form_end(catForm) }}
-
+                <div>
+                    <h1>Galerie photos</h1>
+                </div>
+                <div>
+                    {{ form_start(catForm,{'attr': {'class': 'catForm'}}) }}
+                    {{ form_row(catForm.name,{'attr': {'class': 'input-global'}}) }}
+                    <button type="submit" class="btn">Chercher</button>
+                    {{ form_end(catForm) }}
+                </div>
             </section>
             <div id="content">
 
-            {% for g in galerie %}
-                <script> galerieAjax({{ g.id }})</script>
-               <a href="{{ path('sous_galerie',{id : g.id}) }}">
-                <div class="card">
-                    <p>{{ g.name }}</p>
-                    {{ g.id }}
-                    <img id="imageCategory{{ g.id }}" src="{{ asset('uploads/logo/logo-fce.svg') }}">
-                </div>
-               </a>
+                {% for g in galerie %}
+                    <script> galerieAjax({{ g.id }})</script>
+                    <a href="{{ path('sous_galerie',{id : g.id}) }}">
+                        <div class="card">
+                            <p>{{ g.name }}</p>
+                            {{ g.id }}
+                            <img id="imageCategory{{ g.id }}" src="{{ asset('uploads/logo/logo-fce.svg') }}">
+                        </div>
+                    </a>
 
                 {% endfor %}
             </div>

@@ -18,7 +18,6 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use function Sodium\add;
 
 class MainController extends AbstractController
 {
@@ -257,6 +256,7 @@ class MainController extends AbstractController
     public function Galery(Request $request, GaleryRepository $galeryRepository, SubGaleryRepository $subGaleryRepository): Response
     {
         $galerie = $galeryRepository->findAll();
+
         if ($request->isXmlHttpRequest()) {
             $imageHasard = $galeryRepository->findAPhoto($request->get('image'));
             $image = $imageHasard['name'];
@@ -264,13 +264,12 @@ class MainController extends AbstractController
                 'image' => $image,
             ]);
         }
-
         $catForm = $this->createForm(CategoryGaleryType::class);
         $catForm->handleRequest($request);
 
         if ($catForm->isSubmitted()&& $catForm->isValid()){
-            $galerie = $galeryRepository->findBy(['name'=>$catForm->get('name')->getData()]);
-            dd($galerie);
+            $galerie = $galeryRepository->find($catForm->get('name')->getData());
+            return $this->redirectToRoute('sous_galerie',['id'=>$galerie->getId()]);
         }
 
         $user = new Users();

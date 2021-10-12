@@ -488,10 +488,10 @@ footer .copyright::before {
 }
 
 .btn {
-  padding: 1.5rem 2rem;
+  padding: 0.8rem 2rem;
   font-family: var(--title-font);
   font-weight: 700;
-  width: -webkit-fit-content;
+
   width: -moz-fit-content;
   width: fit-content;
 }
