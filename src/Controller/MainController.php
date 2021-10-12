@@ -4,7 +4,9 @@ namespace App\Controller;
 
 use App\Entity\Articles;
 use App\Entity\Newletters\Users;
+use App\Form\CategoryGaleryType;
 use App\Form\NewsLettersUsersType;
+use App\Repository\AlbumsRepository;
 use App\Repository\ArticlesRepository;
 use App\Repository\CategoryRepository;
 use App\Repository\EquipeRepository;
@@ -23,10 +25,10 @@ class MainController extends AbstractController
     /**
      * @Route("/", name="accueil", methods={"POST","GET"})
      */
-    public function index(Request $request,
+    public function index(Request               $request,
                           MatchAVenirRepository $nextMatchRepository,
-                          ArticlesRepository $articlesRepository,
-                          CategoryRepository $categoryRepository): Response
+                          ArticlesRepository    $articlesRepository,
+                          CategoryRepository    $categoryRepository): Response
     {
         // le dernier article publié
         $articlePremier = $articlesRepository->findLast();
@@ -153,41 +155,17 @@ class MainController extends AbstractController
     }
 
     /**
-     * @Route("/equipe/fille", name="equipe_fille")
+     * @Route("/main/albums/view{id}", name="main_albums_view")
      */
-    public function equipeF(Request $request): Response
+    public function albumsView($id, Request $request, AlbumsRepository $albumsRepository): Response
     {
+        $albums = $albumsRepository->find($id);
 
-        $user = new Users();
-        $form = $this->createForm(NewsLettersUsersType::class, $user);
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            $token = hash('sha256', uniqid());
-            $user->setCreatedDate(new \DateTime('now'));
-            $user->setValidationToken($token);
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($user);
-            $em->flush();
-        }
-        return $this->render('main/equipe.html.twig', [
-            'form' => $form->createView()
-        ]);
-    }
-
-
-    /**
-     * @Route("/galerie", name="galerie")
-     */
-    public function Galery(Request $request, GaleryRepository $galeryRepository, SubGaleryRepository $subGaleryRepository): Response
-    {
-//        $imageHasard = $galeryRepository->findAPhoto(1);
-//        dd($imageHasard);
-        $galerie = $galeryRepository->findAll();
         if ($request->isXmlHttpRequest()) {
-                $imageHasard = $galeryRepository->findAPhoto($request->get('image'));
-                $image = $imageHasard['name'];
+            $imageHasard = $albumsRepository->findAPhoto($request->get('image'));
+            $image = $imageHasard['name'];
             return new Jsonresponse([
-                'image'=> $image,
+                'image' => $image,
             ]);
         }
 
@@ -202,9 +180,114 @@ class MainController extends AbstractController
             $em->persist($user);
             $em->flush();
         }
-        return $this->render('main/galerie.html.twig', [
+        return $this->render('main/albumsView.html.twig', [
             'form' => $form->createView(),
-            'galerie'=>$galerie,
+            'albums' => $albums,
+        ]);
+    }
+
+    /**
+     * @Route("/main/albums{id}", name="main_albums")
+     */
+    public function albums($id, Request $request, AlbumsRepository $albumsRepository): Response
+    {
+        $albums = $albumsRepository->findMainAlbumParSousCategory($id);
+
+        if ($request->isXmlHttpRequest()) {
+            $imageHasard = $albumsRepository->findAPhoto($request->get('image'));
+            $image = $imageHasard['name'];
+            return new Jsonresponse([
+                'image' => $image,
+            ]);
+        }
+
+        $user = new Users();
+        $form = $this->createForm(NewsLettersUsersType::class, $user);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $token = hash('sha256', uniqid());
+            $user->setCreatedDate(new \DateTime('now'));
+            $user->setValidationToken($token);
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($user);
+            $em->flush();
+        }
+        return $this->render('main/albums.html.twig', [
+            'form' => $form->createView(),
+            'albums' => $albums,
+        ]);
+    }
+
+    /**
+     * @Route("/sous/galerie{id}", name="sous_galerie")
+     */
+    public function subGalery($id, Request $request, SubGaleryRepository $subGaleryRepository): Response
+    {
+        $sousGalery = $subGaleryRepository->findMainSousGalerieParCategory($id);
+
+        if ($request->isXmlHttpRequest()) {
+            $imageHasard = $subGaleryRepository->findAPhoto($request->get('image'));
+            $image = $imageHasard['name'];
+            return new Jsonresponse([
+                'image' => $image,
+            ]);
+        }
+
+        $user = new Users();
+        $form = $this->createForm(NewsLettersUsersType::class, $user);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $token = hash('sha256', uniqid());
+            $user->setCreatedDate(new \DateTime('now'));
+            $user->setValidationToken($token);
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($user);
+            $em->flush();
+        }
+        return $this->render('main/subGalery.html.twig', [
+            'form' => $form->createView(),
+            'subGalery' => $sousGalery,
+        ]);
+    }
+
+
+    /**
+     * @Route("/galerie", name="galerie")
+     */
+    public function Galery(Request $request, GaleryRepository $galeryRepository, SubGaleryRepository $subGaleryRepository): Response
+    {
+        $galerie = $galeryRepository->findAll();
+        if ($request->isXmlHttpRequest()) {
+            $imageHasard = $galeryRepository->findAPhoto($request->get('image'));
+            $image = $imageHasard['name'];
+            return new Jsonresponse([
+                'image' => $image,
+            ]);
+        }
+
+        $catForm = $this->createForm(CategoryGaleryType::class);
+        $catForm->handleRequest($request);
+
+        if ($catForm->isSubmitted()&& $catForm->isValid()){
+            $galerie = $galeryRepository->findBy(['name'=>$catForm->get('name')->getData()]);
+            dd($galerie);
+        }
+
+        $user = new Users();
+        $form = $this->createForm(NewsLettersUsersType::class, $user);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $token = hash('sha256', uniqid());
+            $user->setCreatedDate(new \DateTime('now'));
+            $user->setValidationToken($token);
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($user);
+            $em->flush();
+        }
+        return $this->render('main/galerie.html.twig', [
+            'catForm'=>$catForm->createView(),
+            'form' => $form->createView(),
+            'galerie' => $galerie,
         ]);
     }
 

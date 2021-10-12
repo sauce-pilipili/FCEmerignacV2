@@ -58,6 +58,32 @@ class SubGaleryRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
+    public function findMainSousGalerieParCategory($value)
+    {
+        return $this->createQueryBuilder('s')
+            ->select('s','g')
+            ->join('s.galery','g')
+            ->andWhere('g.id = :val')
+            ->setParameter('val', $value)
+            ->orderBy('s.id', 'DESC')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
+    public function findAPhoto($value)
+    {
+        return $this->createQueryBuilder('s')
+            ->select('images.name')
+            ->join('s.albums','albums')
+            ->join('albums.images','images')
+            ->andWhere('s.id = :val')
+            ->setParameter('val', $value)
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getOneOrNullResult()
+            ;
+    }
 
 
 

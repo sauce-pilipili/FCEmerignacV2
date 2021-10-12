@@ -31,6 +31,33 @@ class AlbumsRepository extends ServiceEntityRepository
             ->getOneOrNullResult()
             ;
     }
+
+
+    public function findMainAlbumParSousCategory($value)
+    {
+        return $this->createQueryBuilder('a')
+            ->select('a','s')
+            ->join('a.subGalery','s')
+            ->andWhere('a.subGalery = :val')
+            ->setParameter('val', $value)
+            ->orderBy('a.id', 'DESC')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
+    public function findAPhoto($value)
+    {
+        return $this->createQueryBuilder('a')
+            ->select('images.name')
+            ->join('a.images','images')
+            ->andWhere('a.id = :val')
+            ->setParameter('val', $value)
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getOneOrNullResult()
+            ;
+    }
     // /**
     //  * @return Albums[] Returns an array of Albums objects
     //  */

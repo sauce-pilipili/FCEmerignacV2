@@ -10,9 +10,9 @@
     row-gap: 1rem;
 }
 .card{
+    display: block;
+
     position: relative;
-    width: 30%;
-    height: auto;
 }
 .card p{
     position: absolute;
@@ -20,6 +20,7 @@
     font-size: 30px;
 }
 .card img{
-    max-width: 200px;
+width: 525px;
+    height: 526px;
     height: auto;
 }

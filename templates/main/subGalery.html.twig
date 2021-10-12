@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}galerie{% endblock %}
+{% block title %}{% for s in subGalery|slice(0,1) %}{{ s.galery.name }}{% endfor %}{% endblock %}
 
 {% block body %}
     {% include 'include/_mainNavigation.html.twig' %}
@@ -8,30 +8,24 @@
     <main>
         <div class="container-galerie">
             <section>
-                <h1>Galerie photos</h1>
-                {{ form_start(catForm) }}
-                {{ form_row(catForm.name,{'attr': {'class': 'input-global'}}) }}
-                <button type="submit" class="btn-secondary">Chercher</button>
-                {{ form_end(catForm) }}
-
+                <h1>{% for s in subGalery|slice(0,1) %}{{ s.galery.name }}{% endfor %}</h1>
             </section>
             <div id="content">
-
-            {% for g in galerie %}
-                <script> galerieAjax({{ g.id }})</script>
-               <a href="{{ path('sous_galerie',{id : g.id}) }}">
-                <div class="card">
-                    <p>{{ g.name }}</p>
-                    {{ g.id }}
-                    <img id="imageCategory{{ g.id }}" src="{{ asset('uploads/logo/logo-fce.svg') }}">
-                </div>
-               </a>
-
+                {% for s in subGalery %}
+                    <script> galerieAjax({{ s.id }})</script>
+                    <a href="{{ path('main_albums',{id: s.id}) }}">
+                        <div class="card">
+                            <p>{{ s.name }}</p>
+                            <img id="imageCategory{{ s.id }}" src="{{ asset('uploads/logo/logo-fce.svg') }}">
+                        </div>
+                    </a>
                 {% endfor %}
             </div>
         </div>
     </main>
     {{ include('include/mainFooter.html.twig') }}
+
+
 {% endblock %}
 
 

@@ -1,4 +1,4 @@
-function galerieAjax(value = null) {
+function galerieAjax(value ) {
     $.ajax(
         {
             url: "",
@@ -16,3 +16,5 @@ function galerieAjax(value = null) {
 
         })
 }
+
+
