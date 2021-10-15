@@ -20,19 +20,43 @@ class ArticlesType extends AbstractType
         $builder
             ->add('equipe',EntityType::class,[
                 'class'=> Equipe::class,
+                'label'=> false,
+                'attr'=>[
+                    'class'=>'inputForm',
+                ]
             ])
-            ->add('titre')
-            ->add('introduction')
-            ->add('metaDescription',TextType::class)
-            ->add('contenu',CKEditorType::class)
+            ->add('titre',TextType::class,[
+                'label'=> false,
+                'attr'=>[
+                    'class'=>'inputForm',
+                    'placeholder'=>'titre de l\'article',
+                ]
+            ])
+            ->add('introduction',TextType::class,[
+                'label'=> false,
+                'attr'=>[
+                    'class'=>'inputForm',
+                    'placeholder'=>'introduction de l\'article',
+                ]
+            ])
+            ->add('metaDescription',TextType::class,[
+                'label'=> false,
+                'attr'=>[
+                    'class'=>'inputForm',
+                    'placeholder'=>'meta description',
+                ]
+            ])
+            ->add('contenu',CKEditorType::class,[
+                'label'=> false,
+            ])
             ->add('photoEnAvant',FileType::class,[
-                'label' => 'photo en avant',
+                'label' => false,
                 'multiple' => false,
                 'mapped' => false,
                 'required' => false
             ])
             ->add('photoDeFond',FileType::class,[
-                'label' => 'photo de fond',
+                'label' => false,
                 'multiple' => true,
                 'mapped' => false,
                 'required' => false
