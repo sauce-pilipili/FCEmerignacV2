@@ -1,216 +1,40 @@
 {% extends 'base.html.twig' %}
-
 {% block title %}Equipes{% endblock %}
-
 {% block body %}
-
     {% include 'include/_mainNavigation.html.twig' %}
     <main>
-{#{{ dump(equipe) }}#}
         <section class="actus equipes">
+            {% if equipe.photoEquipe != null %}
             <img src="{{ asset('uploads/'~equipe.photoEquipe) }}" alt=""/>
-            </a>
+            {% endif %}
         </section>
-
         <section class="container equipes-desc">
             <h1>{{ equipe.name }}</h1>
-
         </section>
-
         <section class="container">
             <div class="photo-joueur">
-
-
-                {% for joueur in equipe.joueurs %}
-
-                <a href="">
-                    <img style="width:389px; height:386px;" src="{{ asset('uploads/'~joueur.photoPortrait) }}" alt=""/>
-{#                    <img style="width:389px; height:386px;" src="{{ asset('img/DELRIEU.jpg') }}" alt=""/>#}
-                    <div class="title-game">
-                        <h3>{{ joueur.lastname }} {{ joueur.name }}</h3>
-                        <span class="date">{{ joueur.poste }}</span>
-                    </div>
-                </a>
-                {% endfor %}
-{#                <a href="">#}
-{#                    <img style="width:389px; height:386px;" src="{{ asset('img/BOUCHON.jpg') }}" alt=""/>#}
-{#                    <div class="title-game">#}
-{#                        <h3>BOUCHON</h3>#}
-{#                        <span class="date">Défenseur latéral</span>#}
-{#                    </div>#}
-{#                </a>#}
-{#                <a href="">#}
-{#                    <img style="width:389px; height:386px;" src="{{ asset('img/BARBE.jpg') }}" alt=""/>#}
-{#                    <div class="title-game">#}
-{#                        <h3>BARBE</h3>#}
-{#                        <span class="date">Défenseur latéral</span>#}
-{#                    </div>#}
-{#                </a>#}
-{#                <a href="">#}
-{#                    <img style="width:389px; height:386px;" src="{{ asset('img/SHIEFFER.jpg') }}" alt=""/>#}
-{#                    <div class="title-game">#}
-{#                        <h3>SHIEFFER</h3>#}
-{#                        <span class="date">Défenseur latéral</span>#}
-{#                    </div>#}
-{#                </a>#}
-{#                <a href="">#}
-{#                    <img style="width:389px; height:386px;" src="{{ asset('img/RODRIGUES.jpg') }}" alt=""/>#}
-{#                    <div class="title-game">#}
-{#                        <h3>RODRIGUES</h3>#}
-{#                        <span class="date">Défenseur latéral</span>#}
-{#                    </div>#}
-{#                </a>#}
-{#                <a href="">#}
-{#                    <img style="width:389px; height:386px;" src="{{ asset('img/LAURENT.jpg') }}" alt=""/>#}
-{#                    <div class="title-game">#}
-{#                        <h3>LAURENT</h3>#}
-{#                        <span class="date">Défenseur axial</span>#}
-{#                    </div>#}
-{#                </a>#}
-{#                <a href="">#}
-{#                    <img style="width:389px; height:386px;" src="{{ asset('img/HERBET.jpg') }}" alt=""/>#}
-{#                    <div class="title-game">#}
-{#                        <h3>HERBET</h3>#}
-{#                        <span class="date">Défenseur axial</span>#}
-{#                    </div>#}
-{#                </a>#}
-{#                <a href="">#}
-{#                    <img style="width:389px; height:386px;" src="{{ asset('img/BRIONNE.jpg') }}" alt=""/>#}
-{#                    <div class="title-game">#}
-{#                        <h3>BRIONNE</h3>#}
-{#                        <span class="date">Défenseur axial</span>#}
-{#                    </div>#}
-{#                </a>#}
-{#                <a href="">#}
-{#                    <img style="width:389px; height:386px;" src="{{ asset('img/CARPENTIER.jpg') }}" alt=""/>#}
-{#                    <div class="title-game">#}
-{#                        <h3>CARPENTIER</h3>#}
-{#                        <span class="date">Défenseur axial</span>#}
-{#                    </div>#}
-{#                </a>#}
-{#                <a href="">#}
-{#                    <img style="width:389px; height:386px;" src="{{ asset('img/PAULET.jpg') }}" alt=""/>#}
-{#                    <div class="title-game">#}
-{#                        <h3>PAULET</h3>#}
-{#                        <span class="date">Milieu défenseur</span>#}
-{#                    </div>#}
-{#                </a>#}
-{#                <a href="">#}
-{#                    <img style="width:389px; height:386px;" src="{{ asset('img/MAVUBA.jpg') }}" alt=""/>#}
-{#                    <div class="title-game">#}
-{#                        <h3>MAVUBA</h3>#}
-{#                        <span class="date">Milieu défenseur</span>#}
-{#                    </div>#}
-{#                </a>#}
-{#                <a href="">#}
-{#                    <img style="width:389px; height:386px;" src="{{ asset('img/BLONDOU.jpg') }}" alt=""/>#}
-{#                    <div class="title-game">#}
-{#                        <h3>BLONDOU</h3>#}
-{#                        <span class="date">Milieu défenseur</span>#}
-{#                    </div>#}
-{#                </a>#}
-{#                <a href="">#}
-{#                    <img style="width:389px; height:386px;" src="{{ asset('img/DEGANELLO.jpg') }}" alt=""/>#}
-{#                    <div class="title-game">#}
-{#                        <h3>DEGANELLO</h3>#}
-{#                        <span class="date">Milieu défenseur</span>#}
-{#                    </div>#}
-{#                </a>#}
-{#                <a href="">#}
-{#                    <img style="width:389px; height:386px;" src="{{ asset('img/RAFA.jpg') }}" alt=""/>#}
-{#                    <div class="title-game">#}
-{#                        <h3>RAFA</h3>#}
-{#                        <span class="date">Milieu offensif</span>#}
-{#                    </div>#}
-{#                </a>#}
-{#                <a href="">#}
-{#                    <img style="width:389px; height:386px;" src="{{ asset('img/MPUTU.jpg') }}" alt=""/>#}
-{#                    <div class="title-game">#}
-{#                        <h3>M'PUTU</h3>#}
-{#                        <span class="date">Gardien</span>#}
-{#                    </div>#}
-{#                </a>#}
-{#                <a href="">#}
-{#                    <img style="width:389px; height:386px;" src="{{ asset('img/JUANEDA.jpg') }}" alt=""/>#}
-{#                    <div class="title-game">#}
-{#                        <h3>JUANEDA</h3>#}
-{#                        <span class="date">Milieu offensif</span>#}
-{#                    </div>#}
-{#                </a>#}
-{#                <a href="">#}
-{#                    <img style="width:389px; height:386px;" src="{{ asset('img/TAUZIN.jpg') }}" alt=""/>#}
-{#                    <div class="title-game">#}
-{#                        <h3>TAUZIN</h3>#}
-{#                        <span class="date">Milieu offensif</span>#}
-{#                    </div>#}
-{#                </a>#}
-{#                <a href="">#}
-{#                    <img style="width:389px; height:386px;" src="{{ asset('img/MBATI.jpg') }}" alt=""/>#}
-{#                    <div class="title-game">#}
-{#                        <h3>MBATI</h3>#}
-{#                        <span class="date">Attaquant</span>#}
-{#                    </div>#}
-{#                </a>#}
-{#                <a href="">#}
-{#                    <img style="width:389px; height:386px;" src="{{ asset('img/BEDOURI.jpg') }}" alt=""/>#}
-{#                    <div class="title-game">#}
-{#                        <h3>BEDOURI</h3>#}
-{#                        <span class="date">Attaquant</span>#}
-{#                    </div>#}
-{#                </a>#}
-{#                <a href="">#}
-{#                    <img style="width:389px; height:386px;" src="{{ asset('img/CAMARA.jpg') }}" alt=""/>#}
-{#                    <div class="title-game">#}
-{#                        <h3>CAMARA</h3>#}
-{#                        <span class="date">Attaquant</span>#}
-{#                    </div>#}
-{#                </a>#}
-{#                <a href="">#}
-{#                    <img style="width:389px; height:386px;" src="{{ asset('img/MBAYE.jpg') }}" alt=""/>#}
-{#                    <div class="title-game">#}
-{#                        <h3>MBAYE</h3>#}
-{#                        <span class="date">Attaquant</span>#}
-{#                    </div>#}
-{#                </a>#}
-{#                <a href="">#}
-{#                    <img style="width:389px; height:386px;" src="{{ asset('img/CESSY.jpg') }}" alt=""/>#}
-{#                    <div class="title-game">#}
-{#                        <h3>CESSY</h3>#}
-{#                        <span class="date">Attaquant</span>#}
-{#                    </div>#}
-{#                </a>#}
-{#                <a href="">#}
-{#                    <img style="width:389px; height:386px;" src="{{ asset('img/JACQUEMIN.jpg') }}" alt=""/>#}
-{#                    <div class="title-game">#}
-{#                        <h3>JACQUEMIN</h3>#}
-{#                        <span class="date">Gardien</span>#}
-{#                    </div>#}
-{#                </a>#}
+                {% if equipe.joueurs is empty %}
+                    {% for joueur in equipe.joueurs %}
+                        <a href="">
+                            <img style="width:389px; height:386px;" src="{{ asset('uploads/'~joueur.photoPortrait) }}"
+                                 alt=""/>
+                            <img style="width:389px; height:386px;" src="{{ asset('img/DELRIEU.jpg') }}" alt=""/>
+                            <div class="title-game">
+                                <h3>{{ joueur.lastname }} {{ joueur.name }}</h3>
+                                <span class="date">{{ joueur.poste }}</span>
+                            </div>
+                        </a>
+                    {% endfor %}
+                {% endif %}
             </div>
         </section>
-
         <section class="resultats-equipes">
             <h2>Les résultats de l'équipe</h2>
-{{ equipe.scriptResultat| raw }}
-{#            <script src="https://cdnjs.cloudflare.com/ajax/libs/iframe-resizer/3.5.5/iframeResizer.min.js"></script>#}
-{#            <script>if (!window._rsz) {#}
-{#                    window._rsz = function () {#}
-{#                        var i = iFrameResize({checkOrigin: false, interval: 100});#}
-{#                    };#}
-{#                    if (document.readyState != "loading") {#}
-{#                        _rsz()#}
-{#                    } else {#}
-{#                        document.addEventListener("DOMContentLoaded", _rsz)#}
-{#                    }#}
-{#                }</script>#}
-{#            <iframe id="5c10c1292fd5391c5470fcd2"#}
-{#                    src="https://scorenco.com/widget/5c10c1292fd5391c5470fcd2/?auto_height=true"#}
-{#                    style="display: block; width: 100%; overflow: auto; margin: auto; border-width: 0px;"#}
-{#                    scrolling="no"></iframe>#}
-{#            <a style="font-size:11px" target="_blank" href="https://scorenco.com/football/clubs/fce-merignac-arlac/">FCE#}
-{#                Mérignac Arlac</a>#}
-
-
+            {% if equipe.scriptResultat is not empty %}
+            {{ equipe.scriptResultat| raw }}
+            {% else %}
+          <p>Aucun resultat pour le moment</p>
+            {% endif %}
         </section>
 
     </main>

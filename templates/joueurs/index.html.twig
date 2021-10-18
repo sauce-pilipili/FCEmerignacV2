@@ -4,7 +4,7 @@
 <div class="main">
     {{ include('include/_navigation.html.twig') }}
     <div class="content">
-        <div class="welcome-container">
+        <div class="container">
 
             <div class="articles">
                 <h1>Les joueurs</h1>
@@ -30,7 +30,6 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
                 <th>Lastname</th>
                 <th>Name</th>
                 <th>Age</th>
@@ -42,12 +41,11 @@
         <tbody>
         {% for joueur in joueurs %}
             <tr>
-                <td>{{ joueur.id }}</td>
                 <td><a href="{{ path('joueurs_edit', {'id': joueur.id}) }}">{{ joueur.lastname }}</a></td>
-                <td>{{ joueur.name }}</td>
-                <td>{{ joueur.age }}</td>
-                <td>{{ joueur.description }}</td>
-                <td>{{ joueur.poste }}</td>
+                <td><a href="{{ path('joueurs_edit', {'id': joueur.id}) }}">{{ joueur.name }}</a></td>
+                <td><a href="{{ path('joueurs_edit', {'id': joueur.id}) }}">{{ joueur.age }}</a></td>
+                <td><a href="{{ path('joueurs_edit', {'id': joueur.id}) }}">{{ joueur.description }}</a></td>
+                <td><a href="{{ path('joueurs_edit', {'id': joueur.id}) }}">{{ joueur.poste }}</a></td>
                 <td>
 
                     {{ include('joueurs/_delete_form.html.twig') }}

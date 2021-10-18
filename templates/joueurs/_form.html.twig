@@ -1,4 +1,53 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+<p>Equipe</p>
+{{ form_row(form.equipe) }}
+<p>Prénom</p>
+    {{ form_row(form.lastname) }}
+<p>Nom</p>
+{{ form_row(form.name) }}
+<p>Age</p>
+{{ form_row(form.age) }}
+<p>Description</p>
+{{ form_row(form.description) }}
+<p>Poste</p>
+{{ form_row(form.poste) }}
+<p>Photo du joueur debout</p>
+<div class="upload-1">
+    {{ form_row(form.photoDebout,{'attr': {'class': 'article_photoEnAvant', 'onchange':"handleFilesAvant(files)",'id' : 'upload', 'multiple name': 'file'}}) }}
+    <div class="preview-image"><label for="upload"><span id="previewAvant">{% if joueur.photoDebout != null %}
+        {% if app.request.attributes.get('_route') == 'joueurs_edit' %}
+                    <img class="image-preview" src="{{ asset('/uploads/'~joueur.photodebout) }}" alt="">
+                {% endif %}
+    {% endif %}</span></label></div>
+    <span id="file-select-button-1" class="browse button black">Ajouter une photo <i class="fa fa-plus"></i></span>
+</div>
+
+<p>Photo du joueur en portrait</p>
+<div class="upload-2">
+    {{ form_row(form.photoPortrait,{'attr': {'class': 'article_photoDeFond', 'onchange':"handleFilesFond(files)",'id' : 'upload', 'multiple name': 'file'}}) }}
+    <div class="preview-image"><span id="previewFond">
+                {% if app.request.attributes.get('_route') == 'joueurs_edit' %}
+                    {% if joueur.photoPortrait != null %}
+                            <div class="imageFormPreview">
+            <img src="{{ asset('/uploads/'~joueur.photoPortrait) }}" alt="">
+                            </div>
+                    {% endif %}
+                {% endif %}
+            </span></div>
+    <span id="file-select-button-2" class="browse button black">Ajouter une photo <i class="fa fa-plus"></i></span>
+</div>
+
+
+<div class="bouton-box">
+
+    <button class="bouton-1" style="border: none">{{ button_label|default('Enregistrer') }}</button>
+</div>
 {{ form_end(form) }}
+<script>
+    $('#file-select-button-1').click(function () {
+        $('.upload-1 input').click();
+    });
+    $('#file-select-button-2').click(function () {
+        $('.upload-2 input').click();
+    });
+</script>

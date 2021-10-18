@@ -1,4 +1,27 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+<p>Nom de l'équipe</p>
+{{ form_row(form.nom) }}
+<p>Photo de l'equipe</p>
+
+<div class="upload-1">
+    {{ form_row(form.logo,{'attr': {'class': 'article_photoEnAvant', 'onchange':"handleFilesAvant(files)",'id' : 'upload', 'multiple name': 'file'}}) }}
+    <div class="preview-image"><label for="upload"><span id="previewAvant">{% if adversaire.logo != null %}
+        {% if app.request.attributes.get('_route') == 'adversaires_edit' %}
+                    <img class="image-preview" src="{{ asset('/uploads/logo/'~adversaire.logo) }}" alt="">
+                {% endif %}
+    {% endif %}</span></label></div>
+    <span id="file-select-button-1" class="browse button black">Ajouter une photo <i class="fa fa-plus"></i></span>
+</div>
+
+
+<div class="bouton-box">
+
+    <button class="bouton-1" style="border: none">{{ button_label|default('Enregistrer') }}</button>
+</div>
 {{ form_end(form) }}
+<script>
+    $('#file-select-button-1').click(function () {
+        $('.upload-1 input').click();
+    });
+
+</script>

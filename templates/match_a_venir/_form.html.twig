@@ -1,4 +1,12 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+<p>Ajouter la date du match</p>
+   {{ form_row(form.matchDate) }}
+<p>Ajouter l'equipe du club</p>
+{{ form_row(form.equipe) }}
+<p>Ajouter l'equipe adverse</p>
+{{ form_row(form.adversaire) }}
+<div class="bouton-box">
+
+    <button class="bouton-1" style="border: none">{{ button_label|default('Enregistrer') }}</button>
+</div>
 {{ form_end(form) }}

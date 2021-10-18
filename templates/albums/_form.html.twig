@@ -1,7 +1,41 @@
 {{ form_start(form) }}
-<div style="display: flex">
-    {{ form_row(form.name, {'attr': {'class': 'input-global'}}) }}
-    {{ form_row(form.images, {'attr': {'class': 'input-global'}}) }}
-    <button class="bouton-1" style="border: none; margin-left: 10%">{{ button_label|default('Sauvegarder') }}</button>
+<p>Ajouter un nom a l'album</p>
+    {{ form_row(form.name) }}
+<p>Ajouter des photos a l'album</p>
+<span>Maximum 2mo par images; format accepté: .png .jpg</span>
+<div class="upload-2">
+    {{ form_row(form.images,{'attr': {'class': 'article_photoDeFond', 'onchange':"handleFilesFond(files)",'id' : 'upload', 'multiple name': 'file'}}) }}
+    <div class="preview-image"><span id="previewFond">
+                {% if app.request.attributes.get('_route') == 'albums_edit' %}
+                    {% if album.images != null %}
+                        {% for image in album.images %}
+                            <div class="imageFormPreview">
+            <img src="{{ asset('/uploads/'~image.name) }}" alt="">
+            <a href="{{ path('albums_delete_image', {id: image.id}) }}" data-delete
+               data-token="{{ csrf_token('delete' ~ image.id ) }}"><i class="fas fa-trash fa-2x"></i></a>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                {% endif %}
+            </span></div>
+    <span id="file-select-button-2" class="browse button black">Ajouter une photo <i class="fa fa-plus"></i></span>
 </div>
+
+
+
+
+
+
+
+
+{#{{ form_row(form.images) }}#}
+<div class="bouton-box">
+    <button class="bouton-1" style="border: none">{{ button_label|default('Enregistrer') }}</button>
+</div>
+
 {{ form_end(form) }}
+<script>
+    $('#file-select-button-2').click(function () {
+        $('.upload-2 input').click();
+    });
+</script>

@@ -16,14 +16,26 @@ class MatchAVenirType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('matchDate',DateTimeType::class)
-            ->add('equipe', EntityType::class,[
-                'class'=>Equipe::class,
+            ->add('matchDate', DateTimeType::class, [
+                'widget'=>'single_text',
+                'label' => false,
+                'attr' => [
+                    'class' => 'inputForm'
+                ]])
+            ->add('equipe', EntityType::class, [
+                'class' => Equipe::class,
+                'label'=>false,
+                'attr' => [
+                    'class' => 'inputForm'
+                ]
             ])
-            ->add('adversaire',EntityType::class,[
-                'class'=> Adversaires::class,
-            ])
-        ;
+            ->add('adversaire', EntityType::class, [
+                'class' => Adversaires::class,
+                'label'=>false,
+                'attr' => [
+                    'class' => 'inputForm'
+                ]
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

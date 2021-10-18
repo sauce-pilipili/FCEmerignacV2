@@ -1,7 +1,7 @@
 $(document).ready(function(){
   $('.autoplay').slick({
-    slidesToShow: 3,
-    slidesToScroll: 3,
+    slidesToShow: 2,
+    slidesToScroll: 2,
     autoplay: true,
     autoplaySpeed: 2000,
   });

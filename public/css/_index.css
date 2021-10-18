@@ -39,6 +39,7 @@ section.photo-equipes img {
 .photo-joueur img {
   width: 389px;
   height: 386px;
+    object-fit: cover;
 }
 
 section.resultats-equipes {
@@ -227,6 +228,8 @@ section.photo-equipes .event .date .time {
 }
 
 section.logos {
+    margin-left: 3%;
+    margin-right: 3%;
   /*display: -webkit-box;*/
   /*display: -ms-flexbox;*/
   /*display: flex;*/
@@ -239,7 +242,7 @@ section.logos {
 
 section.logos img{
     width: auto;
-    height: 250px;
+    height: 180px;
 }
 
 section.blog {

@@ -5,20 +5,18 @@
             {{ include('include/_navigation.html.twig') }}
             <div class="content">
                 <div class="welcome-container">
-                    <h1>Edit Adversaires</h1>
+                    <h1>Modifier l'adversaire</h1>
 
                     {{ include('adversaires/_form.html.twig', {'button_label': 'Update'}) }}
-
-                    <a href="{{ path('adversaires_index') }}">back to list</a>
-
-                    {{ include('adversaires/_delete_form.html.twig') }}
                 </div>
             </div>
         </div>
 
     {% endblock %}
 {% block stylesheets %}
-    <link rel="stylesheet" href="{{ asset('css/root.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/navigation_back_office.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/container_central.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/formulaire.css') }}">
+{% endblock %}
+{% block javascripts %}
+    <script src="{{ asset('js/imagePreview.js') }}"></script>
+    <script src="{{ asset('js/images.js') }}"></script>
 {% endblock %}

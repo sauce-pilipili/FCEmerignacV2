@@ -4,19 +4,24 @@
         <div class="main">
             {{ include('include/_navigation.html.twig') }}
             <div class="content">
-                <div class="welcome-container">
+                <div class="welcome-container-title">
                     <h1>Creer un nouveau joueur</h1>
-
+                    <a class="bouton-2" href="{{ path('joueurs_index') }}">Quitter <i class="fas fa-times"></i></a>
+                </div>
+                <div class="welcome-container">
                     {{ include('joueurs/_form.html.twig') }}
-                    <a href="{{ path('joueurs_index') }}">back to list</a>
                 </div>
             </div>
         </div>
 
     {% endblock %}
 
-{% block stylesheets %}
-    <link rel="stylesheet" href="{{ asset('css/root.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/navigation_back_office.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/container_central.css') }}">
-{% endblock %}
+    {% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('css/root.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/navigation_back_office.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/container_central.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/formulaire.css') }}">
+    {% endblock %}
+    {% block javascripts %}
+        <script src="{{ asset('js/imagePreview.js') }}"></script>
+    {% endblock %}

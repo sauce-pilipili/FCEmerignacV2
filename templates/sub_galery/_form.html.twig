@@ -1,6 +1,8 @@
 {{ form_start(form) }}
-<div style="display: flex">
-    {{ form_row(form.name, {'attr': {'class': 'input-global'}}) }}
-    <button class="bouton-1" style="border: none; margin-left: 10%">{{ button_label|default('Save') }}</button>
+<p>Ajouter le nom de la sous-galerie</p>
+{{ form_row(form.name) }}
+<div class="bouton-box">
+
+    <button class="bouton-1" style="border: none">{{ button_label|default('Enregistrer') }}</button>
 </div>
 {{ form_end(form) }}

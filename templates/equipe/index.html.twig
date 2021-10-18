@@ -1,10 +1,10 @@
 {% extends 'base.html.twig' %}
-{% block title %}équipes{% endblock %}
+{% block title %}Equipes{% endblock %}
     {% block body %}
         <div class="main">
             {{ include('include/_navigation.html.twig') }}
             <div class="content">
-                <div class="welcome-container">
+                <div class="container">
                     <div class="articles">
                         <h1>Les Equipes</h1>
                         <div class="article-button">
@@ -30,18 +30,14 @@
                     <table class="table">
                         <thead>
                         <tr>
-                            <th>Id</th>
                             <th>Name</th>
                             <th>Category</th>
                             <th style="width: 8%">actions</th>
                         </tr>
                         </thead>
                         <tbody>
-
                         {% for equipe in equipes %}
-
                             <tr>
-                                <td>{{ equipe.id }}</td>
                                 <td><a href="{{ path('equipe_edit', {'id': equipe.id}) }}">{{ equipe.name }}</a></td>
                                 <td>{{ equipe.category }}</td>
                                 <td>

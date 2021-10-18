@@ -5,20 +5,16 @@
     {{ include('include/_navigation.html.twig') }}
     <div class="content">
         <div class="welcome-container">
-            <h1>Edition Articles</h1>
-
-            {{ include('articles/_form.html.twig', {'button_label': 'Update'}) }}
-
-            <a href="{{ path('articles_index') }}">back to list</a>
-
-            {{ include('articles/_delete_form.html.twig') }}
-            {% endblock %}
-            {% block javascripts %}
-            <script src="{{ asset('js/images.js') }}"></script>
+            <h1>Edition de l'article</h1>
+            {{ include('articles/_form.html.twig', {'button_label': 'Modifer'}) }}
         </div>
     </div>
 </div>
 {% endblock %}
 {% block stylesheets %}
     <link rel="stylesheet" href="{{ asset('css/formulaire.css') }}">
+{% endblock %}
+{% block javascripts %}
+    <script src="{{ asset('js/imagePreview.js') }}"></script>
+    <script src="{{ asset('js/images.js') }}"></script>
 {% endblock %}

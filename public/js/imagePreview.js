@@ -30,9 +30,6 @@ function handleFilesFond(files,) {
         if (!imageType.test(file.type)) {
             alert("veuillez sélectionner une image");
         } else {
-            if (i == 0) {
-                previewFond.innerHTML = '';
-            }
             var img = document.createElement("img");
             img.classList.add("image-preview");
             img.file = file;

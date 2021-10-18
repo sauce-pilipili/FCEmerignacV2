@@ -1,4 +1,6 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+<h2>Choissisez un nom de catégorie</h2>
+<span>Maximum 80 caractères</span>
+    {{ form_row(form.name) }}
+<button class="bouton-1" style="border: none">{{ button_label|default('Enregistrer') }}</button>
 {{ form_end(form) }}

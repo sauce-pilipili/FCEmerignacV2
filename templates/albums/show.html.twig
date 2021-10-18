@@ -1,61 +1,56 @@
 {% extends 'base.html.twig' %}
-{% block title %}Galerie{% endblock %}
+{% block title %}Albums{% endblock %}
     {% block body %}
         <div class="main">
             {{ include('include/_navigation.html.twig') }}
             <div class="content">
-                <div class="container table">
-                    <div class="ajout-galerie">
-                        <h1>{{ album.name }}</h1>
-                        <div style="display: flex">
-                            <a class="bouton-1" href="{{ path('albums_edit', {id : album.id}) }}">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="14.07" height="14.07"
-                                     viewBox="0 0 14.07 14.07">
-                                    <path id="ajouter"
-                                          d="M11.035,4a.879.879,0,0,1,.879.879v5.276h5.276a.879.879,0,1,1,0,1.759H11.915v5.276a.879.879,0,1,1-1.759,0V11.915H4.879a.879.879,0,0,1,0-1.759h5.276V4.879A.879.879,0,0,1,11.035,4Z"
-                                          transform="translate(-4 -4)" fill="#0d0d0d"/>
-                                </svg>
-                                Ajouter des photos
-                            </a>
-                            <a class="bouton-2" href="{{ path('sub_galery_show', {id : album.subGalery.id}) }}">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="14.07" height="14.07"
-                                     viewBox="0 0 14.07 14.07">
-                                    <path id="ajouter"
-                                          d="M11.035,4a.879.879,0,0,1,.879.879v5.276h5.276a.879.879,0,1,1,0,1.759H11.915v5.276a.879.879,0,1,1-1.759,0V11.915H4.879a.879.879,0,0,1,0-1.759h5.276V4.879A.879.879,0,0,1,11.035,4Z"
-                                          transform="translate(-4 -4)" fill="#0d0d0d"/>
-                                </svg>
-                                quitter
-                            </a>
-                        </div>
+                <div class="welcome-container-title">
+                    <h1>{{ album.name }}</h1>
+                    <div style="display: flex">
+                        <a class="bouton-1" href="{{ path('albums_edit', {id : album.id}) }}">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14.07" height="14.07"
+                                 viewBox="0 0 14.07 14.07">
+                                <path id="ajouter"
+                                      d="M11.035,4a.879.879,0,0,1,.879.879v5.276h5.276a.879.879,0,1,1,0,1.759H11.915v5.276a.879.879,0,1,1-1.759,0V11.915H4.879a.879.879,0,0,1,0-1.759h5.276V4.879A.879.879,0,0,1,11.035,4Z"
+                                      transform="translate(-4 -4)" fill="#0d0d0d"/>
+                            </svg>
+                            Ajouter des photos
+                        </a>
+                        <a class="bouton-2" href="{{ path('sub_galery_show', {id : album.subGalery.id}) }}">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14.07" height="14.07"
+                                 viewBox="0 0 14.07 14.07">
+                                <path id="ajouter"
+                                      d="M11.035,4a.879.879,0,0,1,.879.879v5.276h5.276a.879.879,0,1,1,0,1.759H11.915v5.276a.879.879,0,1,1-1.759,0V11.915H4.879a.879.879,0,0,1,0-1.759h5.276V4.879A.879.879,0,0,1,11.035,4Z"
+                                      transform="translate(-4 -4)" fill="#0d0d0d"/>
+                            </svg>
+                            quitter
+                        </a>
                     </div>
-                    <div class="bloc-galerie">
-                        {% for i in album.images %}
-                            <div class="galerie galerie-item">
-
-                                <img src="{{ asset('/uploads/'~i.name) }}" alt="" width="150px">
-
-                                <a href="{{ path('albums_delete_image', {id: i.id}) }}" data-delete
-                                   data-token="{{ csrf_token('delete' ~ i.id ) }}">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                         viewBox="0 0 20 20">
-                                        <path id="delete"
-                                              d="M7,4A2,2,0,0,1,9,2h6a2,2,0,0,1,2,2V6h4a1,1,0,0,1,0,2H19.931l-.867,12.142A2,2,0,0,1,17.069,22H6.931a2,2,0,0,1-1.995-1.858L4.069,8H3A1,1,0,0,1,3,6H7ZM9,6h6V4H9ZM6.074,8l.857,12H17.069l.857-12ZM10,10a1,1,0,0,1,1,1v6a1,1,0,0,1-2,0V11A1,1,0,0,1,10,10Zm4,0a1,1,0,0,1,1,1v6a1,1,0,0,1-2,0V11A1,1,0,0,1,14,10Z"
-                                              transform="translate(-2 -2)" fill="#0d0d0d"/>
-                                    </svg>
-                                </a>
-
+                </div>
+                <div class="welcome-container">
+                    <div class="upload-2">
+                        <div class="preview-image"><span id="previewFond">
+                {% if app.request.attributes.get('_route') == 'albums_show' %}
+                    {% if album.images != null %}
+                        {% for image in album.images %}
+                            <div class="imageFormPreview">
+            <img src="{{ asset('/uploads/'~image.name) }}" alt="">
+            <a href="{{ path('albums_delete_image', {id: image.id}) }}" data-delete
+               data-token="{{ csrf_token('delete' ~ image.id ) }}"><i class="fas fa-trash fa-2x"></i></a>
                             </div>
                         {% endfor %}
-
+                    {% endif %}
+                {% endif %}
+            </span>
+                        </div>
                     </div>
-
                 </div>
             </div>
-
-        </div>
         </div>
     {% endblock %}
- {% block javascripts %}
-     <script src="{{ asset('js/images.js') }}"></script>
+ {% block stylesheets %}
+     <link rel="stylesheet" href="{{ asset('css/formulaire.css') }}">
  {% endblock %}
-
+{% block javascripts %}
+    <script src="{{ asset('js/imagePreview.js') }}"></script>
+{% endblock %}

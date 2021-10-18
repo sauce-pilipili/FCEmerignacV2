@@ -30,13 +30,18 @@ h1, h2, h3, h4 {
     height: 100%;
     min-height: 100vh;
 }
+.h1{
+    font-size: 40px;
+}
 /****************** STYLE DE LA BARRE DE NAVIGATION ***********************/
 
 .navigation {
     background-color: white;
     width: 20%;
     padding: 40px 0 0 30px;
+    position: fixed;
 }
+
 
 .navigation-knp {
     background-color: white;
@@ -97,6 +102,7 @@ h1, h2, h3, h4 {
 }
 
 .menus a {
+
     margin-left: 18px;
     transition: 0.3s ease;
 }
@@ -104,6 +110,7 @@ h1, h2, h3, h4 {
 /****************** STYLE DU CONTENU ( PARTIE DE DROITE ) ***********************/
 
 .content {
+    margin-left: 22%;
     width: 80%;
     background-color: var(--main-bg);
 }
@@ -112,5 +119,20 @@ h1, h2, h3, h4 {
     margin: 100px;
 }
 
-
-
+.navFooter{
+    margin-top: 45%;
+    padding-bottom: 20%;
+}
+.raccourci-item{
+    padding: 0 14px;
+}
+.raccourci-back {
+    text-align: center;
+    font-size: 20px;
+}
+.main-title-back h1{
+    font-size: 40px;
+}
+.main-title-back{
+    margin: 0 15%;
+}

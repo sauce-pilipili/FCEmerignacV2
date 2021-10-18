@@ -1,5 +1,4 @@
 .inputForm {
-
     font-family: 'Montserrat', sans-serif;
     height: 40px;
     padding-left: 10px;
@@ -68,9 +67,8 @@ font-weight: bold;
 }
 
 .welcome-container p {
-    margin: 20px 0 15px 0;
+    margin: 20px 0 0 0;
 }
-
 .welcome-container span {
     font-family: "Montserrat", sans-serif;
     font-size: 15px ;

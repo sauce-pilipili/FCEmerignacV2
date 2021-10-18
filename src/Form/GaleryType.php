@@ -16,7 +16,8 @@ class GaleryType extends AbstractType
             ->add('name',TextType::class,[
                 'label'=> false,
                 'attr'=>[
-                    'placeholder'=>'Nom de la galerie'
+                    'class'=> 'inputForm',
+                    'placeholder'=> false,
                 ]
             ])
         ;

@@ -4,7 +4,7 @@
         <div class="main">
             {{ include('include/_navigation.html.twig') }}
             <div class="content">
-                <div class="welcome-container">
+                <div class="container ">
                     <div class="articles">
                         <h1>Les articles</h1>
                         <div class="article-button">
@@ -29,7 +29,7 @@
                     <table class="table">
                         <thead>
                         <tr>
-                            <th>N°</th>
+
                             <th>Nom de l'article</th>
                             <th>Equipe</th>
                             <th>Date de création</th>
@@ -40,7 +40,6 @@
                         <tbody>
                         {% for article in articles %}
                             <tr>
-                                <td>{{ article.id }}</td>
                                 <td><a style="cursor:pointer " href="{{ path('articles_edit', {'id': article.id}) }}">
                                         {{ article.titre }}
                                     </a></td>

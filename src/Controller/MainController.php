@@ -63,6 +63,9 @@ class MainController extends AbstractController
             $article = $articlesRepository->findByCategory($categoryAjax);
             $titre = $article->getTitre();
             $date = $article->getCreatedDate();
+            $date =
+            $date = date_format($article->getCreatedDate(),'Y-m-d');
+//            $date = $article->getCreatedDate()->date_format('m-d-Y H:s');
             $slug = $article->getSlug();
             $image = $article->getPhotoEnAvant()->getName();
             return new Jsonresponse([
@@ -133,7 +136,6 @@ class MainController extends AbstractController
                 'category' => $category,
                 'form' => $form->createView()
             ]);
-
         } else {
             $equipe = $equipeRepository->findEquipe($id);
         }
@@ -142,7 +144,6 @@ class MainController extends AbstractController
             'form' => $form->createView()
         ]);
     }
-
     public function compare($id, $cattocompare)
     {
         foreach ($cattocompare as $cat) {

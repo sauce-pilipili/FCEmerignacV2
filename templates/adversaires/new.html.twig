@@ -4,12 +4,12 @@
         <div class="main">
             {{ include('include/_navigation.html.twig') }}
             <div class="content">
+                <div class="welcome-container-title">
+                    <h1>Ajouter un adversaire</h1>
+                    <a class="bouton-2" href="{{ path('adversaires_index') }}">Quitter <i class="fas fa-times"></i></a>
+                </div>
                 <div class="welcome-container">
-                    <h1>Create new Adversaires</h1>
-
                     {{ include('adversaires/_form.html.twig') }}
-
-                    <a href="{{ path('adversaires_index') }}">back to list</a>
                 </div>
             </div>
         </div>
@@ -20,4 +20,8 @@
     <link rel="stylesheet" href="{{ asset('css/root.css') }}">
     <link rel="stylesheet" href="{{ asset('css/navigation_back_office.css') }}">
     <link rel="stylesheet" href="{{ asset('css/container_central.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/formulaire.css') }}">
+{% endblock %}
+{% block javascripts %}
+    <script src="{{ asset('js/imagePreview.js') }}"></script>
 {% endblock %}

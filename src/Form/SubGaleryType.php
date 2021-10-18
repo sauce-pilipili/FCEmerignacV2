@@ -16,7 +16,8 @@ class SubGaleryType extends AbstractType
             ->add('name',TextType::class,[
                 'label'=> false,
                 'attr'=>[
-                    'placeholder'=>'Nom de la sous-galerie'
+                    'class'=>'inputForm',
+                    'placeholder'=>false
                 ]
             ])
         ;

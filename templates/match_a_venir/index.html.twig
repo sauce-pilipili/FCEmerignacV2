@@ -4,10 +4,27 @@
         <div class="main">
             {{ include('include/_navigation.html.twig') }}
             <div class="content">
-                <div class="welcome-container">
+                <div class="container">
                     <div class="articles">
                         <h1>Les matchs</h1>
-
+                        <div class="article-button">
+                            <div class="article-input">
+                                <input type="text" placeholder="Recherchez un match">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+                                    <path id="search"
+                                          d="M10,4a6,6,0,1,0,6,6A6,6,0,0,0,10,4ZM2,10a8,8,0,1,1,14.32,4.906l5.387,5.387a1,1,0,0,1-1.414,1.414L14.906,16.32A8,8,0,0,1,2,10Z"
+                                          transform="translate(-2 -2)" fill="#0d0d0d"/>
+                                </svg>
+                            </div>
+                            <a class="bouton-1" href="{{ path('match_a_venir_new') }}">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14.07" height="14.07"
+                                     viewBox="0 0 14.07 14.07">
+                                    <path id="ajouter"
+                                          d="M11.035,4a.879.879,0,0,1,.879.879v5.276h5.276a.879.879,0,1,1,0,1.759H11.915v5.276a.879.879,0,1,1-1.759,0V11.915H4.879a.879.879,0,0,1,0-1.759h5.276V4.879A.879.879,0,0,1,11.035,4Z"
+                                          transform="translate(-4 -4)" fill="#0d0d0d"/>
+                                </svg>
+                                Ajouter un match</a>
+                        </div>
                     </div>
 
                     <table class="table">

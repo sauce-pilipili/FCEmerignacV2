@@ -16,13 +16,27 @@ class EquipeType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('name')
-            ->add('category',EntityType::class,[
-                'class'=>Category::class
+            ->add('name',TextType::class,[
+                'label'=>false,
+                'attr'=>[
+                    'class'=>'inputForm',
+                ]
             ])
-            ->add('scriptResultat', TextType::class)
+            ->add('category',EntityType::class,[
+                'class'=>Category::class,
+                'label'=>false,
+                'attr'=>[
+                    'class'=>'inputForm',
+                ]
+            ])
+            ->add('scriptResultat', TextType::class,[
+                'label'=> false,
+                'attr'=>[
+                    'class'=>'inputForm',
+                ]
+            ])
             ->add('images',FileType::class,[
-                'label' => 'photo en avant',
+                'label' => false,
                 'multiple' => false,
                 'mapped' => false,
                 'required' => false

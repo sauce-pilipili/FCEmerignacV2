@@ -4,8 +4,7 @@
         <div class="main">
             {{ include('include/_navigation.html.twig') }}
             <div class="content">
-                <div class="welcome-container">
-
+                <div class="container">
                     <div class="articles">
                         <h1>Les adversaires</h1>
                         <div class="article-button">
@@ -31,7 +30,6 @@
                     <table class="table">
                         <thead>
                         <tr>
-                            <th>Id</th>
                             <th>Nom</th>
                             <th>Logo</th>
                             <th style="width: 8%">actions</th>
@@ -40,7 +38,6 @@
                         <tbody>
                         {% for adversaire in adversaires %}
                             <tr>
-                                <td>{{ adversaire.id }}</td>
                                 <td><a href="{{ path('adversaires_edit', {'id': adversaire.id}) }}">{{ adversaire.nom }}</a></td>
                                 <td><img src="{{ asset('/uploads/logo/'~adversaire.logo) }}" style="width: 100px"></td>
                                 <td>
