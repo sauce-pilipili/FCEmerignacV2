@@ -45,7 +45,7 @@ security:
          - { path: ^/galery, roles: ROLE_ADMIN }
          - { path: ^/joueurs, roles: ROLE_ADMIN }
          - { path: ^/match, roles: ROLE_ADMIN }
-         - { path: ^/registration, roles: ROLE_ADMIN }
+         - { path: ^/register, roles: ROLE_ADMIN }
          - { path: ^/security, roles: ROLE_ADMIN }
          - { path: ^/user, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }
