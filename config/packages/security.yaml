@@ -36,16 +36,20 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-         - { path: ^/admin, roles: ROLE_ADMIN }
-         - { path: ^/adversaires, roles: ROLE_ADMIN }
-         - { path: ^/albums, roles: ROLE_ADMIN }
-         - { path: ^/articles, roles: ROLE_ADMIN }
-         - { path: ^/category, roles: ROLE_ADMIN }
-         - { path: ^/team, roles: ROLE_ADMIN }
-         - { path: ^/galery, roles: ROLE_ADMIN }
-         - { path: ^/joueurs, roles: ROLE_ADMIN }
-         - { path: ^/match, roles: ROLE_ADMIN }
-         - { path: ^/register, roles: ROLE_ADMIN }
-         - { path: ^/security, roles: ROLE_ADMIN }
-         - { path: ^/user, roles: ROLE_ADMIN }
+         - { path: ^/admin, roles: ROLE_EDITOR }
+         - { path: ^/adversaires, roles: ROLE_EDITOR }
+         - { path: ^/albums, roles: ROLE_EDITOR }
+         - { path: ^/articles, roles: ROLE_EDITOR }
+         - { path: ^/category, roles: ROLE_EDITOR }
+         - { path: ^/team, roles: ROLE_EDITOR }
+         - { path: ^/galery, roles: ROLE_EDITOR }
+         - { path: ^/joueurs, roles: ROLE_EDITOR }
+         - { path: ^/match, roles: ROLE_EDITOR }
+         - { path: ^/register, roles: ROLE_EDITOR }
+         - { path: ^/security, roles: ROLE_EDITOR }
+         - { path: ^/user, roles: ROLE_EDITOR }
         # - { path: ^/profile, roles: ROLE_USER }
+
+    role_hierarchy:
+      ROLE_ADMIN: ROLE_RESPONSABLE
+      ROLE_RESPONSABLE: ROLE_EDITOR

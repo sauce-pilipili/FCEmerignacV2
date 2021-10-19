@@ -361,4 +361,65 @@ class MainController extends AbstractController
             'form' => $form->createView()
         ]);
     }
+
+    /**
+     * @Route("/histoire",name="histoire")
+     */
+    public function history(Request $request){
+        $user = new Users();
+        $form = $this->createForm(NewsLettersUsersType::class, $user);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $token = hash('sha256', uniqid());
+            $user->setCreatedDate(new \DateTime('now'));
+            $user->setValidationToken($token);
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($user);
+            $em->flush();
+        }
+        return $this->render('main/histoire.html.twig', [
+            'form' => $form->createView()
+        ]);
+
+    }
+    /**
+     * @Route("/organisation",name="organisation")
+     */
+    public function organisation(Request $request){
+        $user = new Users();
+        $form = $this->createForm(NewsLettersUsersType::class, $user);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $token = hash('sha256', uniqid());
+            $user->setCreatedDate(new \DateTime('now'));
+            $user->setValidationToken($token);
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($user);
+            $em->flush();
+        }
+        return $this->render('main/organisation.html.twig', [
+            'form' => $form->createView()
+        ]);
+
+    }
+    /**
+     * @Route("/stade",name="stade")
+     */
+    public function stade(Request $request){
+        $user = new Users();
+        $form = $this->createForm(NewsLettersUsersType::class, $user);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $token = hash('sha256', uniqid());
+            $user->setCreatedDate(new \DateTime('now'));
+            $user->setValidationToken($token);
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($user);
+            $em->flush();
+        }
+        return $this->render('main/stade.html.twig', [
+            'form' => $form->createView()
+        ]);
+
+    }
 }

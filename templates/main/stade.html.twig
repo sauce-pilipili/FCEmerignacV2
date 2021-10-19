@@ -1,0 +1,71 @@
+{% extends 'base.html.twig' %}
+{% block title %}stade{% endblock %}
+{% block body %}
+    {{ include('include/_mainNavigation.html.twig') }}
+    <main>
+
+        <section style="height:527px;overflow:hidden;width: 100%;background-color: aqua;" class="actus">
+            <img style="width:100%;height:auto;object-fit: cover;" src="photo-equipe-senior-garcons.jpg" alt="" />
+        </section>
+
+        <section class="container">
+            <div class="container-small"><h1>Le stade</h1>
+                <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet</p></div>
+        </section>
+
+        <section class="container">
+            <div class="container_col-2 col-center">
+                <img style="height:600px;background-color: aqua;" src="" alt="">
+                <div class="desc">
+                    <h2>Le club house</h2>
+                    <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+                        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="bg-grey">
+            <div class="container col-4">
+                <div class="item-col-4">
+                    <h3>Localisation</h3>
+                    <p>Mérignac</p>
+                </div>
+                <div class="item-col-4">
+                    <h3>Superficie</h3>
+                    <p>5 ha</p>
+                </div>
+                <div class="item-col-4">
+                    <h3>Terrains</h3>
+                    <p>7 terrains</p>
+                </div>
+                <div class="item-col-4">
+                    <h3>Vestiaires</h3>
+                    <p>3</p>
+                </div>
+            </div>
+        </section>
+        <section class="container">
+            <div class="container_col-2 col-center">
+                <div class="desc">
+                    <h2>Les terrains</h2>
+                    <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+                        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea</p>
+                </div>
+                <img style="height:600px;background-color: aqua;" src="" alt="">
+            </div>
+        </section>
+        <section  class="">
+            <h2>Comment s'y rendre ?</h2>
+            <img style="height:527px;overflow:hidden;width: 100%;background-color: aqua;" src="" alt="" />
+        </section>
+    </main>
+    {{ include('include/mainFooter.html.twig') }}
+{% endblock %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/_article.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/login.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/main.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/_index.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/_legals.css') }}">
+
+{% endblock %}

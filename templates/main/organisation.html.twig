@@ -1,0 +1,82 @@
+{% extends 'base.html.twig' %}
+{% block title %}organisation{% endblock %}
+{% block body %}
+    {{ include('include/_mainNavigation.html.twig') }}
+    <main>
+        <section style="height:527px;overflow:hidden;width: 100%;background-color: aqua;" class="actus">
+            <img style="width:100%;height:auto;object-fit: cover;" src="photo-equipe-senior-garcons.jpg" alt="" />
+        </section>
+
+        <section class="container">
+            <div class="container-small"><h1>L'organisation du club</h1>
+                <p>M.Rodrigues fut nommé comme président du F.C.E.A. Depuis cette date, differents présidents se sont succédé aux destinées du F.C.E.A, dont M.Duboy de 1977-1985, M.Piquero de 1985-1996, M.Julliard 1996-mars 2001, M.Declercq de mars 2001-juin 2001 et depuis juin 2001, M.Darroman est l’actuel Président du club.</p></div>
+        </section>
+
+        <section class="container">
+            <div style="display: flex; gap:2rem; flex-wrap: wrap; justify-content: center;">
+                <a href="">
+                    <img style="width:389px; height:386px;" src="#" alt="" />
+                    <div class="title-game">
+                        <h3>Jean Jacques Darroman</h3>
+                        <span class="date">Le président</span>
+                    </div>
+                </a>
+            </div>
+        </section>
+        <section class="container">
+            <div style="display: flex; gap:2rem; flex-wrap: wrap; justify-content: center;">
+                <a href="">
+                    <img style="width:389px; height:386px;" src="BOUCHON.jpg" alt="" />
+                    <div class="title-game">
+                        <h3>NOM</h3>
+                        <span class="date">Poste</span>
+                    </div>
+                </a>
+                <a href="">
+                    <img style="width:389px; height:386px;" src="BOUCHON.jpg" alt="" />
+                    <div class="title-game">
+                        <h3>NOM</h3>
+                        <span class="date">Poste</span>
+                    </div>
+                </a>
+                <a href="">
+                    <img style="width:389px; height:386px;" src="BOUCHON.jpg" alt="" />
+                    <div class="title-game">
+                        <h3>NOM</h3>
+                        <span class="date">Poste</span>
+                    </div>
+                </a>
+                <a href="">
+                    <img style="width:389px; height:386px;" src="BOUCHON.jpg" alt="" />
+                    <div class="title-game">
+                        <h3>NOM</h3>
+                        <span class="date">Poste</span>
+                    </div>
+                </a>
+                <a href="">
+                    <img style="width:389px; height:386px;" src="BOUCHON.jpg" alt="" />
+                    <div class="title-game">
+                        <h3>NOM</h3>
+                        <span class="date">Poste</span>
+                    </div>
+                </a>
+                <a href="">
+                    <img style="width:389px; height:386px;" src="BOUCHON.jpg" alt="" />
+                    <div class="title-game">
+                        <h3>NOM</h3>
+                        <span class="date">Poste</span>
+                    </div>
+                </a>
+            </div>
+        </section>
+    </main>
+    {{ include('include/mainFooter.html.twig') }}
+{% endblock %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/_article.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/login.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/main.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/_index.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/_legals.css') }}">
+
+{% endblock %}

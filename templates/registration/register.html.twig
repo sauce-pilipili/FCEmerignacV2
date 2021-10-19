@@ -6,7 +6,7 @@
             <div class="content">
                 <div class="welcome-container-title">
                     <h1>Ajout d'un membre</h1>
-                    <a class="bouton-2" href="{{ path('admin') }}">Quitter <i class="fas fa-times"></i></a>
+                    <a class="bouton-2" href="{{ path('user_index') }}">Quitter <i class="fas fa-times"></i></a>
                 </div>
                 <div class="welcome-container">
                     {{ form_start(registrationForm) }}
@@ -17,10 +17,8 @@
                     <p>Ajouter un niveau d'accès</p>
                     {{ form_row(registrationForm.roles) }}
                     <div class="bouton-box">
-                        {{ form_row(registrationForm.agreeTerms) }}
                         <button class="bouton-1"
                                 style="border: none">{{ button_label|default('Enregistrer') }}</button>
-
                     </div>
                     {{ form_end(registrationForm) }}
                 </div>

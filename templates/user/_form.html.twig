@@ -1,4 +1,11 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+<p>Ajouter un email</p>
+{{ form_row(form.email) }}
+<p>Ajouter un niveau d'accès</p>
+{{ form_row(form.roles) }}
+<p>Ajouter un mot de passe</p>
+{{ form_row(form.password) }}
+<div class="bouton-box">
+    <button class="bouton-1" style="border: none">{{ button_label|default('Enregistrer') }}</button>
+</div>
 {{ form_end(form) }}

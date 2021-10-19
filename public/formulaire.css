@@ -56,8 +56,9 @@ font-weight: bold;
     font-weight: bold;
 }
 .welcome-container{
-    padding: 90px 120px 90px 120px;
+padding: 90px 120px 90px 120px;
 }
+
 .container{
 
     margin: 0px 90px 90px 90px;
@@ -113,3 +114,5 @@ font-weight: bold;
 .formCategorie button{
     margin-top: 20px;
 }
+
+/*message falch profil*/
