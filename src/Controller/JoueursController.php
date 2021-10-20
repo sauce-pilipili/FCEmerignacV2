@@ -7,6 +7,7 @@ use App\Entity\Photo;
 use App\Form\JoueursType;
 use App\Repository\JoueursRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -19,8 +20,16 @@ class JoueursController extends AbstractController
     /**
      * @Route("/", name="joueurs_index", methods={"GET"})
      */
-    public function index(JoueursRepository $joueursRepository): Response
+    public function index(Request $request,JoueursRepository $joueursRepository): Response
     {
+
+        if ($request->isXmlHttpRequest()){
+            $valeur = $request->get('text');
+            $joueurs = $joueursRepository->findajaxJoueurs($valeur);
+            return new JsonResponse([
+                'content'=> $this->renderView('joueurs/_contentJoueurs.html.twig',compact('joueurs'))
+            ]);
+        }
         return $this->render('joueurs/index.html.twig', [
             'joueurs' => $joueursRepository->findAll(),
         ]);

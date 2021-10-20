@@ -337,7 +337,7 @@ class MainController extends AbstractController
     }
 
     /**
-     * @Route("actualité/{slug}", options={"expose"=true},name="article_slug")
+     * @Route("actualite/{slug}", options={"expose"=true},name="article_slug")
      */
     public function article(Request $request, $slug)
     {

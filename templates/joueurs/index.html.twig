@@ -10,7 +10,7 @@
                 <h1>Les joueurs</h1>
                 <div class="article-button">
                     <div class="article-input">
-                        <input type="text" placeholder="Recherchez un adversaire">
+                        <input type="text" onkeyup="AjaxSearch(this.value)" placeholder="Recherchez un adversaire">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
                             <path id="search"
                                   d="M10,4a6,6,0,1,0,6,6A6,6,0,0,0,10,4ZM2,10a8,8,0,1,1,14.32,4.906l5.387,5.387a1,1,0,0,1-1.414,1.414L14.906,16.32A8,8,0,0,1,2,10Z"
@@ -30,32 +30,16 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Lastname</th>
-                <th>Name</th>
+                <th>Nom</th>
+                <th>Prénom</th>
                 <th>Age</th>
                 <th>Description</th>
                 <th>Poste</th>
                 <th>actions</th>
             </tr>
         </thead>
-        <tbody>
-        {% for joueur in joueurs %}
-            <tr>
-                <td><a href="{{ path('joueurs_edit', {'id': joueur.id}) }}">{{ joueur.lastname }}</a></td>
-                <td><a href="{{ path('joueurs_edit', {'id': joueur.id}) }}">{{ joueur.name }}</a></td>
-                <td><a href="{{ path('joueurs_edit', {'id': joueur.id}) }}">{{ joueur.age }}</a></td>
-                <td><a href="{{ path('joueurs_edit', {'id': joueur.id}) }}">{{ joueur.description }}</a></td>
-                <td><a href="{{ path('joueurs_edit', {'id': joueur.id}) }}">{{ joueur.poste }}</a></td>
-                <td>
-
-                    {{ include('joueurs/_delete_form.html.twig') }}
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="7">no records found</td>
-            </tr>
-        {% endfor %}
+        <tbody id="bodylist">
+{{ include('joueurs/_contentJoueurs.html.twig') }}
         </tbody>
     </table>
         </div>
@@ -67,4 +51,7 @@
     <link rel="stylesheet" href="{{ asset('css/root.css') }}">
     <link rel="stylesheet" href="{{ asset('css/navigation_back_office.css') }}">
     <link rel="stylesheet" href="{{ asset('css/container_central.css') }}">
+{% endblock %}
+{% block javascripts %}
+    <script src="{{ asset('js/ArticleSearch.js') }}"></script>
 {% endblock %}

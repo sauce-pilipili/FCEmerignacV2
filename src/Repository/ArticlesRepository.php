@@ -30,6 +30,18 @@ class ArticlesRepository extends ServiceEntityRepository
             ;
     }
 
+    public function findajaxArticles($value)
+    {
+        return $this->createQueryBuilder('a')
+            ->select('a')
+            ->andWhere('a.titre LIKE :val')
+            ->setParameter('val', '%'.$value.'%')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
+
     public function findLast(): ?Articles
     {
         return $this->createQueryBuilder('a')

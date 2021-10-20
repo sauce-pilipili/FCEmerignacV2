@@ -21,8 +21,15 @@ class ArticlesController extends AbstractController
     /**
      * @Route("/index", name="articles_index", methods={"GET"})
      */
-    public function index(ArticlesRepository $articlesRepository): Response
+    public function index(Request $request,ArticlesRepository $articlesRepository): Response
     {
+        if ($request->isXmlHttpRequest()){
+            $titre = $request->get('text');
+            $articles = $articlesRepository->findajaxArticles($titre);
+            return new JsonResponse([
+               'content'=> $this->renderView('articles/_contentArticles.html.twig',compact('articles'))
+                ]);
+        }
         return $this->render('articles/index.html.twig', [
             'articles' => $articlesRepository->findAll(),
         ]);

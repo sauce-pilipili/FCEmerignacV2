@@ -1,0 +1,17 @@
+{% for joueur in joueurs %}
+    <tr>
+        <td><a href="{{ path('joueurs_edit', {'id': joueur.id}) }}">{{ joueur.lastname }}</a></td>
+        <td><a href="{{ path('joueurs_edit', {'id': joueur.id}) }}">{{ joueur.name }}</a></td>
+        <td><a href="{{ path('joueurs_edit', {'id': joueur.id}) }}">{{ joueur.age }}</a></td>
+        <td><a href="{{ path('joueurs_edit', {'id': joueur.id}) }}">{{ joueur.description }}</a></td>
+        <td><a href="{{ path('joueurs_edit', {'id': joueur.id}) }}">{{ joueur.poste }}</a></td>
+        <td>
+
+            {{ include('joueurs/_delete_form.html.twig') }}
+        </td>
+    </tr>
+{% else %}
+    <tr>
+        <td colspan="7">no records found</td>
+    </tr>
+{% endfor %}

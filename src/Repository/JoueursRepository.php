@@ -19,6 +19,18 @@ class JoueursRepository extends ServiceEntityRepository
         parent::__construct($registry, Joueurs::class);
     }
 
+
+    public function findajaxJoueurs($value)
+    {
+        return $this->createQueryBuilder('j')
+            ->select('j')
+            ->andWhere('j.lastname LIKE :val')
+            ->setParameter('val', '%'.$value.'%')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
     // /**
     //  * @return Joueurs[] Returns an array of Joueurs objects
     //  */

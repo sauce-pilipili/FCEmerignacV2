@@ -9,7 +9,7 @@
                         <h1>Les articles</h1>
                         <div class="article-button">
                             <div class="article-input">
-                                <input type="text" placeholder="Recherchez un article, une date, un auteur…">
+                                <input id="search" type="text" onkeyup="AjaxSearch(this.value)" placeholder="Recherchez un article, une date, un auteur…">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
                                     <path id="search"
                                           d="M10,4a6,6,0,1,0,6,6A6,6,0,0,0,10,4ZM2,10a8,8,0,1,1,14.32,4.906l5.387,5.387a1,1,0,0,1-1.414,1.414L14.906,16.32A8,8,0,0,1,2,10Z"
@@ -37,19 +37,8 @@
                             <th style="width: 8%">Actions</th>
                         </tr>
                         </thead>
-                        <tbody>
-                        {% for article in articles %}
-                            <tr>
-                                <td><a style="cursor:pointer " href="{{ path('articles_edit', {'id': article.id}) }}">
-                                        {{ article.titre }}
-                                    </a></td>
-                                <td>{{ article.equipe }}</td>
-                                <td>{{ article.createdDate ? article.createdDate|date('Y-m-d H:i:s') : '' }}</td>
-                                <td>
-                                    {{ include('articles/_delete_form.html.twig') }}
-                                </td>
-                            </tr>
-                        {% endfor %}
+                        <tbody id="bodylist">
+                       {{ include('articles/_contentArticles.html.twig') }}
                         <!--<tr>
                             <td colspan="7">no records found</td>
                         </tr>-->
@@ -64,4 +53,7 @@
     <link rel="stylesheet" href="{{ asset('css/root.css') }}">
     <link rel="stylesheet" href="{{ asset('css/navigation_back_office.css') }}">
     <link rel="stylesheet" href="{{ asset('css/container_central.css') }}">
+{% endblock %}
+{% block javascripts %}
+<script src="{{ asset('js/ArticleSearch.js') }}"></script>
 {% endblock %}
