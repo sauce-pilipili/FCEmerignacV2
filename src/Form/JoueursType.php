@@ -51,13 +51,13 @@ class JoueursType extends AbstractType
                 'label' => false,
                 'multiple' => false,
                 'mapped' => false,
-                'required' => false
+                'required' => true
             ])
             ->add('photoPortrait',FileType::class,[
                 'label' => false,
                 'multiple' => false,
                 'mapped' => false,
-                'required' => false
+                'required' => true
             ])
             ->add('equipe',EntityType::class,[
                 'class'=> Equipe::class,
