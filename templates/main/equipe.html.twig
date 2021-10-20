@@ -13,12 +13,11 @@
         </section>
         <section class="container">
             <div class="photo-joueur">
-                {% if equipe.joueurs is empty %}
+                {% if equipe.joueurs is not empty %}
                     {% for joueur in equipe.joueurs %}
                         <a href="">
                             <img style="width:389px; height:386px;" src="{{ asset('uploads/'~joueur.photoPortrait) }}"
                                  alt=""/>
-                            <img style="width:389px; height:386px;" src="{{ asset('img/DELRIEU.jpg') }}" alt=""/>
                             <div class="title-game">
                                 <h3>{{ joueur.lastname }} {{ joueur.name }}</h3>
                                 <span class="date">{{ joueur.poste }}</span>
