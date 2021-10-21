@@ -12,13 +12,12 @@ function ArticleCategory(category, id) {
                 $("#titre" + id).html(data.titre)
                 $("#imagearticlecat" + id).attr('src', "https://www.backstages-test.fr" + img);
                 $("#lienArticle" + id).attr('href', "https://www.backstages-test.fr/actualité/" + data.slug)
-                dateafiichage = new Date(data.dateArticle.date);
+               // dateafiichage = new Date(data.dateArticle.date);
                 // console.log( parseInt(dateafiichage.getDate())+"/"+parseInt((dateafiichage.getMonth() + 1))+ "/" + parseInt(dateafiichage.getFullYear()))
-                toString(dateafiichage.getDate()+"/"+(dateafiichage.getMonth() + 1)+ "/" + dateafiichage.getFullYear())
+               // toString(dateafiichage.getDate()+"/"+(dateafiichage.getMonth() + 1)+ "/" + dateafiichage.getFullYear())
                 // $("#date" + id).html(parseInt(dateafiichage.getDate())+"/"+parseInt((dateafiichage.getMonth() + 1))+ "/" + parseInt(dateafiichage.getFullYear()))
-                // $("#date" + id).html(dateafiichage.getDate() + "/" + (dateafiichage.getMonth() + 1) + "/" + dateafiichage.getFullYear())
-                $("#date" + id).html(data.dateArticle.date)
-                console.log(data.dateArticle.date)
+                $("#date" + id).html(data.jour + " / " + data.mois + " / " + data.annee)
+               // $("#date" + id).html(data.date)
                 // console.log(dateafiichage.getDate()+"/"+(dateafiichage.getMonth() + 1)+ "/" + dateafiichage.getFullYear())
             }
         }

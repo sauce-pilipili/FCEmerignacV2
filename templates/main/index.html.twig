@@ -9,30 +9,30 @@
         <section class="actus">
             <a href="{{ path('article_slug',{'slug': articlePremier.slug}) }}" class="last-actu">
                 <h3>Dernières actualités</h3>
-{% if articlePremier.photoEnAvant != null%}
-                <img src="{{ asset('uploads/'~ articlePremier.photoEnAvant.name ) }}" alt=""/>
-{% endif %}
+                {% if articlePremier.photoEnAvant != null %}
+                    <img src="{{ asset('uploads/'~ articlePremier.photoEnAvant.name ) }}" alt=""/>
+                {% endif %}
                 <div class="link title">
                     <h3>{{ articlePremier.titre }}</h3>
                     <span class="date">{{ articlePremier.createdDate|date('d / m / Y') }}</span>
                 </div>
             </a>
             {% if nextmatch != null %}
-            {% for match in nextmatch|slice(0,1) %}
-            <div class="event">
-                <h2>Prochain Match</h2>
-                <div class="meeting">
-                    {{ match.equipe.name }}
-                    <img src="{{ asset('/uploads/logo/logo-fce.svg') }}" alt=""/>
-                    VS
-                     {{ match.adversaire.nom }}
-                    <img src="{{ asset('/uploads/logo/'~match.adversaire.logo.name) }}" alt=""/>
-                </div>
-                <div class="date">
-                    <span class="day">{{ match.matchDate | date('d / m / Y') }} à {{ match.matchDate | date('H : i') }}</span>
-                </div>
-            </div>
-            {% endfor %}
+                {% for match in nextmatch|slice(0,1) %}
+                    <div class="event">
+                        <h2>Prochain Match</h2>
+                        <div class="meeting">
+                            {{ match.equipe.name }}
+                            <img src="{{ asset('/uploads/logo/logo-fce.svg') }}" alt=""/>
+                            VS
+                            {{ match.adversaire.nom }}
+                            <img src="{{ asset('/uploads/logo/'~match.adversaire.logo.name) }}" alt=""/>
+                        </div>
+                        <div class="date">
+                            <span class="day">{{ match.matchDate | date('d / m / Y') }} à {{ match.matchDate | date('H : i') }}</span>
+                        </div>
+                    </div>
+                {% endfor %}
             {% else %}
                 <div class="event">
                     <h2>Prochain Match</h2>
@@ -46,18 +46,18 @@
 
 
             {% endif %}
-{#            <div class="event">#}
-{#                <h2>Prochain Match Filles</h2>#}
-{#                <div class="meeting">#}
-{#                    <img src="{{ asset('/uploads/logo/logo-fce.svg') }}" alt=""/>#}
-{#                    VS#}
-{#                     {{ nextmatch.adversaire.name }}#}
-{#                    <img src="{{ asset('/uploads/logo/'~nextmatchF.adversaire.logo.name) }}" alt=""/>#}
-{#                </div>#}
-{#                <div class="date">#}
-{#                    <span class="day">{{ nextmatchF.matchDate | date('d / m / Y') }} à {{ nextmatchF.matchDate | date('H : i') }}</span>#}
-{#                </div>#}
-{#            </div>#}
+            {# <div class="event"> #}
+            {# <h2>Prochain Match Filles</h2> #}
+            {# <div class="meeting"> #}
+            {# <img src="{{ asset('/uploads/logo/logo-fce.svg') }}" alt=""/> #}
+            {# VS #}
+            {# {{ nextmatch.adversaire.name }} #}
+            {# <img src="{{ asset('/uploads/logo/'~nextmatchF.adversaire.logo.name) }}" alt=""/> #}
+            {# </div> #}
+            {# <div class="date"> #}
+            {# <span class="day">{{ nextmatchF.matchDate | date('d / m / Y') }} à {{ nextmatchF.matchDate | date('H : i') }}</span> #}
+            {# </div> #}
+            {# </div> #}
         </section>
         <section class="logos">
             <div class="autoplay">
@@ -78,19 +78,24 @@
         <script src="{{ asset('js/mainscript.js') }}"></script>
         <section class="blog">
             {% for cat in category %}
-                <script>ArticleCategory('{{ cat.name }}', {{ cat.id }});</script>
-                <a id="lienArticle{{ cat.id }}" href="{{ path('article_slug',{'slug' : '$' }) }}">
-                    <div class="article-large" >
-                        <h2>{{ cat.name }}</h2>
-                        <div class="img-article-cadre">
-                            <img id="imagearticlecat{{ cat.id }}" src="" alt=""/>
+                {% if loop.index == 1 or loop.index == 2 %}
+                    qsdfqsdhflqsudfhlqisfsiduhfglqskjdhfmqsdjhfmqsjdhfmqksjdhfmkqjsd
+                {% endif %}
+                <div class="articlemain" style="max-width: 70%">
+                    <script>ArticleCategory('{{ cat.name }}', {{ cat.id }});</script>
+                    <a id="lienArticle{{ cat.id }}" href="{{ path('article_slug',{'slug' : '$' }) }}">
+                        <div class="article-large">
+                            <h2>{{ cat.name }}</h2>
+                            <div class="img-article-cadre">
+                                <img id="imagearticlecat{{ cat.id }}" src="" alt=""/>
+                            </div>
+                            <div class="link title">
+                                <h3 id="titre{{ cat.id }}"></h3>
+                                <span id="date{{ cat.id }}" class="date"></span>
+                            </div>
                         </div>
-                        <div class="link title">
-                            <h3 id="titre{{ cat.id }}"></h3>
-                            <span id="date{{ cat.id }}" class="date"></span>
-                        </div>
-                    </div>
-                </a>
+                    </a>
+                </div>
             {% endfor %}
 
         </section>
@@ -124,9 +129,9 @@
 
                     {% for info in articleInfo %}
                         <a href="{{ path('article_slug',{'slug': info.slug}) }}" class="">
-{% if info.photoEnAvant != null %}
+                            {% if info.photoEnAvant != null %}
                                 <img src="{{ asset('uploads/'~ info.photoEnAvant.name ) }}" alt=""/>
-{% endif %}
+                            {% endif %}
 
                             <div class="link title">
                                 <h3>{{ info.titre }}</h3>
@@ -173,6 +178,7 @@
                 carousel.scrollLeft += length
             }
         }
+
         carousel()
     </script>
 {% endblock %}

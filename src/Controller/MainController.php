@@ -65,13 +65,16 @@ class MainController extends AbstractController
             $date = $article->getCreatedDate();
             $date =
             $date = date_format($article->getCreatedDate(),'Y-m-d');
+            $datestring = explode('-',$date);
 //            $date = $article->getCreatedDate()->date_format('m-d-Y H:s');
             $slug = $article->getSlug();
             $image = $article->getPhotoEnAvant()->getName();
             return new Jsonresponse([
                 'nextmatch' => $prochainMatch,
                 'titre' => $titre,
-                'dateArticle' => $date,
+                'annee' => $datestring[0],
+                'mois'=>$datestring[1],
+                'jour'=>$datestring[2],
                 'slug' => $slug,
                 'image' => $image,
 
