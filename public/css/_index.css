@@ -479,3 +479,20 @@ section.container .container-small {
 .item-col-4 {
     text-align: center;
 }
+
+section.container:nth-child(1) > div:nth-child(2) {
+  display: flex;
+  justify-content: center;
+  gap: 4rem;
+  margin-top: 20px;
+  background-color: var(--primary-color);
+  padding: 20px;
+}
+
+section.container:nth-child(1) > div:nth-child(2) > a {
+  color: #FFF;
+}
+
+section.container:nth-child(1) > div:nth-child(2) > a:hover {
+  color: #90ce7d;
+}

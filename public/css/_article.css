@@ -52,7 +52,9 @@ section.content {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  gap: 2rem;
+  gap: 1rem;
+  background-color: #FFFFFF;
+  text-align: left;
 }
 
 section.photos {
