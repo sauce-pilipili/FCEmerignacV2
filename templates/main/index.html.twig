@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'baseMain.html.twig' %}
 
 {% block title %}FCE Merignac Arlac{% endblock %}
 
@@ -22,10 +22,8 @@
                     <div class="event">
                         <h2>Prochain Match</h2>
                         <div class="meeting">
-                            {{ match.equipe.name }}
                             <img src="{{ asset('/uploads/logo/logo-fce.svg') }}" alt=""/>
                             VS
-                            {{ match.adversaire.nom }}
                             <img src="{{ asset('/uploads/logo/'~match.adversaire.logo.name) }}" alt=""/>
                         </div>
                         <div class="date">
@@ -43,8 +41,6 @@
 
                     </div>
                 </div>
-
-
             {% endif %}
             {# <div class="event"> #}
             {# <h2>Prochain Match Filles</h2> #}
@@ -78,10 +74,9 @@
         <script src="{{ asset('js/mainscript.js') }}"></script>
         <section class="blog">
             {% for cat in category %}
-                {% if loop.index == 1 or loop.index == 2 %}
-                    qsdfqsdhflqsudfhlqisfsiduhfglqskjdhfmqsdjhfmqsjdhfmqksjdhfmkqjsd
-                {% endif %}
-                <div class="articlemain" style="max-width: 70%">
+            {% if loop.last %}<div class="articlemain">
+                {% elseif loop.index == 1 or loop.index == 4  or loop.index == 5 or loop.index == 8 or loop.index == 9 or loop.index == 12 or loop.index == 13 or loop.index == 17 or loop.index == 18 %}
+                <div class="articlemain70">{% else %}<div class="articlemain30">{% endif %}
                     <script>ArticleCategory('{{ cat.name }}', {{ cat.id }});</script>
                     <a id="lienArticle{{ cat.id }}" href="{{ path('article_slug',{'slug' : '$' }) }}">
                         <div class="article-large">

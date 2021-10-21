@@ -9,6 +9,11 @@ main {
   gap: 16rem;
 }
 
+.sitePrincipal{
+    background-color: #FFFFFF;
+}
+
+
 .main-equipes {
   gap: 5rem;
 }
@@ -256,6 +261,19 @@ section.blog {
     /*width: 130%;*/
   row-gap: 17rem;
 }
+.articlemain70{
+    max-width: 65%;
+}
+
+
+.articlemain30{
+    max-width: 35%;
+}
+@media(max-width: 1045px) {
+    .articlemain70,.articlemain30{
+        max-width: 100%;
+    }
+}
 
 section.blog h2 {
   color: var(--primary-color);
@@ -285,6 +303,8 @@ section.blog .title {
   gap: 0.5rem;
 }
 
+
+
 section.blog > * {
   width: 40%;
   height: 500px;
@@ -308,7 +328,12 @@ section.blog .article-large {
     height: 571px;
     overflow: hidden;
 }
-
+@media(max-width: 801px) {
+    section.blog > * {
+        width: 100%;
+        height: 100%;
+    }
+}
 section.club {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -344,10 +369,12 @@ section.club .desc {
   gap: 1rem;
 }
 
-@media (max-width: 800px) {
+@media (max-width: 801px) {
   section.blog {
     display: block;
   }
+
+
   section.blog .title {
     bottom: 0;
   }
@@ -438,7 +465,7 @@ section.club .carousel-container .carousel .title {
 /** AJOUT CSS 18/10/2021 **/
 
 section.container {
-    width: 1613px;
+    max-width: 1613px;
     margin: auto;
 }
 

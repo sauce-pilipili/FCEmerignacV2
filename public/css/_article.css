@@ -12,6 +12,8 @@ main {
 section.display {
   position: relative;
 }
+
+
 section.display .title {
   position: absolute;
   right: 8rem;
@@ -19,6 +21,12 @@ section.display .title {
   max-width: 500px;
   padding: 4rem;
 }
+@media (max-width: 640px) {
+    section.display .title {
+        right: 0;
+    }
+}
+
 section.display .title .interaction {
   color: #505050;
   display: -webkit-box;
@@ -44,7 +52,7 @@ section.display img {
 }
 
 section.content {
-  width: 60%;
+  width: 80%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
