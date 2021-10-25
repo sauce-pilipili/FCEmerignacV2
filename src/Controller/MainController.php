@@ -259,7 +259,7 @@ class MainController extends AbstractController
      */
     public function Galery(Request $request, GaleryRepository $galeryRepository, SubGaleryRepository $subGaleryRepository): Response
     {
-        $galerie = $galeryRepository->findAll();
+        $galerie = $galeryRepository->findByExampleField();
 
         if ($request->isXmlHttpRequest()) {
             $imageHasard = $galeryRepository->findAPhoto($request->get('image'));

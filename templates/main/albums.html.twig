@@ -9,17 +9,20 @@
     <main>
         <div class="container-galerie">
             <section>
-                <h1>{% for a in albums %}{{ a.subGalery.name }}{% endfor %}</h1>
-            </section>
-            <div id="content">
+                {% for a in albums %}
+                <h1>{{ a.subGalery.name }}</h1>
+                <a href="{{ path('sous_galerie',{id: a.subGalery.id}) }}" class="btn btn-primary white">Retour</a>
+                {% endfor %}</section>
+            <div class="zoom colonne">
                 {% for a in albums %}
                     <script> galerieAjax({{ a.id }})</script>
-                    <a href="{{ path('main_albums_view',{id:a.id}) }}">
-                        <div class="card">
+                <div class="ok"><a href="{{ path('main_albums_view',{id:a.id}) }}">
+                        <div class="ok">
                             <p>{{ a.name }}</p>
-                            <img id="imageCategory{{ a.id }}" src="{{ asset('uploads/logo/logo-fce.svg') }}">
+                            <img class="imageGalerie" id="imageCategory{{ a.id }}" src="{{ asset('uploads/logo/logo-fce.svg') }}">
                         </div>
                     </a>
+                </div>
 
                 {% endfor %}
             </div>
@@ -38,5 +41,5 @@
     <link rel="stylesheet" href="{{ asset('css/main.css') }}">
     <link rel="stylesheet" href="{{ asset('css/_index.css') }}">
     <link rel="stylesheet" href="{{ asset('css/_legals.css') }}">
-
+    <link rel="stylesheet" href="{{ asset('css/mainGaleries.css') }}">
 {% endblock %}

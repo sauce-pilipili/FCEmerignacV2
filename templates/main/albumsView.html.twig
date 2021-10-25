@@ -8,16 +8,72 @@
 
     <main>
         <div class="container-galerie">
-            <section>
+            <section style="margin-bottom: 50px">
                 <h1>{{ albums.name }}</h1>
+                <a href="{{ path('galerie') }}" class="btn btn-primary white">Voir toutes les galeries</a>
+            </section >
+            <section>
+                <div class="galerie">
+                    {% set index = 1 %}
+                    {% for i in albums.images|slice(0,6) %}
+                        <figure class="galerie-bloc galerie__item--{{ index }}">
+                            <img id="imageCategory" src="{{ asset('/uploads/'~i.name) }}" alt="">
+                        </figure>
+                        {% set index = index+1 %}
+                    {% endfor %}
+                </div>
+
+
+                <div class="galerie">
+                    {% set index2 = 1 %}
+                    {% for i in albums.images|slice(6,6) %}
+                        <figure class="galerie-bloc galerie__item--{{ index2 }}">
+                            <img id="imageCategory" src="{{ asset('/uploads/'~i.name) }}" alt="">
+                        </figure>
+                        {% set index2 = index2+1 %}
+                    {% endfor %}
+                </div>
+
+
+                <div class="galerie">
+                    {% set index3 = 1 %}
+                    {% for i in albums.images |slice(12,6) %}
+                        <figure class="galerie-bloc galerie__item--{{ index3 }}">
+                            <img id="imageCategory" src="{{ asset('/uploads/'~i.name) }}" alt="">
+                        </figure>
+                        {% set index3 = index3+1 %}
+                    {% endfor %}
+                </div>
+
+                <div class="galerie">
+                    {% set index4 = 1 %}
+                    {% for i in albums.images |slice(18,6) %}
+                        <figure class="galerie-bloc galerie__item--{{ index4 }}">
+                            <img id="imageCategory" src="{{ asset('/uploads/'~i.name) }}" alt="">
+                        </figure>
+                        {% set index4 = index4+1 %}
+                    {% endfor %}
+                </div>
+                <div class="galerie">
+                    {% set index5 = 1 %}
+                    {% for i in albums.images |slice(24,6) %}
+                        <figure class="galerie-bloc galerie__item--{{ index5 }}">
+                            <img id="imageCategory" src="{{ asset('/uploads/'~i.name) }}" alt="">
+                        </figure>
+                        {% set index5 = index5+1 %}
+                    {% endfor %}
+                </div>
+
+                <div class="galerie">
+                    {% set index6 = 1 %}
+                    {% for i in albums.images|slice(31,6) %}
+                        <figure class="galerie-bloc galerie__item--{{ index6 }}">
+                        <img id="imageCategory" src="{{ asset('/uploads/'~i.name) }}" alt="">
+                    </figure>
+                    {% set index6 = index6+1 %}
+                    {% endfor %}
+                </div>
             </section>
-            <div id="content">
-                {% for i in albums.images %}
-                        <div class="card">
-                            <img id="imageCategory" src="{{ asset('/uploads/'~i.name)}}" alt="">
-                        </div>
-                {% endfor %}
-            </div>
         </div>
     </main>
     {{ include('include/mainFooter.html.twig') }}
@@ -33,5 +89,7 @@
     <link rel="stylesheet" href="{{ asset('css/main.css') }}">
     <link rel="stylesheet" href="{{ asset('css/_index.css') }}">
     <link rel="stylesheet" href="{{ asset('css/_legals.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/mainGaleries.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/gridAlbum.css') }}">
 
 {% endblock %}

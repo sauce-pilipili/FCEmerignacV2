@@ -14,24 +14,24 @@
                 <div>
                     {{ form_start(catForm,{'attr': {'class': 'catForm'}}) }}
                     {{ form_row(catForm.name,{'attr': {'class': 'input-global'}}) }}
-                    <button type="submit" class="btn">Chercher</button>
+                    <button type="submit" class="btn btn-primary">Chercher</button>
                     {{ form_end(catForm) }}
                 </div>
             </section>
-            <div id="content">
-
+            <div class="zoom colonne">
                 {% for g in galerie %}
                     <script> galerieAjax({{ g.id }})</script>
-                    <a href="{{ path('sous_galerie',{id : g.id}) }}">
-                        <div class="card">
-                            <p>{{ g.name }}</p>
-                            {{ g.id }}
-                            <img id="imageCategory{{ g.id }}" src="{{ asset('uploads/logo/logo-fce.svg') }}">
-                        </div>
-                    </a>
+                    <div class="ok"><a href="{{ path('sous_galerie',{id : g.id}) }}">
 
+                                <p>{{ g.name }}</p>
+                                <img class="imageGalerie" id="imageCategory{{ g.id }}" src="{{ asset('uploads/logo/logo-fce.svg') }}">
+
+                            {# <div><img src="images/img1.jpg" /></div> #}
+                        </a>
+                    </div>
                 {% endfor %}
             </div>
+
         </div>
     </main>
     {{ include('include/mainFooter.html.twig') }}
@@ -45,5 +45,5 @@
     <link rel="stylesheet" href="{{ asset('css/main.css') }}">
     <link rel="stylesheet" href="{{ asset('css/_index.css') }}">
     <link rel="stylesheet" href="{{ asset('css/_legals.css') }}">
-
+    <link rel="stylesheet" href="{{ asset('css/mainGaleries.css') }}">
 {% endblock %}

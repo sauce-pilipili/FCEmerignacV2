@@ -9,16 +9,19 @@
         <div class="container-galerie">
             <section>
                 <h1>{% for s in subGalery|slice(0,1) %}{{ s.galery.name }}{% endfor %}</h1>
+                <a href="{{ path('galerie') }}" class="btn btn-primary white">Refaire une recherche</a>
             </section>
-            <div id="content">
+            <div class="zoom colonne">
                 {% for s in subGalery %}
                     <script> galerieAjax({{ s.id }})</script>
-                    <a href="{{ path('main_albums',{id: s.id}) }}">
-                        <div class="card">
-                            <p>{{ s.name }}</p>
-                            <img id="imageCategory{{ s.id }}" src="{{ asset('uploads/logo/logo-fce.svg') }}">
-                        </div>
-                    </a>
+                    <div class="ok">
+                        <a href="{{ path('main_albums',{id: s.id}) }}">
+                            <div class="ok">
+                                <p>{{ s.name }}</p>
+                                <img class="imageGalerie" id="imageCategory{{ s.id }}" src="{{ asset('uploads/logo/logo-fce.svg') }}">
+                            </div>
+                        </a>
+                    </div>
                 {% endfor %}
             </div>
         </div>
@@ -36,5 +39,5 @@
     <link rel="stylesheet" href="{{ asset('css/main.css') }}">
     <link rel="stylesheet" href="{{ asset('css/_index.css') }}">
     <link rel="stylesheet" href="{{ asset('css/_legals.css') }}">
-
+    <link rel="stylesheet" href="{{ asset('css/mainGaleries.css') }}">
 {% endblock %}

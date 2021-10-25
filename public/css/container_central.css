@@ -293,9 +293,9 @@ text-align: left;
 
 .input-global {
     font-family: 'Montserrat', sans-serif;
-    height: 18px;
+    height: 100%;
+    margin-right: 20px;
     width: 500px;
-    padding: 20px;
     font-size: 14px;
     color: #9D9D9D;
 }

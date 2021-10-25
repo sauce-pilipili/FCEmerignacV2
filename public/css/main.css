@@ -158,7 +158,8 @@ a {
   -webkit-transition: color 0.2s ease-in-out;
   transition: color 0.2s ease-in-out;
 }
-a:hover {
+
+header a:hover, footer a :hover {
   color: var(--primary-color);
 }
 
@@ -554,7 +555,6 @@ footer .copyright::before {
   padding: 0.8rem 2rem;
   font-family: var(--title-font);
   font-weight: 700;
-
   width: -moz-fit-content;
   width: fit-content;
 }

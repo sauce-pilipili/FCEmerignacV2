@@ -22,19 +22,22 @@ class GaleryRepository extends ServiceEntityRepository
     // /**
     //  * @return Galery[] Returns an array of Galery objects
     //  */
-    /*
-    public function findByExampleField($value)
+
+    public function findByExampleField()
     {
         return $this->createQueryBuilder('g')
-            ->andWhere('g.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('g.id', 'ASC')
-            ->setMaxResults(10)
+            ->select('g')
+            ->join('g.subGaleries','s')
+            ->join('s.albums','a')
+            ->join('a.images','i')
+//            ->Where('')
+//            ->setParameter('val', null)
+            ->orderBy('g.id', 'DESC')
             ->getQuery()
             ->getResult()
         ;
     }
-    */
+
 
 
     public function findAPhoto($value)
