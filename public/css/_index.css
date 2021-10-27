@@ -115,7 +115,7 @@ section.photo-equipes {
   display: flex;
   gap: 1rem;
 }
-@media (max-width: 992px) {
+@media (max-width: 1285px) {
   section.actus,
 section.photo-equipes {
     -webkit-box-orient: vertical;
@@ -192,8 +192,8 @@ section.actus .event h2,
 section.photo-equipes .event h2 {
   text-align: center;
 }
-section.actus .event .meeting,
-section.photo-equipes .event .meeting {
+section.actus .event ,
+section.photo-equipes .event  {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -206,9 +206,49 @@ section.photo-equipes .event .meeting {
   font-size: 2.5rem;
 }
 section.actus .event .meeting img,
-section.photo-equipes .event .meeting img {
-  height: 145px;
+section.photo-equipes .event  {
+  max-height: 145px;
 }
+
+
+
+.meeting{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 50%;
+}
+.bloc-meeting{
+    display: flex;
+}
+@media(max-width: 780px){
+    .bloc-meeting{
+        flex-direction: column;
+        gap: 4rem;
+    }
+    section.actus > * {
+        height: 100%;
+    }
+    .meeting {
+        display: flex;
+        max-width: 100%;
+    }
+    .match-card{
+        padding: 0;
+    }
+    .event {
+        padding: 40px 0;
+    }
+}
+.match-card{
+    display: flex;
+    align-items: center;
+}
+.match-card img{
+    margin: 20px;
+    max-width: 145px;
+}
+
 section.actus .event .date,
 section.photo-equipes .event .date {
   display: -webkit-box;

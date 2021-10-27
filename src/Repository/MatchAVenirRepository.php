@@ -28,7 +28,7 @@ class MatchAVenirRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('m')
             ->andWhere('m.matchDate > :val')
             ->setParameter('val', new \DateTime('now'))
-            ->orderBy('m.matchDate', 'DESC')
+            ->orderBy('m.matchDate', 'ASC')
             ->getQuery()
             ->getResult()
         ;

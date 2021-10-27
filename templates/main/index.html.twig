@@ -18,19 +18,28 @@
                 </div>
             </a>
             {% if nextmatch != null %}
-                {% for match in nextmatch|slice(0,1) %}
-                    <div class="event">
-                        <h2>Prochain Match</h2>
-                        <div class="meeting">
-                            <img src="{{ asset('/uploads/logo/logo-fce.svg') }}" alt=""/>
-                            VS
-                            <img src="{{ asset('/uploads/logo/'~match.adversaire.logo.name) }}" alt=""/>
-                        </div>
-                        <div class="date">
-                            <span class="day">{{ match.matchDate | date('d / m / Y') }} à {{ match.matchDate | date('H : i') }}</span>
-                        </div>
+
+                <div class="event">
+                    <h2>Prochain Match</h2>
+                    <div class="bloc-meeting">
+                        {% for match in nextmatch|slice(0,2) %}
+                            <div class="meeting">
+                                {{ match.equipe.name }}
+                                <div class="match-card">
+                                    <img src="{{ asset('/uploads/logo/logo-fce.svg') }}" alt=""/>
+                                    VS
+                                    <img src="{{ asset('/uploads/logo/'~match.adversaire.logo.name) }}" alt=""/>
+                                </div>
+                                <div class="date">
+                                    <span class="day">{{ match.matchDate | date('d / m / Y') }} à {{ match.matchDate | date('H : i') }}</span>
+                                </div>
+
+
+                            </div>
+                        {% endfor %}
                     </div>
-                {% endfor %}
+                </div>
+
             {% else %}
                 <div class="event">
                     <h2>Prochain Match</h2>
@@ -42,18 +51,6 @@
                     </div>
                 </div>
             {% endif %}
-            {# <div class="event"> #}
-            {# <h2>Prochain Match Filles</h2> #}
-            {# <div class="meeting"> #}
-            {# <img src="{{ asset('/uploads/logo/logo-fce.svg') }}" alt=""/> #}
-            {# VS #}
-            {# {{ nextmatch.adversaire.name }} #}
-            {# <img src="{{ asset('/uploads/logo/'~nextmatchF.adversaire.logo.name) }}" alt=""/> #}
-            {# </div> #}
-            {# <div class="date"> #}
-            {# <span class="day">{{ nextmatchF.matchDate | date('d / m / Y') }} à {{ nextmatchF.matchDate | date('H : i') }}</span> #}
-            {# </div> #}
-            {# </div> #}
         </section>
         <section class="logos">
             <div class="autoplay">
@@ -74,24 +71,29 @@
         <script src="{{ asset('js/mainscript.js') }}"></script>
         <section class="blog">
             {% for cat in category %}
-            {% if loop.last %}<div class="articlemain">
+            {% if loop.last %}
+
+            <div class="articlemain">
                 {% elseif loop.index == 1 or loop.index == 4  or loop.index == 5 or loop.index == 8 or loop.index == 9 or loop.index == 12 or loop.index == 13 or loop.index == 17 or loop.index == 18 %}
-                <div class="articlemain70">{% else %}<div class="articlemain30">{% endif %}
-                    <script>ArticleCategory('{{ cat.name }}', {{ cat.id }});</script>
-                    <a id="lienArticle{{ cat.id }}" href="{{ path('article_slug',{'slug' : '$' }) }}">
-                        <div class="article-large">
-                            <h2>{{ cat.name }}</h2>
-                            <div class="img-article-cadre">
-                                <img id="imagearticlecat{{ cat.id }}" src="" alt=""/>
+                <div class="articlemain70">
+                    {% else %}
+                    <div class="articlemain30">
+                        {% endif %}
+                        <script>ArticleCategory('{{ cat.name }}', {{ cat.id }});</script>
+                        <a id="lienArticle{{ cat.id }}" href="{{ path('article_slug',{'slug' : '$' }) }}">
+                            <div class="article-large">
+                                <h2>{{ cat.name }}</h2>
+                                <div class="img-article-cadre">
+                                    <img id="imagearticlecat{{ cat.id }}" src="" alt=""/>
+                                </div>
+                                <div class="link title">
+                                    <h3 id="titre{{ cat.id }}"></h3>
+                                    <span id="date{{ cat.id }}" class="date"></span>
+                                </div>
                             </div>
-                            <div class="link title">
-                                <h3 id="titre{{ cat.id }}"></h3>
-                                <span id="date{{ cat.id }}" class="date"></span>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            {% endfor %}
+                        </a>
+                    </div>
+                    {% endfor %}
 
         </section>
         <section class="club">
