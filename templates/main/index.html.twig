@@ -3,7 +3,8 @@
 {% block title %}FCE Merignac Arlac{% endblock %}
 
 {% block body %}
-    {% include 'include/_mainNavigation.html.twig' %}
+    {% include 'include/hamburgerMenu.html.twig' %}
+  {#   {% include 'include/_mainNavigation.html.twig' %} #}
 
     <main>
         <section class="actus">
@@ -24,7 +25,7 @@
                     <div class="bloc-meeting">
                         {% for match in nextmatch|slice(0,2) %}
                             <div class="meeting">
-                                {{ match.equipe.name }}
+                                <span>{{ match.equipe.name }}</span>
                                 <div class="match-card">
                                     <img src="{{ asset('/uploads/logo/logo-fce.svg') }}" alt=""/>
                                     VS
