@@ -11,8 +11,7 @@
                         {% for image in album.images %}
                             <div class="imageFormPreview">
             <img src="{{ asset('/uploads/'~image.name) }}" alt="">
-            <a href="{{ path('albums_delete_image', {id: image.id}) }}" data-delete
-               data-token="{{ csrf_token('delete' ~ image.id ) }}"><i class="fas fa-trash fa-2x"></i></a>
+            <a href="{{ path('albums_supprime_image', {id: image.id}) }}" data-delete data-token="{{ csrf_token('delete' ~ image.id ) }}"><i class="fas fa-trash fa-2x"></i></a>
                             </div>
                         {% endfor %}
                     {% endif %}
@@ -20,13 +19,6 @@
             </span></div>
     <span id="file-select-button-2" class="browse button black">Ajouter une photo <i class="fa fa-plus"></i></span>
 </div>
-
-
-
-
-
-
-
 
 {#{{ form_row(form.images) }}#}
 <div class="bouton-box">

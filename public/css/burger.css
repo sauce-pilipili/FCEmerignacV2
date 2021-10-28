@@ -1,8 +1,6 @@
 /* ******************** NAV BAR ******************** */
 .topnav {
     background-color: #ffffff;
-
-
 }
 
 #root{
@@ -17,7 +15,6 @@
 .width{
     width: 100%;
 }
-
 
 .topnav_link {
     color: #000000;
@@ -34,7 +31,7 @@
     display: none;
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 785px) {
     /* hide classic menu */
     #topnav_menu {
         display: none;
@@ -49,6 +46,7 @@
     #root {
         position: relative;
         overflow-x: hidden;
+        overflow-y: hidden;
         align-items: flex-start;
         margin-left: 30px;
     }
@@ -62,19 +60,19 @@
         top: 0;
         width: 100vw;
         height: 100vh;
-
         z-index: 99;
-
         transform-origin: 0% 0%;
         transform: translate(200%, 0);
-
         transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
     }
 
+    #topnav_responsive_menu button{
+        font-family: "Montserrat", sans-serif;
+        font-weight: bold;
+    }
     #topnav_responsive_menu ul {
         display: flex;
         flex-direction: column;
-
         position: absolute;
         margin: 0;
         right: 0;
@@ -93,7 +91,7 @@
 
     #topnav_responsive_menu li {
         padding: 12px 24px;
-        font-size: 18px;
+        font-size: 20px;
     }
 
     #topnav_responsive_menu a {
@@ -106,6 +104,7 @@
     #topnav_responsive_menu.open {
         transform: none;
         position: fixed;
+
     }
 
     /* ******************** HAMBURGER ICON ******************** */
@@ -115,9 +114,8 @@
         position: relative;
         width: 33px;
         height: 28px;
-
+        margin-left: 10px;
         z-index: 100;
-
         -webkit-user-select: none;
         user-select: none;
         cursor: pointer;

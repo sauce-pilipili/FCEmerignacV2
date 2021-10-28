@@ -136,7 +136,7 @@ class AlbumsController extends AbstractController
     }
 
     /**
-     * @Route("/supprime/photo/{id}", name="albums_delete_image", methods={"DELETE"})
+     * @Route("/supprime/photo/{id}", name="albums_supprime_image", methods={"DELETE"})
      */
     public function deleteImage(Photo $image, Request $request)
     {

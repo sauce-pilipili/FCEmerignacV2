@@ -3,9 +3,7 @@
 {% block title %}FCE Merignac Arlac{% endblock %}
 
 {% block body %}
-    {% include 'include/hamburgerMenu.html.twig' %}
-  {#   {% include 'include/_mainNavigation.html.twig' %} #}
-
+     {% include 'include/_mainNavigation.html.twig' %}
     <main>
         <section class="actus">
             <a href="{{ path('article_slug',{'slug': articlePremier.slug}) }}" class="last-actu">
@@ -19,7 +17,6 @@
                 </div>
             </a>
             {% if nextmatch != null %}
-
                 <div class="event">
                     <h2>Prochain Match</h2>
                     <div class="bloc-meeting">
@@ -34,13 +31,10 @@
                                 <div class="date">
                                     <span class="day">{{ match.matchDate | date('d / m / Y') }} à {{ match.matchDate | date('H : i') }}</span>
                                 </div>
-
-
                             </div>
                         {% endfor %}
                     </div>
                 </div>
-
             {% else %}
                 <div class="event">
                     <h2>Prochain Match</h2>

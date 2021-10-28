@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'baseMain.html.twig' %}
 
 {% block title %}Albums {% for a in albums %}{{ a.subGalery.name }}{% endfor %}{% endblock %}
 
@@ -9,7 +9,7 @@
     <main>
         <div class="container-galerie">
             <section>
-                {% for a in albums %}
+                {% for a in albums|slice(0,1) %}
                 <h1>{{ a.subGalery.name }}</h1>
                 <a href="{{ path('sous_galerie',{id: a.subGalery.id}) }}" class="btn btn-primary white">Retour</a>
                 {% endfor %}</section>

@@ -35,7 +35,7 @@
                         {% for image in album.images %}
                             <div class="imageFormPreview">
             <img src="{{ asset('/uploads/'~image.name) }}" alt="">
-            <a href="{{ path('albums_delete_image', {id: image.id}) }}" data-delete
+            <a href="{{ path('albums_supprime_image', {id: image.id}) }}" data-delete
                data-token="{{ csrf_token('delete' ~ image.id ) }}"><i class="fas fa-trash fa-2x"></i></a>
                             </div>
                         {% endfor %}
@@ -53,4 +53,5 @@
  {% endblock %}
 {% block javascripts %}
     <script src="{{ asset('js/imagePreview.js') }}"></script>
+    <script src="{{ asset('js/images.js') }}"></script>
 {% endblock %}
