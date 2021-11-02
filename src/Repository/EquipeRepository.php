@@ -58,8 +58,11 @@ class EquipeRepository extends ServiceEntityRepository
     public function findEquipe($id): ?Equipe
     {
         return $this->createQueryBuilder('e')
+            ->select('e','j','a')
             ->leftjoin('e.joueurs', 'j')
             ->leftjoin('j.photoPortrait', 'photoPortrait')
+            ->leftJoin('e.articles','a')
+            ->leftJoin('a.photoFond','photo')
             ->andWhere('e.name LIKE :val')
             ->setParameter('val', '%' . $id . '%')
             ->getQuery()

@@ -1,0 +1,49 @@
+.histoire{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+
+}
+
+.flex {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.block {
+    display: block;
+    width: 738px;
+
+}
+
+.margin150 {
+    margin: 0 150px 0 150px;
+}
+
+.margin-top100 {
+    margin-top: 100px;
+    margin-bottom: 100px;
+}
+
+.title-block {
+
+}
+
+.margin150 {
+    margin-right: 150px;
+
+}
+.histoireh1{
+    margin-bottom: 30px;
+}
+
+@media (max-width: 1776px) {
+    .block {
+        width: auto;
+    }
+.margin150{
+    margin: 0 37px 0 37px;
+}
+
+}

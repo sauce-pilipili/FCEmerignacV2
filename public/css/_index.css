@@ -564,3 +564,48 @@ section.container:nth-child(1) > div:nth-child(2) > a {
 section.container:nth-child(1) > div:nth-child(2) > a:hover {
   color: #90ce7d;
 }
+
+/** AJOUT CSS 18/10/2021 **/
+
+section.container {
+    width: 1613px;
+    margin: auto;
+}
+
+section.container .container-small {
+    width: 933px;
+}
+
+.tag-center {
+    max-width: 300px;
+    margin: auto;
+}
+
+.container_col-2 {
+    display: flex;
+    gap: 5rem;
+}
+
+.col-center {
+    margin-top: -3%;
+    align-items: center;
+}
+
+.container_col-2 .desc,
+.container_col-2 img {
+    width: 50%;
+}
+
+.bg-grey {
+    background-color: #F9FAFB;
+    padding: 100px 0;
+}
+
+.col-4 {
+    display: flex;
+    justify-content: space-between;
+}
+
+.item-col-4 {
+    text-align: center;
+}

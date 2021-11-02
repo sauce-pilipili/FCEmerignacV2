@@ -3,15 +3,26 @@
 {% block body %}
     {% include 'include/_mainNavigation.html.twig' %}
     <main>
-        <section class="actus equipes">
+        <section class="pageequipes">
+
             {% if equipe.photoEquipe != null %}
-            <img src="{{ asset('uploads/'~equipe.photoEquipe) }}" alt=""/>
+                <img src="{{ asset('uploads/'~equipe.photoEquipe) }}" alt=""/>
             {% endif %}
+            <div class="bandeau">
+                <div class="h1bandeau">
+                    <h1>{{ equipe.name }}</h1>
+                </div>
+                <div>
+                    <a href="#joueur">La composition de l'équipe</a>
+                    <a href="#resultat">Ses résultats</a>
+                    <a href="#">Ses dernières actualités</a>
+                </div>
+            </div>
         </section>
-        <section class="container equipes-desc">
-            <h1>{{ equipe.name }}</h1>
+        <section class="">
+            <h2>La composition de l'équipe</h2>
         </section>
-        <section class="container">
+        <section id="joueur" class="container">
             <div class="photo-joueur">
                 {% if equipe.joueurs is not empty %}
                     {% for joueur in equipe.joueurs %}
@@ -27,13 +38,29 @@
                 {% endif %}
             </div>
         </section>
-        <section class="resultats-equipes">
+        <section id="resultat" class="resultats-equipes">
             <h2>Les résultats de l'équipe</h2>
             {% if equipe.scriptResultat is not empty %}
-            {{ equipe.scriptResultat| raw }}
+                {{ equipe.scriptResultat| raw }}
             {% else %}
-          <p>Aucun resultat pour le moment</p>
+                <p>Aucun résultat pour le moment</p>
             {% endif %}
+        </section>
+        <section class="resultats-equipes">
+            <div><h3>Les actualités de l'équipe</h3></div>
+            <div class="actuequipe">
+                {% for article in equipe.articles |slice(0,3) %}
+
+                    <a href="">
+                        <img style="width:561px; height:386px;" src="{{ asset('uploads/'~article.photoEnAvant) }}">
+                        <div class="title-game" style="width: 80%">
+                            <h3> {{ article.titre }}</h3>
+                            <span>publié le: {{ article.createdDate |date('d-m-Y') }}</span>
+                        </div>
+                    </a>
+                {% endfor %}
+            </div>
+            {# <div>{{ equipe.article.title }}</div> #}
         </section>
 
     </main>
@@ -46,5 +73,5 @@
     <link rel="stylesheet" href="{{ asset('css/main.css') }}">
     <link rel="stylesheet" href="{{ asset('css/_index.css') }}">
     <link rel="stylesheet" href="{{ asset('css/_legals.css') }}">
-
+    <link rel="stylesheet" href="{{ asset('css/.equipe.css') }}">
 {% endblock %}

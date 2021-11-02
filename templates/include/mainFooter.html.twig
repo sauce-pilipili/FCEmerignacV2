@@ -13,7 +13,7 @@
                     <button class="btn btn-primary" type="submit">Inscrivez-vous</button>
                 </div>
                 <div class="input-rgpd">
-                    {{ form_row(form.is_rgpd) }}
+                    {{ form_widget(form.is_rgpd) }} {{ form_label(form.is_rgpd) }}
                 </div>
                 {{ form_end(form) }}
 
