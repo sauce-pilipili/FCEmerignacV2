@@ -3,9 +3,13 @@
     display: -ms-flexbox;
     display: flex;
     position: relative;
-    height:527px;
+    height:767px;
     /*overflow:hidden;*/
     width: 100%;
+}
+.title-composition{
+    display: flex;
+    justify-content: center;
 }
 .pageequipes img{
     width:100%;
@@ -18,10 +22,12 @@
 }
 
 .h1bandeau{
-    font-size: 50px;
+    display: flex;
+    top: -70px;
+    font-size: 20px;
     z-index: 3;
     position: absolute;
-    padding: 2rem;
+    padding: 1rem;
     text-align: center;
     max-width: 711px;
 }
@@ -38,16 +44,54 @@
 }
 
 .bandeau{
+
     z-index: 1;
     display: flex;
+    justify-content: center;
     position: absolute;
-    bottom: -100px;
+    bottom: -150px;
+    padding-bottom: 25px;
     width:100%;
     background-color: #40762F;
     height: 241px;
+}
+@media (max-width: 952px){
+    .bandeau{
+        height: 350px;
+    }
 }
 
 .actuequipe{
     display: flex;
     justify-content: space-between;
 }
+.href{
+    display: flex;
+    flex-wrap: wrap;
+    position: absolute;
+    font-size: 30px;
+    bottom: 10px;
+    margin: 20px 20px;
+}
+.href a {
+    display: block;
+    padding: 20px 20px;
+}
+.actuequipe{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.actuequipe a{
+
+    padding: 20px;
+}
+.actuequipe img{
+    width: 100%;
+}
+/*@media (max-width: 1007px ){*/
+/*    .href{*/
+/*        padding-top: 350px;*/
+/*    }*/
+/*}*/

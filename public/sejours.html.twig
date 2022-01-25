@@ -1,0 +1,158 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Les séjours ADVE{% endblock %}
+
+{% block body %}
+{{ include('_include/_mainNavigation.html.twig') }}
+    <section class="main-sejours container-large">
+
+        <h1>Nos séjours</h1>
+
+        <div class="form-search">
+            <div class="form-search_mobile">
+                <div id="show" class="search-mobile_row-1">
+                    <p>Faire une recherche</p>
+                    <img src="{{ asset('img/chevron-down.svg') }}" alt="Flèche vers le bas">
+                </div>
+                <form class="form-show" style="display: none;" action="" method="post">
+                    <div>
+                        <label for="">Les centres</label>
+                        <select class="inputcategorieCentre" name="" id="inputcategorieCentre">
+                            <option value="">Nom du centre</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="">Les activités</label>
+                        <select class="" name="inputActivite" id="inputActivite">
+                            <option value="">Nom de l'activité</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="">Âge de l'enfant</label>
+                        <input type="text" name="age" id="" placeholder="Indiquez l'âge">
+                    </div>
+                    <div>
+                        <label for="">Saison</label>
+                        <select class="" name="saison" id="">
+                            <option value="">La saison</option>
+                            <option value="Printemps">Printemps</option>
+                            <option value="Éte">Éte</option>
+                            <option value="Automne">Automne</option>
+                            <option value="Hiver">Hiver</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="">Durée du séjour</label>
+                        <select class="" name="duree" id="">
+                            <option value="">La durée</option>
+                            <option value="7jours">7 jours</option>
+                            <option value="12jours">12 jours</option>
+                            <option value="19jours">19 jours</option>
+                        </select>
+                    </div>
+                    <div>
+                        <input class="button-primary button-submit" type="submit">
+                    </div>
+                </form>
+
+            </div>
+            <form class="form" action="" method="post">
+                <div>
+                    <label for="">Les centres</label>
+                    <select class="" name="inputcategorieCentre" id="inputcategorieCentre">
+                        <option value="">Nom du centre</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="">Les activités</label>
+                    <select class="" name="inputActivite" id="inputActivite">
+                        <option value="">Nom de l'activité</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="">Âge de l'enfant</label>
+                    <input type="text" name="age" id="" placeholder="Indiquez l'âge">
+                </div>
+                <div>
+                    <label for="">Saison</label>
+                    <select class="" name="saison" id="">
+                        <option value="">La saison</option>
+                        <option value="Printemps">Printemps</option>
+                        <option value="Éte">Éte</option>
+                        <option value="Automne">Automne</option>
+                        <option value="Hiver">Hiver</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="">Durée du séjour</label>
+                    <select class="" name="duree" id="">
+                        <option value="">La durée</option>
+                        <option value="7jours">7 jours</option>
+                        <option value="12jours">12 jours</option>
+                        <option value="19jours">19 jours</option>
+                    </select>
+                </div>
+                <div>
+                    <input class="button-primary" type="submit">
+                </div>
+            </form>
+        </div>
+    </section>
+    <section class="container-large">
+        <div class="container-card">
+            {% for sejour in sejours %}
+            <div class="card">
+                <a href="{{ path('main_vacance_view',{slug:sejour.slug}) }}">
+                <div class="cadre-img"><img src="{{ asset('uploads/'~sejour.photoEnAvant) }}" alt="{{ sejour.legendePhotoEnAvant }}"></div>
+                    
+                    <div class="card-text">
+                        <div class="card-bloc-title">
+                            <h3>{{ sejour.titre }}</h3>
+                            <p>{{ sejour.centre.name}} | {{ sejour.centre.localisation }}</p>
+                        </div>
+                        <div>
+                            <div class="card-bloc-item">
+                                <p>Activités</p>
+                                <p>{{ sejour.activite }}</p>
+                            </div>
+                            <div class="card-bloc-item">
+                                <p>Âge</p>
+                                <p>{{ sejour.ageMin}} à {{ sejour.ageMax}} ans</p>
+                            </div>
+                            <div class="card-bloc-item">
+
+                                <p>Durée du séjour</p>
+                                {% for duree in sejour.dureeSejour %}
+                                    <p>{{ duree.name }}</p>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <div class="card-bloc-price">
+                            <p>À partir de</p>
+                            <p>{{ sejour.prixMin }}€</p>
+                            <p>/enfant</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="button-center">
+            <a class="button-primary" href="{{ path('main_vacances') }}">Voir tous les séjours</a>
+        </div>
+    </section>
+
+    {{ include('_include/_reassurance.html.twig') }}
+
+
+    <div class="separator"></div>
+
+    {{ include('_include/_mainFooter.html.twig') }}
+    <script>
+        $(document).ready(function () {
+            $('#show').click(function () {
+                $('.form-show').slideToggle("slide");
+            });
+        });
+    </script>
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends 'baseMain.html.twig' %}
+{% block title %}Joueur{% endblock %}
+{% block body %}
+    {% include 'include/_mainNavigation.html.twig' %}
+    <section class="content container">
+        <div class="contact">
+            <h1>Contactez-nous</h1>
+            <p>Pour toutes demande de renseignements et compléments d’informations, n’hésitez pas à nous contacter en remplissant le formulaire. Nous vous répondrons dans les meilleurs délais.</p>
+        </div>
+        <form class="form-contact" action="">
+            <div>
+                <label for="demande">Type de la demande</label>
+                <select name="demande" id="demande">
+                    <option>Sélectionnez une option</option>
+                </select>
+            </div>
+            <div>
+                <label for="name">Nom et prénom</label>
+                <input name="name" type="text" placeholder="Indiquez votre nom et prénom">
+            </div>
+            <div>
+                <label for="email">Adresse mail</label>
+                <input name="email" type="email" placeholder="Écrivez votre adresse mail">
+            </div>
+            <div>
+                <label for="">Numéro de téléphone</label>
+                <input type="number" placeholder="Écrivez votre numéro de téléphone">
+            </div>
+            <div>
+                <label for="">Votre message</label>
+                <textarea name="" id="" cols="30" rows="10">Exemple</textarea>
+            </div>
+            <div>
+                <input type="checkbox">
+                <label for="">J’accepte que FCE Mérignac Arlac récupère les données remplis ci-dessus afin de pouvoir répondre à ma demande</label>
+            </div>
+            <input class="btn btn-secondary" type="submit" value="Envoyer ma demande">
+        </form>
+    </section>
+    {{ include('include/mainFooter.html.twig') }}
+    <script type="text/javascript" src="app.js"></script>
+{% endblock %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/_article.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/login.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/main.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/_index.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/_legals.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/.equipe.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/contact.css') }}">
+{% endblock %}

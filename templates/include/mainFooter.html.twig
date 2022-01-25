@@ -2,12 +2,10 @@
     <div class="newsletter">
         <img src="{{ asset('uploads/logo/logo-fce.svg') }}" alt="Logo"/>
         <div class="form">
-            <label for="newsletter">
+            <label for="newsletter" style="margin-bottom: 30px">
                 <h3>Inscrivez-vous à la newsletter</h3>
             </label>
-
             <div class="input-container">
-
                 {{ form_start(form) }}
                 <div class="input-newsletter">{{ form_row(form.email) }}
                     <button class="btn btn-primary" type="submit">Inscrivez-vous</button>
@@ -24,16 +22,20 @@
         <hr/>
         <div class="links">
             <div class="club">
-                Le club
+                <p style="font-weight: bold">Le club</p>
                 <ul>
                     <!--<li>Nos équipes</li>-->
                     <li>
                         <a href="{{ path('main_equipe',{id : 'Séniors Elite Masculin' }) }}">Élite Masculine</a>
-{#                        <a href="{{ path('main_equipe',{id : 'Sénior élite garçons' }) }}">Équipe Élite Garçons</a></li>#}
+                    </li>
+                    <li>
+                        <a href="{{ path('main_equipe',{id : 'Séniors Elite Feminine' }) }}">Élite Féminine</a>
+                    </li>
+                    <li><a href="{{ path('main_equipe',{id : 'autres'  }) }}">Les autres équipes</a></li>
                 </ul>
             </div>
             <div class="nav">
-                Navigation
+                <p style="font-weight: bold">Navigation</p>
                 <ul>
                     <li>
                         <a
@@ -42,19 +44,24 @@
                         >Boutique</a
                         >
                     </li>
+                    <li>
+                        <a href=https://lfna.fff.fr/recherche-clubs/?scl=4625&tab=resultats
+                           target="_blank"
+                        >Les résultats</a>
+                    </li>
                 </ul>
             </div>
             <div class="infos">
-                Informations
+                <p style="font-weight: bold">Informations</p>
                 <ul>
                     <li><a href="{{ path('mention_legal') }}">Mentions légales</a></li>
                 </ul>
             </div>
             <div class="social">
-                Suivez-nous sur les réseaux sociaux
+                <p style="font-weight: bold">Suivez-nous sur les réseaux sociaux</p>
+
                 <div class="social-icon">
-                    <a href="https://www.facebook.com/merignacarlacfootball/"
-                    >
+                    <a href="https://www.facebook.com/fcemarlacofficiel">
                         <svg
                                 width="40"
                                 height="40"
@@ -68,7 +75,7 @@
                             />
                         </svg>
                     </a>
-                    <a href="https://www.instagram.com/football_merignac_arlac/"
+                    <a href="https://www.instagram.com/fcemarlacofficiel/"
                     >
                         <svg
                                 width="40"

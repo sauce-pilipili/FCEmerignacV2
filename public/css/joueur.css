@@ -1,0 +1,39 @@
+section.content-joueur {
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 5rem;
+}
+.bloc_joueur-desc {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+.joueur-desc {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+.joueur-p {
+    margin: 2rem 0;
+}
+.bg-joueur {
+    background: linear-gradient(180deg, #ffffff00, white);
+    grid-column: 1;
+    grid-row: 1;
+    margin-top: 100%;
+}
+.cadre-joueur {
+    grid-column: 1;
+    grid-row: 1;
+}
+.joueur-img {
+    display: grid;
+    grid-template: 1fr / 1fr;
+}
+@media (max-width:900px) {
+    .content-joueur {
+        flex-direction: column;
+    }
+}

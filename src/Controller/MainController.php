@@ -11,8 +11,10 @@ use App\Repository\ArticlesRepository;
 use App\Repository\CategoryRepository;
 use App\Repository\EquipeRepository;
 use App\Repository\GaleryRepository;
+use App\Repository\JoueursRepository;
 use App\Repository\MatchAVenirRepository;
 use App\Repository\SubGaleryRepository;
+use phpDocumentor\Reflection\Types\Boolean;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -132,7 +134,6 @@ class MainController extends AbstractController
         if ($this->compare($id, $cattocompare)) {
 
             $equipe = $equipeRepository->findotherTeam($id);
-//            $equipe = $categoryRepository->findTeamInCategory($id);
 
             return $this->render('main/autresEquipe.html.twig', [
                 'equipe' => $equipe,
@@ -154,8 +155,31 @@ class MainController extends AbstractController
                 return true;
             }
         }
+    }
+
+    /**
+     * @Route("/joueur/{id}", name="main_joueur")
+     */
+    public function joueurView(Request $request,$id, JoueursRepository $joueursRepository){
+        $joueur = $joueursRepository->find($id);
+        $user = new Users();
+        $form = $this->createForm(NewsLettersUsersType::class, $user);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $token = hash('sha256', uniqid());
+            $user->setCreatedDate(new \DateTime('now'));
+            $user->setValidationToken($token);
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($user);
+            $em->flush();
+        }
+        return $this->render('main/joueur.html.twig',[
+            'joueur'=>$joueur,
+            'form'=>$form->createView()
+        ]);
 
     }
+
 
     /**
      * @Route("/main/albums/view{id}", name="main_albums_view")
@@ -421,6 +445,27 @@ class MainController extends AbstractController
             $em->flush();
         }
         return $this->render('main/stade.html.twig', [
+            'form' => $form->createView()
+        ]);
+
+    }
+
+    /**
+     * @Route("/contact",name="contact")
+     */
+    public function contact(Request $request){
+        $user = new Users();
+        $form = $this->createForm(NewsLettersUsersType::class, $user);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $token = hash('sha256', uniqid());
+            $user->setCreatedDate(new \DateTime('now'));
+            $user->setValidationToken($token);
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($user);
+            $em->flush();
+        }
+        return $this->render('main/contact.html.twig', [
             'form' => $form->createView()
         ]);
 

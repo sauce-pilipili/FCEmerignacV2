@@ -12,28 +12,70 @@
                 <div class="h1bandeau">
                     <h1>{{ equipe.name }}</h1>
                 </div>
-                <div>
+                <div class="href">
                     <a href="#joueur">La composition de l'équipe</a>
                     <a href="#resultat">Ses résultats</a>
-                    <a href="#">Ses dernières actualités</a>
+                    <a href="#actu">Ses dernières actualités</a>
                 </div>
             </div>
         </section>
-        <section class="">
+        <section class="title-composition">
             <h2>La composition de l'équipe</h2>
         </section>
-        <section id="joueur" class="container">
+        <section id="joueur" class="">
             <div class="photo-joueur">
                 {% if equipe.joueurs is not empty %}
                     {% for joueur in equipe.joueurs %}
-                        <a href="">
-                            <img style="width:389px; height:386px;" src="{{ asset('uploads/'~joueur.photoPortrait) }}"
-                                 alt=""/>
-                            <div class="title-game">
-                                <h3>{{ joueur.lastname }} {{ joueur.name }}</h3>
-                                <span class="date">{{ joueur.poste }}</span>
-                            </div>
-                        </a>
+                        {% if joueur.poste == 'Gardien' or joueur.poste == 'Gardienne' %}
+                            <a href="{{ path('main_joueur',{id: joueur.id}) }}">
+                                <img style="max-width:389px; max-height:386px;"
+                                     src="{{ asset('uploads/'~joueur.photoPortrait) }}"
+                                     alt=""/>
+                                <div class="title-game">
+                                    <h3>{{ joueur.lastname }} {{ joueur.name }}</h3>
+                                    <span class="date">{{ joueur.poste }}</span>
+                                </div>
+                            </a>
+                        {% endif %}
+                    {% endfor %}
+                    {% for joueur in equipe.joueurs %}
+                        {% if joueur.poste == 'Défenseur' or joueur.poste == 'Défenseuse' %}
+                            <a href="{{ path('main_joueur',{id: joueur.id}) }}">
+                                <img style="max-width:389px; max-height:386px;"
+                                     src="{{ asset('uploads/'~joueur.photoPortrait) }}"
+                                     alt=""/>
+                                <div class="title-game">
+                                    <h3>{{ joueur.lastname }} {{ joueur.name }}</h3>
+                                    <span class="date">{{ joueur.poste }}</span>
+                                </div>
+                            </a>
+                        {% endif %}
+                    {% endfor %}
+                    {% for joueur in equipe.joueurs %}
+                        {% if joueur.poste == 'Milieu' %}
+                            <a href="{{ path('main_joueur',{id: joueur.id}) }}">
+                                <img style="max-width:389px; max-height:386px;"
+                                     src="{{ asset('uploads/'~joueur.photoPortrait) }}"
+                                     alt=""/>
+                                <div class="title-game">
+                                    <h3>{{ joueur.lastname }} {{ joueur.name }}</h3>
+                                    <span class="date">{{ joueur.poste }}</span>
+                                </div>
+                            </a>
+                        {% endif %}
+                    {% endfor %}
+                    {% for joueur in equipe.joueurs %}
+                        {% if joueur.poste == 'Attaquant' or joueur.poste == 'Attaquante' %}
+                            <a href="{{ path('main_joueur',{id: joueur.id}) }}">
+                                <img style="max-width:389px; max-height:386px;"
+                                     src="{{ asset('uploads/'~joueur.photoPortrait) }}"
+                                     alt=""/>
+                                <div class="title-game">
+                                    <h3>{{ joueur.lastname }} {{ joueur.name }}</h3>
+                                    <span class="date">{{ joueur.poste }}</span>
+                                </div>
+                            </a>
+                        {% endif %}
                     {% endfor %}
                 {% endif %}
             </div>
@@ -46,13 +88,14 @@
                 <p>Aucun résultat pour le moment</p>
             {% endif %}
         </section>
-        <section class="resultats-equipes">
-            <div><h3>Les actualités de l'équipe</h3></div>
+        <section id="actu" class="resultats-equipes">
+            <div><h2>Les actualités de l'équipe</h2></div>
             <div class="actuequipe">
                 {% for article in equipe.articles |slice(0,3) %}
 
-                    <a href="">
-                        <img style="width:561px; height:386px;" src="{{ asset('uploads/'~article.photoEnAvant) }}">
+                    <a href="{{ path('article_slug',{slug : article.slug}) }}">
+                        <img style="max-width:561px; max-height:386px;"
+                             src="{{ asset('uploads/'~article.photoEnAvant) }}">
                         <div class="title-game" style="width: 80%">
                             <h3> {{ article.titre }}</h3>
                             <span>publié le: {{ article.createdDate |date('d-m-Y') }}</span>
@@ -60,7 +103,6 @@
                     </a>
                 {% endfor %}
             </div>
-            {# <div>{{ equipe.article.title }}</div> #}
         </section>
 
     </main>

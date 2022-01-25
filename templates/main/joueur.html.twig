@@ -1,0 +1,32 @@
+{% extends 'baseMain.html.twig' %}
+{% block title %}Joueur{% endblock %}
+{% block body %}
+    {% include 'include/_mainNavigation.html.twig' %}
+        <section class="content-joueur container">
+            <div class="joueur-img">
+                <div class="cadre-joueur"><img src="{{ asset('uploads/'~joueur.photoDebout) }}" alt=""></div>
+            <div class="bg-joueur"></div>
+            </div>
+            <div>
+                <div class="bloc_joueur-desc">
+                    <h1>{{ joueur.lastname }} {{ joueur.name }} </h1>
+                    <div class="joueur-desc">
+                        <p>{{ joueur.poste }}</p>
+                    </div>
+                </div>
+                <p class="joueur-p">{{ joueur.description | raw }}</p>
+                <a class="btn btn-secondary" href="{{ path('main_equipe',{id: joueur.equipe.name}) }}">Retour sur la liste des joueurs</a>
+            </div>
+        </section>
+    {{ include('include/mainFooter.html.twig') }}
+    <script type="text/javascript" src="app.js"></script>
+{% endblock %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/_article.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/login.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/main.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/_index.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/_legals.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/.equipe.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/joueur.css') }}">
+{% endblock %}

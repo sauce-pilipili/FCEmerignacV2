@@ -3,7 +3,7 @@
 {% block title %}FCE Merignac Arlac{% endblock %}
 
 {% block body %}
-     {% include 'include/_mainNavigation.html.twig' %}
+    {% include 'include/_mainNavigation.html.twig' %}
     <main>
         <section class="actus">
             <a href="{{ path('article_slug',{'slug': articlePremier.slug}) }}" class="last-actu">
@@ -16,7 +16,7 @@
                     <span class="date">{{ articlePremier.createdDate|date('d / m / Y') }}</span>
                 </div>
             </a>
-            {% if nextmatch != null %}
+            {% if nextmatch != null and nextmatch|length == 2 %}
                 <div class="event">
                     <h2>Prochain Match</h2>
                     <div class="bloc-meeting">
@@ -35,6 +35,27 @@
                         {% endfor %}
                     </div>
                 </div>
+            {% elseif nextmatch != null and nextmatch|length == 1 %}
+                <div class="event">
+                    <h2>Prochain Match</h2>
+                    <div class="bloc-meeting ">
+                        {% for match in nextmatch|slice(0,1) %}
+                            <div class="meeting1seulmatch">
+                                <span>{{ match.equipe.name }}</span>
+                                <div class="match-card">
+                                    <img src="{{ asset('/uploads/logo/logo-fce.svg') }}" alt=""/>
+                                    VS
+                                    <img src="{{ asset('/uploads/logo/'~match.adversaire.logo.name) }}" alt=""/>
+                                </div>
+                                <div class="date">
+                                    <span class="day">{{ match.matchDate | date('d / m / Y') }} à {{ match.matchDate | date('H : i') }}</span>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+
             {% else %}
                 <div class="event">
                     <h2>Prochain Match</h2>
@@ -47,50 +68,8 @@
                 </div>
             {% endif %}
         </section>
-        <section class="logos">
-            <div class="autoplay">
-                <img src="{{ asset('logoPartenaire/BACKSTAGES NOIR.svg') }}">
-                <img src="{{ asset('logoPartenaire/BLOCSTOP NOIR.svg') }}">
-                <img src="{{ asset('logoPartenaire/CLUB VIP NOIR.svg') }}">
-                <img src="{{ asset('logoPartenaire/DECATHLON NOIR.svg') }}">
-                <img src="{{ asset('logoPartenaire/ECF NOIR.svg') }}">
-                <img src="{{ asset('logoPartenaire/FAYAT NOIR.svg') }}">
-                <img src="{{ asset('logoPartenaire/FIAT NOIR.svg') }}">
-                <img src="{{ asset('logoPartenaire/FITNES PARK NOIR.svg') }}">
-                <img src="{{ asset('logoPartenaire/GROUPAMA NOIR.svg') }}">
-                <img src="{{ asset('logoPartenaire/IBIS HOTEL NOIR.svg') }}">
-                <img src="{{ asset('logoPartenaire/LEBIHAN NOIR.svg') }}">
-                <img src="{{ asset('logoPartenaire/LP PROMOTION NOIR.svg') }}">
-            </div>
-        </section>
-        <script src="{{ asset('js/mainscript.js') }}"></script>
-        <section class="blog">
-            {% for cat in category %}
-            {% if loop.last %}
 
-            <div class="articlemain">
-                {% elseif loop.index == 1 or loop.index == 4  or loop.index == 5 or loop.index == 8 or loop.index == 9 or loop.index == 12 or loop.index == 13 or loop.index == 17 or loop.index == 18 %}
-                <div class="articlemain70">
-                    {% else %}
-                    <div class="articlemain30">
-                        {% endif %}
-                        <script>ArticleCategory('{{ cat.name }}', {{ cat.id }});</script>
-                        <a id="lienArticle{{ cat.id }}" href="{{ path('article_slug',{'slug' : '$' }) }}">
-                            <div class="article-large">
-                                <h2>{{ cat.name }}</h2>
-                                <div class="img-article-cadre">
-                                    <img id="imagearticlecat{{ cat.id }}" src="" alt=""/>
-                                </div>
-                                <div class="link title">
-                                    <h3 id="titre{{ cat.id }}"></h3>
-                                    <span id="date{{ cat.id }}" class="date"></span>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    {% endfor %}
 
-        </section>
         <section class="club">
             <div class="desc">
                 <h3>Info club</h3>
@@ -148,6 +127,57 @@
                 </div>
             </div>
         </section>
+
+
+        <script src="{{ asset('js/mainscript.js') }}"></script>
+        <section class="blog">
+            {% for cat in category %}
+            {% if loop.last %}
+
+            <div class="articlemain">
+                {% elseif loop.index == 1 or loop.index == 4  or loop.index == 5 or loop.index == 8 or loop.index == 9 or loop.index == 12 or loop.index == 13 or loop.index == 17 or loop.index == 18 %}
+                <div class="articlemain70">
+                    {% else %}
+                    <div class="articlemain30">
+                        {% endif %}
+                        <script>ArticleCategory('{{ cat.name }}', {{ cat.id }});</script>
+                        <a class="lientarticle" id="lienArticle{{ cat.id }}"
+                           href="{{ path('article_slug',{'slug' : '$' }) }}">
+                            <div class="article-large">
+                                <h2>{{ cat.name }}</h2>
+                                <div class="img-article-cadre">
+                                    <img id="imagearticlecat{{ cat.id }}" src="" alt=""/>
+                                </div>
+                                <div class="link title">
+                                    <h3 id="titre{{ cat.id }}"></h3>
+                                    <span id="date{{ cat.id }}" class="date"></span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+
+
+        <section class="logos">
+            <div class="autoplay">
+                <img src="{{ asset('logoPartenaire/BACKSTAGES NOIR.svg') }}">
+                <img src="{{ asset('logoPartenaire/BLOCSTOP NOIR.svg') }}">
+                <img src="{{ asset('logoPartenaire/CLUB VIP NOIR.svg') }}">
+                <img src="{{ asset('logoPartenaire/DECATHLON NOIR.svg') }}">
+                <img src="{{ asset('logoPartenaire/ECF NOIR.svg') }}">
+                <img src="{{ asset('logoPartenaire/FAYAT NOIR.svg') }}">
+                <img src="{{ asset('logoPartenaire/FIAT NOIR.svg') }}">
+                <img src="{{ asset('logoPartenaire/FITNES PARK NOIR.svg') }}">
+                <img src="{{ asset('logoPartenaire/GROUPAMA NOIR.svg') }}">
+                <img src="{{ asset('logoPartenaire/IBIS HOTEL NOIR.svg') }}">
+                <img src="{{ asset('logoPartenaire/LEBIHAN NOIR.svg') }}">
+                <img src="{{ asset('logoPartenaire/LP PROMOTION NOIR.svg') }}">
+            </div>
+        </section>
+
 
     </main>
     {% include 'include/mainFooter.html.twig' %}

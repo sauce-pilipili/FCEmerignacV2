@@ -1,0 +1,25 @@
+.contact {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+}
+.form-contact div {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+.form-contact {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+.form-contact input,
+.form-contact select,
+.form-contact textarea {
+    padding: 15px;
+}
+.form-contact label {
+    font-weight: bold;
+    font-family: var(--body-font);
+}

@@ -569,10 +569,25 @@ footer .copyright::before {
   width: 100%;
   margin: 0 auto;
 }
+
+@media (max-width: 576px){
+  footer .links{
+    flex-direction: column;
+    gap: 3rem;
+  }
+  .social{
+    align-items: center;
+  }
+  footer .links > div{
+    gap: 1rem;
+  }
+}
+
 @media (min-width: 576px) {
   .container {
     max-width: 540px;
   }
+
 }
 @media (min-width: 768px) {
   .container {

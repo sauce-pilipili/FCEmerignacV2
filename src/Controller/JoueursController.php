@@ -108,7 +108,6 @@ class JoueursController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
             if ($form->get('photoDebout')->getData() != null) {
-//                dd($form->get('photoDebout')->getData());
                 $photoDebout = $form->get('photoDebout')->getData();
                 $fichier = md5(uniqid()) . '.' . $photoDebout->guessExtension();
                 $photoDebout->move(
@@ -119,13 +118,10 @@ class JoueursController extends AbstractController
                 $photoDeboutresultat = new Photo();
                 $photoDeboutresultat->setName($fichier);
                 $joueur->setPhotoDebout($photoDeboutresultat);
-
                 $entityManager->persist($joueur);
 
             }
             if ($form->get('photoPortrait')->getData() != null) {
-
-                //photo portrait
                 $photoPortrait = $form->get('photoPortrait')->getData();
                 $fichier = md5(uniqid()) . '.' . $photoPortrait->guessExtension();
                 $photoPortrait->move(

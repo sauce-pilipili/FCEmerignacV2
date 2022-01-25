@@ -31,6 +31,7 @@ section.photo-equipes img {
 }
 
 .photo-joueur {
+    overflow: hidden;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -47,22 +48,22 @@ section.photo-equipes img {
     object-fit: cover;
 }
 
-section.resultats-equipes {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  gap: 2rem;
-}
+/*section.resultats-equipes {*/
+/*  display: -webkit-box;*/
+/*  display: -ms-flexbox;*/
+/*  display: flex;*/
+/*  -webkit-box-orient: vertical;*/
+/*  -webkit-box-direction: normal;*/
+/*      -ms-flex-direction: column;*/
+/*          flex-direction: column;*/
+/*  -webkit-box-pack: center;*/
+/*      -ms-flex-pack: center;*/
+/*          justify-content: center;*/
+/*  -webkit-box-align: center;*/
+/*      -ms-flex-align: center;*/
+/*          align-items: center;*/
+/*  gap: 2rem;*/
+/*}*/
 
 section.desc-equipes {
   display: -webkit-box;
@@ -222,6 +223,12 @@ section.photo-equipes .event  {
 .bloc-meeting{
     display: flex;
 }
+.meeting1seulmatch{
+    font-size: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 @media(max-width: 780px){
     .bloc-meeting{
         flex-direction: column;
@@ -246,7 +253,7 @@ section.photo-equipes .event  {
     align-items: center;
 }
 .match-card img{
-    margin: 20px;
+    padding: 20px;
     max-width: 145px;
 }
 
@@ -369,11 +376,15 @@ section.blog .article-large {
     height: 571px;
     overflow: hidden;
 }
+.article-large h2{
+    margin-top: 20px;
+}
 @media(max-width: 801px) {
     section.blog > * {
         width: 100%;
         height: 100%;
     }
+
 }
 section.club {
   display: -webkit-box;
