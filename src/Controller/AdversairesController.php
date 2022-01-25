@@ -7,6 +7,7 @@ use App\Entity\Photo;
 use App\Form\AdversairesType;
 use App\Repository\AdversairesRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -19,8 +20,16 @@ class AdversairesController extends AbstractController
     /**
      * @Route("/", name="adversaires_index", methods={"GET"})
      */
-    public function index(AdversairesRepository $adversairesRepository): Response
+    public function index(Request $request,AdversairesRepository $adversairesRepository): Response
     {
+        if ($request->isXmlHttpRequest()){
+            $valeur = $request->get('text');
+            $adversaires = $adversairesRepository->findajaxAdversaire($valeur);
+            return new JsonResponse([
+                'content'=> $this->renderView('adversaires/_contentAdversaire.html.twig',compact('adversaires'))
+            ]);
+        }
+
         return $this->render('adversaires/index.html.twig', [
             'adversaires' => $adversairesRepository->findAll(),
         ]);

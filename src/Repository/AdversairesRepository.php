@@ -19,6 +19,17 @@ class AdversairesRepository extends ServiceEntityRepository
         parent::__construct($registry, Adversaires::class);
     }
 
+    public function findajaxAdversaire($value)
+    {
+        return $this->createQueryBuilder('a')
+            ->select('a')
+            ->andWhere('a.nom LIKE :val')
+            ->setParameter('val', '%'.$value.'%')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
     // /**
     //  * @return Adversaires[] Returns an array of Adversaires objects
     //  */

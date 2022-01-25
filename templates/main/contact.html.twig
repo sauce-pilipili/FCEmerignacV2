@@ -7,7 +7,9 @@
             <h1>Contactez-nous</h1>
             <p>Pour toutes demande de renseignements et compléments d’informations, n’hésitez pas à nous contacter en remplissant le formulaire. Nous vous répondrons dans les meilleurs délais.</p>
         </div>
-        <form class="form-contact" action="">
+        {{ form_start(contactForm) }}
+
+        <div class="form-contact">
             <div>
                 <label for="demande">Type de la demande</label>
                 <select name="demande" id="demande">
@@ -35,7 +37,8 @@
                 <label for="">J’accepte que FCE Mérignac Arlac récupère les données remplis ci-dessus afin de pouvoir répondre à ma demande</label>
             </div>
             <input class="btn btn-secondary" type="submit" value="Envoyer ma demande">
-        </form>
+        </div>
+        {{ form_end(contactForm) }}
     </section>
     {{ include('include/mainFooter.html.twig') }}
     <script type="text/javascript" src="app.js"></script>

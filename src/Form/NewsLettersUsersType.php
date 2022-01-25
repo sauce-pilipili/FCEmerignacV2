@@ -34,11 +34,6 @@ class NewsLettersUsersType extends AbstractType
                 ],
                 'label'=>' j\'accepte la collecte de mes données personnelles'
             ])
-//            ->add('Inscrivez-vous',SubmitType::class,[
-//                'attr'=>[
-//                    'class'=>'btn btn-primary ',
-//                ]
-//            ])
         ;
     }
 

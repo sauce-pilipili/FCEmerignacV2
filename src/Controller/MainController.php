@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Articles;
 use App\Entity\Newletters\Users;
 use App\Form\CategoryGaleryType;
+use App\Form\ContactType;
 use App\Form\NewsLettersUsersType;
 use App\Repository\AlbumsRepository;
 use App\Repository\ArticlesRepository;
@@ -14,7 +15,6 @@ use App\Repository\GaleryRepository;
 use App\Repository\JoueursRepository;
 use App\Repository\MatchAVenirRepository;
 use App\Repository\SubGaleryRepository;
-use phpDocumentor\Reflection\Types\Boolean;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -283,7 +283,7 @@ class MainController extends AbstractController
      */
     public function Galery(Request $request, GaleryRepository $galeryRepository, SubGaleryRepository $subGaleryRepository): Response
     {
-        $galerie = $galeryRepository->findByExampleField();
+        $galerie = $galeryRepository->findGalerie();
 
         if ($request->isXmlHttpRequest()) {
             $imageHasard = $galeryRepository->findAPhoto($request->get('image'));
@@ -465,8 +465,15 @@ class MainController extends AbstractController
             $em->persist($user);
             $em->flush();
         }
+
+        $contactForm = $this->createForm(ContactType::class);
+        $contactForm->handleRequest($request);
+        if ($contactForm->isSubmitted()&&$contactForm->isValid()){
+            dd('coucou');
+        }
         return $this->render('main/contact.html.twig', [
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'contactForm'=>$contactForm->createView()
         ]);
 
     }

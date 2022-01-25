@@ -1,0 +1,14 @@
+{% for adversaire in adversaires %}
+    <tr>
+        <td><a href="{{ path('adversaires_edit', {'id': adversaire.id}) }}">{{ adversaire.nom }}</a></td>
+        <td><img src="{{ asset('/uploads/logo/'~adversaire.logo) }}" style="width: 100px"></td>
+        <td>
+            {{ include('adversaires/_delete_form.html.twig') }}
+
+        </td>
+    </tr>
+{% else %}
+    <tr>
+        <td colspan="4">pas de résultat</td>
+    </tr>
+{% endfor %}

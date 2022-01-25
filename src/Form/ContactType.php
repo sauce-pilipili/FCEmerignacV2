@@ -32,7 +32,7 @@ class ContactType extends AbstractType
                     'placeholder'=>'Indiquez votre nom et prénom'
                 ]
             ])
-            ->add('lemail',EmailType::class,[
+            ->add('email',EmailType::class,[
                 'required'=> true,
                 'label'=>false,
                 'attr'=>[
